@@ -1,0 +1,14 @@
+{
+  "name": "launchy",
+  "version": "0.1.0",
+  "author": "Rafael Muñoz Cárdenas",
+  "description": "The Launch Control website",
+  "scripts": {
+  	"mocha": "chimp --ddp=http://localhost:3000 --mocha --path=tests",
+  	"mochawatch": "chimp --ddp=http://localhost:3000 --mocha --path=tests --watch"
+    
+  },
+  "devDependencies": {
+    "chimp": "^0.24.1"
+  }
+}
