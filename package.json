@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "author": "Rafael Muñoz Cárdenas",
   "description": "The Launch Control website",
+  "private": true,
   "scripts": {
   	"mocha": "chimp --ddp=http://localhost:3000 --mocha --path=tests",
   	"mochawatch": "chimp --ddp=http://localhost:3000 --mocha --path=tests --watch"
     
   },
   "devDependencies": {
-    "chimp": "^0.24.1"
+    "chimp": "0.25.x",
+    "node-inspector": "0.12.x"
   }
 }
