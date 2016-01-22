@@ -11,7 +11,8 @@ Schemas.Manufacturer = new SimpleSchema({
     max: 70
   },
   description: {
-    type: String
+    type: String,
+    optional: true
   }
 });
 
@@ -44,10 +45,12 @@ Schemas.Car = new SimpleSchema({
     max: 100
   },
   year: {
-    type: Number  // TODO
+    type: Number,
+    min: 1900
   },
   kilometers: {
-    type: Number
+    type: Number,
+    min: 0
   },
   district: {
     type: Schemas.District
