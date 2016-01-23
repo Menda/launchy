@@ -1,4 +1,3 @@
-
 Manufacturers = new Mongo.Collection('manufacturers');
 Districts = new Mongo.Collection('districts');
 Cars = new Mongo.Collection("cars");
