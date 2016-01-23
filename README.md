@@ -1,6 +1,10 @@
 Installation
 ============
 
+Install mongodb:
+
+    $ brew install mongodb
+
 Base:
 * BlazeLayout (https://github.com/kadirahq/blaze-layout)
 * Backdoor (xolvio:backdoor)
@@ -23,13 +27,13 @@ How to test
 There are different ways to test. At least, Mocha and Cucumber tests need
 before a running meteor server, so do as a first step:
 
-    $ meteor
+    $ MONGO_URL=mongodb://localhost:27017/launchy_test meteor
 
 If you need to run the debugger on the server side, place a `debugger;` line
 where you want your program to stop and start the meter server like this
 instead:
 
-    $ meteor debug --debug-port 5050
+    $ MONGO_URL=mongodb://localhost:27017/launchy_test meteor debug --debug-port 5050
 
 Then open in your browser: http://localhost:7272/debug?port=5050
 
