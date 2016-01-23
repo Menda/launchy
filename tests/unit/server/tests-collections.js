@@ -1,4 +1,11 @@
-describe('Manufacturer @focus', function() {
+
+describe('@focus Manufacturer', function() {
+  beforeEach(function() {
+    server.execute(function() {
+      Manufacturers.remove({});
+    });
+  });
+
   it('should be inserted successfuly', function () {
       var result = server.execute(function() {
         var insertSync = Meteor.wrapAsync(Manufacturers.insert, Manufacturers);
@@ -55,7 +62,13 @@ describe('Manufacturer @focus', function() {
   });*/
 });
 
-describe('District @focus', function() {
+describe('@focus District', function() {
+  beforeEach(function() {
+    server.execute(function() {
+      Districts.remove({});
+    });
+  });
+
   it('should be inserted successfuly', function () {
       var result = server.execute(function() {
         var insertSync = Meteor.wrapAsync(Districts.insert, Districts);
@@ -78,7 +91,15 @@ describe('District @focus', function() {
   });
 });
 
-describe('Car @focus', function() {
+describe('@focus Car', function() {
+  beforeEach(function() {
+    server.execute(function() {
+      Manufacturers.remove({});
+      Districts.remove({});
+      Cars.remove({});
+    });
+  });
+
   // Prepare data
   var districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
   var manufacturerObj = {name: 'BMW'};
@@ -118,25 +139,36 @@ describe('Car @focus', function() {
       var carID = insertSync(carObj);
       var updateSync = Meteor.wrapAsync(Cars.update, Cars);
       updateSync({_id: carID}, {$set: {year: 2010}});
-      return Cars.findOne(carID).updatedAt;
+      return Cars.findOne(carID);
     }, carObj);
-    assert.typeOf(result, 'date');
+    assert.typeOf(result.updatedAt, 'date');
     var dateNow = new Date();
-    assert.isBelow(result, dateNow);
+    assert.isBelow(result.updatedAt, dateNow);
+    assert.notEqual(result.updatedAt, result.createdAt);
   });
 
   it('should be not inserted successfuly on wrong date', function () {
     var modCarObj = JSON.parse(JSON.stringify(carObj));
     modCarObj['year'] = 1899;
-    var errored = server.execute(function(carObj) {
+    var errored = server.execute(function(modCarObj) {
       var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
       try {
-        insertSync(carObj);
+        insertSync(modCarObj);
       } catch(error) {
         return true;
       }
       return false;
     }, modCarObj);
     assert.isTrue(errored, 'insert failed raising an exception');
+  });
+
+  it('should be inserted successfuly without warranty', function () {
+    var modCarObj = JSON.parse(JSON.stringify(carObj));
+    delete modCarObj.warranty;
+    var result = server.execute(function(modCarObj) {
+      var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
+      return insertSync(modCarObj);
+    }, modCarObj);
+    assert.typeOf(result, 'string');
   });
 });
