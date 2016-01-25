@@ -22,3 +22,5 @@ kadira:flow-router
 kadira:blaze-layout
 aldeed:collection2
 xolvio:backdoor
+accounts-ui
+accounts-password
