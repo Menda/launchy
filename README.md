@@ -37,6 +37,11 @@ On production:
 
     $ npm run-script start_production
 
+First run on development and staging environments the application itself will
+install some fixtures: users, ads.
+
+First run on all environments it will install all districts.
+
 
 How to test
 ===========
