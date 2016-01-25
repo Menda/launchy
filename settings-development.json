@@ -1,0 +1,8 @@
+{
+  "public": {
+    "environment" : "development"
+  },
+  "private": {
+
+  }
+}
