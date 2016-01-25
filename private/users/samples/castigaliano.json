@@ -1,0 +1,10 @@
+{
+  "username": "Castigaliano_Test",
+  "email": "castigaliano@testemail.es",
+  "password": "castigalianopass",
+  "profile": {
+    "first_name": "Álvarito",
+    "last_name": "Momelesco Gómez",
+    "company": ""
+  }
+}

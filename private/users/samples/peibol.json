@@ -1,0 +1,10 @@
+{
+  "username": "Peibol_Test",
+  "email": "pelotudo@testemail.es",
+  "password": "peibolpass",
+  "profile": {
+    "first_name": "Peibol José",
+    "last_name": "Jaenero Granaíno",
+    "company": "Don Hoces"
+  }
+}
