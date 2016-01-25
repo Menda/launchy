@@ -6,8 +6,11 @@
   "private": true,
   "scripts": {
   	"mocha": "chimp --ddp=http://localhost:3000 --mocha --path=tests",
-  	"mochawatch": "chimp --ddp=http://localhost:3000 --mocha --path=tests --watch"
-    
+  	"mochawatch": "chimp --ddp=http://localhost:3000 --mocha --path=tests --watch",
+    "start_dev": "meteor --settings settings-development.json",
+    "start_dev_debug": "meteor debug --settings settings-development.json --debug-port 5050",
+    "_start_staging": "modulus env set METEOR_SETTINGS \"$(cat settings-production.json)\" -p 'App - Staging' && modulus deploy -f -p 'App - Staging'",
+    "_start_production": "modulus env set METEOR_SETTINGS \"$(cat settings-production.json)\" -p 'App - Production' && modulus deploy -f -p 'App - Production'"
   },
   "devDependencies": {
     "chimp": "0.25.x",

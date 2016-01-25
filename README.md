@@ -22,19 +22,35 @@ To install dev dependencies for testing:
     $ npm install --only=dev
 
 
+How to run
+==========
+
+On development:
+
+    $ npm run-script start_dev
+
+On staging:
+
+    $ npm run-script start_staging
+
+On production:
+
+    $ npm run-script start_production
+
+
 How to test
 ===========
 
 There are different ways to test. At least, Mocha and Cucumber tests need
 before a running meteor server, so do as a first step:
 
-    $ MONGO_URL=mongodb://localhost:27017/launchy_test meteor
+    $ MONGO_URL=mongodb://localhost:27017/launchy_test npm run-script start_dev
 
 If you need to run the debugger on the server side, place a `debugger;` line
 where you want your program to stop and start the meter server like this
 instead:
 
-    $ MONGO_URL=mongodb://localhost:27017/launchy_test meteor debug --debug-port 5050
+    $ MONGO_URL=mongodb://localhost:27017/launchy_test npm run-script start_dev_debug
 
 Then open in your browser: http://localhost:7272/debug?port=5050
 
@@ -93,19 +109,6 @@ If you need a 'one-shot' test (for example CI), then execute:
 --------------------------------
 
     $ meteor test-packages ./
-
-
-[NOT USED] Jasmine tests
-------------------------
-
-To keep a window open on the browser inspecting tests changes and running
-automatically when something changed:
-
-    $ VELOCITY_TEST_PACKAGES=1 meteor test-packages --driver-package velocity:html-reporter ./
-
-If you need a 'one-shot' test (for example CI), then execute:
-
-    $ VELOCITY_TEST_PACKAGES=1 meteor test-packages --driver-package velocity:console-reporter --velocity ./
 
 
 Troubleshooting
