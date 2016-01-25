@@ -122,6 +122,15 @@ describe('@focus Car', function() {
     assert.typeOf(result, 'string');
   });
 
+  it('should be inserted successfuly without being published', function () {
+    var result = server.execute(function(carObj) {
+      var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
+      var carID = insertSync(carObj);
+      return Cars.findOne(carID).published;
+    }, carObj);
+    assert.notOk(result);
+  });
+
   it('should be inserted successfuly with good creation date', function () {
     var result = server.execute(function(carObj) {
       var insertSync = Meteor.wrapAsync(Cars.insert, Cars);

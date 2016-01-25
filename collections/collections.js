@@ -58,6 +58,11 @@ Schemas.Car = new SimpleSchema({
     type: String,
     optional: true
   },
+  published: {
+    type: Boolean,
+    defaultValue: false,
+    optional: true
+  },
   createdAt: {
     type: Date,
     autoValue: function() {
