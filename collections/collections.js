@@ -1,10 +1,10 @@
-Manufacturers = new Mongo.Collection('manufacturers');
+Makes = new Mongo.Collection('makes');
 Districts = new Mongo.Collection('districts');
 Cars = new Mongo.Collection("cars");
 
 var Schemas = {};
 
-Schemas.Manufacturer = new SimpleSchema({
+Schemas.Make = new SimpleSchema({
   name: {
     type: String,
     max: 70
@@ -12,6 +12,13 @@ Schemas.Manufacturer = new SimpleSchema({
   description: {
     type: String,
     optional: true
+  },
+  allowed: {
+    type: Boolean,
+    optional: true
+  },
+  _value: {
+    type: String
   }
 });
 
@@ -28,8 +35,10 @@ Schemas.District = new SimpleSchema({
 });
 
 Schemas.Car = new SimpleSchema({
-  manufacturer: {
-    type: Schemas.Manufacturer
+  Make: {
+    type: Schemas.Make // cambiar a Mongo.Collection, para que sea un string _id
+                       // pues en la bd no está insertando una referencia, sino
+                       // mucha movida
   },
   title: {
     type: String,
@@ -87,6 +96,6 @@ Schemas.Car = new SimpleSchema({
   }
 });
 
-Manufacturers.attachSchema(Schemas.Manufacturer);
+Makes.attachSchema(Schemas.Make);
 Districts.attachSchema(Schemas.District);
 Cars.attachSchema(Schemas.Car);

@@ -1,14 +1,14 @@
 
-describe('@focus Manufacturer', function() {
+describe('@focus Make', function() {
   beforeEach(function() {
     server.execute(function() {
-      Manufacturers.remove({});
+      Makes.remove({});
     });
   });
 
   it('should be inserted successfuly', function () {
       var result = server.execute(function() {
-        var insertSync = Meteor.wrapAsync(Manufacturers.insert, Manufacturers);
+        var insertSync = Meteor.wrapAsync(Makes.insert, Makes);
         return insertSync({name: 'Ferrari', description: 'Sportive!'});
       });
       assert.typeOf(result, 'string', 'insert method return a string on success');
@@ -16,7 +16,7 @@ describe('@focus Manufacturer', function() {
 
   it('should be inserted successfuly without optional', function () {
       var result = server.execute(function() {
-        var insertSync = Meteor.wrapAsync(Manufacturers.insert, Manufacturers);
+        var insertSync = Meteor.wrapAsync(Makes.insert, Makes);
         return insertSync({name: 'Ferrari', description: null});
       });
       assert.typeOf(result, 'string', 'insert method return a string on success');
@@ -25,7 +25,7 @@ describe('@focus Manufacturer', function() {
   it('should validate successfuly with null optional', function () {
       var successed = server.execute(function() {
         obj = {name: 'Ferrari', description: null};
-        return Manufacturers.simpleSchema().namedContext().validate(obj);
+        return Makes.simpleSchema().namedContext().validate(obj);
       });
       assert.isTrue(successed);
   });
@@ -33,7 +33,7 @@ describe('@focus Manufacturer', function() {
   it('should validate successfuly without optional', function () {
       var successed = server.execute(function() {
         obj = {name: 'Ferrari'};
-        return Manufacturers.simpleSchema().namedContext().validate(obj);
+        return Makes.simpleSchema().namedContext().validate(obj);
       });
       assert.isTrue(successed);
   });
@@ -41,7 +41,7 @@ describe('@focus Manufacturer', function() {
   it('should not validate successfuly', function () {
       var errored = server.execute(function() {
         obj = {name: 'Ferrari', invented: 'made_up'};
-        return ! Manufacturers.simpleSchema().namedContext().validate(obj);
+        return ! Makes.simpleSchema().namedContext().validate(obj);
       });
       assert.isTrue(errored, 'insert failed raising an exception');
   });
@@ -50,7 +50,7 @@ describe('@focus Manufacturer', function() {
   // https://github.com/aldeed/meteor-collection2/issues/303
   /*it('should be not inserted successfuly', function () {
       var errored = server.execute(function() {
-        var insertSync = Meteor.wrapAsync(Manufacturers.insert, Manufacturers);
+        var insertSync = Meteor.wrapAsync(Makes.insert, Makes);
         try {
             insertSync({name: 'Ferrari', invented: 'made_up'});
         } catch(error) {
@@ -94,7 +94,7 @@ describe('@focus District', function() {
 describe('@focus Car', function() {
   beforeEach(function() {
     server.execute(function() {
-      Manufacturers.remove({});
+      Makes.remove({});
       Districts.remove({});
       Cars.remove({});
     });
@@ -102,9 +102,9 @@ describe('@focus Car', function() {
 
   // Prepare data
   var districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
-  var manufacturerObj = {name: 'BMW'};
+  var makeObj = {name: 'BMW'};
   var carObj = {
-    manufacturer: manufacturerObj,
+    Make: makeObj,
     title: 'BMW 7 Series F01 730d SE N57 3.0d',
     color: 'Pure Metal Silver',
     transmission: 'Automatic DSG',
