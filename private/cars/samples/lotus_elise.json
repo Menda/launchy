@@ -1,0 +1,18 @@
+{
+  "manufacturer": {
+    "name": "Lotus"
+  },
+  "title": "Elise S2 111S",
+  "color": "British Racing Green",
+  "transmission": "Manual",
+  "body": "cabrio",
+  "doors": 2,
+  "year": 2014,
+  "kilometers": 8000,
+  "horsepower": 160,
+  "district": {
+    "country": "España",
+    "region": "Andalucía",
+    "district": "Jaén"
+  }
+}

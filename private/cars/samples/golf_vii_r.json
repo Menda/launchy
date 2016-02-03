@@ -1,0 +1,18 @@
+{
+  "manufacturer": {
+    "name": "Volkswagen"
+  },
+  "title": "Golf VII R",
+  "color": "Oryx white",
+  "transmission": "DSG Automatic",
+  "body": "coupé",
+  "doors": 5,
+  "horsepower": 300,
+  "year": 2015,
+  "kilometers": 12000,
+  "district": {
+    "country": "España",
+    "region": "Andalucía",
+    "district": "Málaga"
+  }
+}

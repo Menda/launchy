@@ -1,0 +1,17 @@
+{
+  "manufacturer": {
+    "name": "Mercedes-Benz"
+  },
+  "title": "Mercedes-Benz SL 500",
+  "color": "Black Opal Metallic",
+  "transmission": "Manual",
+  "body": "cabrio",
+  "doors": 2,
+  "year": 2011,
+  "kilometers": 70000,
+  "district": {
+    "country": "España",
+    "region": "Andalucía",
+    "district": "Jaén"
+  }
+}
