@@ -1,31 +1,4 @@
 Meteor.startup(function () {
-  // Only development and staging
-  if (Meteor.settings.public.environment === 'development'||'staging') {
-    // Test users population
-    if (Accounts.users.find().count() === 0) {
-      console.log('Populating test users');
-      var samples = ['peibol', 'castigaliano'];
-      var root = 'users/samples/';
-      _.each(samples, function(filename) {
-        var account = JSON.parse(
-          Assets.getText(root + filename + '.json'));
-        Accounts.createUser(account);
-      });
-    }
-
-    // Test cars population
-    if (Cars.find().count() > 0) {
-      console.log('Populating test cars');
-      var samples = ['mercedes_sl'];
-      var root = 'cars/samples/';
-      _.each(samples, function(filename) {
-        var car = JSON.parse(
-          Assets.getText(root + filename + '.json'));
-        Cars.insert(car);
-      });
-    }
-  }
-
   // Districts population
   if (Districts.find().count() === 0) {
     console.log('Populating Spanish districts');
@@ -63,13 +36,13 @@ Meteor.startup(function () {
       'abarth', 'alfaromeo', 'alpina', 'alpine', 'aro', 'asia', 'astonmartin', 'audi', 'austin',
       'autobianchi', 'bedford', 'bentley', 'bertone', 'bmw', 'buick', 'cadillac', 'caterham',
       'chevrolet', 'chrysler', 'citroen', 'dacia', 'daewoo', 'daf', 'daihatsu', 'daimler', 'dodge',
-      'ebro', 'ferrari', 'fiat', 'ford', 'fordusa', 'fsopolski', 'galloper', 'gme', 'honda',
+      'ebro', 'ferrari', 'fiat', 'ford', 'fsopolski', 'galloper', 'gme', 'honda',
       'hyundai', 'infiniti', 'innocenti', 'isuzu', 'iveco', 'jaguar', 'jeep', 'kia', 'lada',
       'lamborghini', 'lancia', 'landrover', 'ldv', 'lexus', 'leyland', 'ligier', 'lotus', 'lti',
       'mahindra', 'maruti', 'maserati', 'maybach', 'mazda', 'mercedesbenz', 'mg', 'mini',
-      'mitsubishi', 'morgan', 'morris', 'nissan', 'opel', 'peugeot', 'piaggio', 'pontiac',
+      'mitsubishi', 'morgan', 'morris', 'nissan', 'opel', 'peugeot', 'pontiac',
       'porsche', 'proton', 'reliant', 'renault', 'rollsroyce', 'rover', 'rvi', 'saab', 'santana',
-      'seat', 'skoda', 'smart', 'ssangyong', 'subaru', 'suzuki', 'talbot', 'tata', 'tatapl',
+      'seat', 'skoda', 'smart', 'ssangyong', 'subaru', 'suzuki', 'talbot', 'tata',
       'tesla', 'toyota', 'triumph', 'tvr', 'umm', 'vauxhall', 'volkswagen', 'volvo', 'wartburg',
       'yugozastava', 'zaztavria'
     ]
@@ -79,5 +52,35 @@ Meteor.startup(function () {
         Assets.getText(root + filename + '.json'));
       Makes.insert(make);
     });
+  }
+
+  // Only development and staging
+  if (Meteor.settings.public.environment === 'development'|'staging') {
+    // Test users population
+    if (Accounts.users.find().count() === 0) {
+      console.log('Populating test Users');
+      var samples = ['peibol', 'castigaliano'];
+      var root = 'users/samples/';
+      _.each(samples, function(filename) {
+        var account = JSON.parse(
+          Assets.getText(root + filename + '.json'));
+        Accounts.createUser(account);
+      });
+    }
+
+    // Test cars population
+    if (Cars.find().count() == 0) {
+      console.log('Populating test Cars');
+      var samples = ['golf_vii_r', 'lotus_elise', 'mercedes_sl'];
+      var root = 'cars/samples/';
+      _.each(samples, function(filename) {
+        var car = JSON.parse(
+          Assets.getText(root + filename + '.json'));
+        var make = Makes.findOne({name: car["manufacturer"]["name"]});
+        delete car["manufacturer"];
+        car["makeId"] = make["_id"];
+        Cars.insert(car);
+      });
+    }
   }
 });

@@ -9,7 +9,7 @@ describe('@focus Make', function() {
   it('should be inserted successfuly', function () {
       var result = server.execute(function() {
         var insertSync = Meteor.wrapAsync(Makes.insert, Makes);
-        return insertSync({name: 'Ferrari', description: 'Sportive!'});
+        return insertSync({name: 'Ferrari', description: 'Sportive!', '_value': 'xxx'});
       });
       assert.typeOf(result, 'string', 'insert method return a string on success');
   });
@@ -17,14 +17,14 @@ describe('@focus Make', function() {
   it('should be inserted successfuly without optional', function () {
       var result = server.execute(function() {
         var insertSync = Meteor.wrapAsync(Makes.insert, Makes);
-        return insertSync({name: 'Ferrari', description: null});
+        return insertSync({name: 'Ferrari', description: null, '_value': 'xxx'});
       });
       assert.typeOf(result, 'string', 'insert method return a string on success');
   });
 
   it('should validate successfuly with null optional', function () {
       var successed = server.execute(function() {
-        obj = {name: 'Ferrari', description: null};
+        obj = {name: 'Ferrari', description: null, '_value': 'xxx'};
         return Makes.simpleSchema().namedContext().validate(obj);
       });
       assert.isTrue(successed);
@@ -32,7 +32,7 @@ describe('@focus Make', function() {
 
   it('should validate successfuly without optional', function () {
       var successed = server.execute(function() {
-        obj = {name: 'Ferrari'};
+        obj = {name: 'Ferrari', '_value': 'xxx'};
         return Makes.simpleSchema().namedContext().validate(obj);
       });
       assert.isTrue(successed);
@@ -40,7 +40,7 @@ describe('@focus Make', function() {
 
   it('should not validate successfuly', function () {
       var errored = server.execute(function() {
-        obj = {name: 'Ferrari', invented: 'made_up'};
+        obj = {name: 'Ferrari', invented: 'made_up', '_value': 'xxx'};
         return ! Makes.simpleSchema().namedContext().validate(obj);
       });
       assert.isTrue(errored, 'insert failed raising an exception');
@@ -92,29 +92,41 @@ describe('@focus District', function() {
 });
 
 describe('@focus Car', function() {
-  beforeEach(function() {
-    server.execute(function() {
-      Makes.remove({});
-      Districts.remove({});
-      Cars.remove({});
-    });
-  });
-
   // Prepare data
+  var makeId; // will be filled in before each iteration
   var districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
-  var makeObj = {name: 'BMW'};
   var carObj = {
-    Make: makeObj,
+    makeId: '',
     title: 'BMW 7 Series F01 730d SE N57 3.0d',
     color: 'Pure Metal Silver',
     transmission: 'Automatic DSG',
+    doors: 4,
+    body: 'sedan',
+    horsepower: 256,
     year: 2015,
     kilometers: 120000,
     district: districtObj,
     warranty: '2 years with unlimited kilometers',
   };
 
+  beforeEach(function() {
+    server.execute(function() {
+      Makes.remove({});
+      Districts.remove({});
+      Cars.remove({});
+    });
+
+    makeId = server.execute(function() {
+      var makeObj = {'name': 'BMW', '_value': 'xxx'};
+      var insertSync = Meteor.wrapAsync(Makes.insert, Makes);
+      insertSync(makeObj);
+      var makeId = Makes.findOne({name: makeObj['name']})['_id'];
+      return makeId;
+    });
+  });
+
   it('should be inserted successfuly', function () {
+    carObj['makeId'] = makeId;
     var result = server.execute(function(carObj) {
       var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
       return insertSync(carObj);
@@ -123,6 +135,7 @@ describe('@focus Car', function() {
   });
 
   it('should be inserted successfuly without being published', function () {
+    carObj['makeId'] = makeId;
     var result = server.execute(function(carObj) {
       var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
       var carID = insertSync(carObj);
@@ -132,6 +145,7 @@ describe('@focus Car', function() {
   });
 
   it('should be inserted successfuly with good creation date', function () {
+    carObj['makeId'] = makeId;
     var result = server.execute(function(carObj) {
       var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
       var carID = insertSync(carObj);
@@ -143,6 +157,7 @@ describe('@focus Car', function() {
   });
 
   it('should be updated successfuly with good updating date', function () {
+    carObj['makeId'] = makeId;
     var result = server.execute(function(carObj) {
       var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
       var carID = insertSync(carObj);
@@ -156,7 +171,19 @@ describe('@focus Car', function() {
     assert.notEqual(result.updatedAt, result.createdAt);
   });
 
+  it('should be inserted successfuly without warranty', function () {
+    carObj['makeId'] = makeId;
+    var modCarObj = JSON.parse(JSON.stringify(carObj));
+    delete modCarObj.warranty;
+    var result = server.execute(function(modCarObj) {
+      var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
+      return insertSync(modCarObj);
+    }, modCarObj);
+    assert.typeOf(result, 'string');
+  });
+
   it('should be not inserted successfuly on wrong date', function () {
+    carObj['makeId'] = makeId;
     var modCarObj = JSON.parse(JSON.stringify(carObj));
     modCarObj['year'] = 1899;
     var errored = server.execute(function(modCarObj) {
@@ -171,13 +198,18 @@ describe('@focus Car', function() {
     assert.isTrue(errored, 'insert failed raising an exception');
   });
 
-  it('should be inserted successfuly without warranty', function () {
+  it('should be not inserted successfuly on wrong make ID', function () {
+    carObj['makeId'] = '<!burraca!>';
     var modCarObj = JSON.parse(JSON.stringify(carObj));
-    delete modCarObj.warranty;
-    var result = server.execute(function(modCarObj) {
+    var errored = server.execute(function(modCarObj) {
       var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
-      return insertSync(modCarObj);
+      try {
+        insertSync(modCarObj);
+      } catch(error) {
+        return true;
+      }
+      return false;
     }, modCarObj);
-    assert.typeOf(result, 'string');
+    assert.isTrue(errored, 'insert failed raising an exception');
   });
 });

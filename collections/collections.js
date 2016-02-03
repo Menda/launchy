@@ -35,10 +35,16 @@ Schemas.District = new SimpleSchema({
 });
 
 Schemas.Car = new SimpleSchema({
-  Make: {
-    type: Schemas.Make // cambiar a Mongo.Collection, para que sea un string _id
-                       // pues en la bd no está insertando una referencia, sino
-                       // mucha movida
+  makeId: {
+    type: Meteor.ObjectID
+  },
+  modelId: {
+    type: Meteor.ObjectID,
+    optional: true
+  },
+  engineId: {
+    type: Meteor.ObjectID,
+    optional: true
   },
   title: {
     type: String,
@@ -51,6 +57,19 @@ Schemas.Car = new SimpleSchema({
   transmission: {
     type: String,
     max: 100
+  },
+  doors: {
+    type: Number,
+    optional: true
+  },
+  body: {
+    type: String,
+    allowedValues: ['hatchback', 'cabrio', 'coupé', 'targa', 'wagon', 'sedan'],
+    optional: true
+  },
+  horsepower: {
+    type: Number,
+    optional: true
   },
   year: {
     type: Number,
