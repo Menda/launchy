@@ -50,9 +50,17 @@ Schemas.Car = new SimpleSchema({
     type: String,
     max: 200
   },
+  price: {
+    type: Number,
+    min: 0
+  },
   color: {
     type: String,
     max: 100
+  },
+  fuel: {
+    type: String,
+    allowedValues: ['petrol', 'diesel', 'hybrid', 'lpg', 'electric']
   },
   transmission: {
     type: String,
@@ -69,6 +77,11 @@ Schemas.Car = new SimpleSchema({
   },
   horsepower: {
     type: Number,
+    optional: true
+  },
+  wheelDrive: {
+    type: String,
+    allowedValues: ['fwd', 'rwd', 'awd', '4wd'],
     optional: true
   },
   year: {

@@ -3,13 +3,16 @@
     "name": "Lotus"
   },
   "title": "Elise S2 111S",
+  "price": 23000,
   "color": "British Racing Green",
+  "fuel": "petrol",
   "transmission": "Manual",
   "body": "cabrio",
   "doors": 2,
+  "horsepower": 160,
+  "wheelDrive": "rwd",
   "year": 2014,
   "kilometers": 8000,
-  "horsepower": 160,
   "district": {
     "country": "España",
     "region": "Andalucía",

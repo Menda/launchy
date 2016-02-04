@@ -3,11 +3,14 @@
     "name": "Volkswagen"
   },
   "title": "Golf VII R",
+  "price": 30000,
   "color": "Oryx white",
+  "fuel": "petrol",
   "transmission": "DSG Automatic",
   "body": "coupé",
   "doors": 5,
   "horsepower": 300,
+  "wheelDrive": "awd",
   "year": 2015,
   "kilometers": 12000,
   "district": {

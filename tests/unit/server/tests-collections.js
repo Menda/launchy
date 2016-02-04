@@ -1,4 +1,3 @@
-
 describe('@focus Make', function() {
   beforeEach(function() {
     server.execute(function() {
@@ -98,7 +97,9 @@ describe('@focus Car', function() {
   var carObj = {
     makeId: '',
     title: 'BMW 7 Series F01 730d SE N57 3.0d',
+    price: 34000,
     color: 'Pure Metal Silver',
+    fuel: 'diesel',
     transmission: 'Automatic DSG',
     doors: 4,
     body: 'sedan',
@@ -186,21 +187,6 @@ describe('@focus Car', function() {
     carObj['makeId'] = makeId;
     var modCarObj = JSON.parse(JSON.stringify(carObj));
     modCarObj['year'] = 1899;
-    var errored = server.execute(function(modCarObj) {
-      var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
-      try {
-        insertSync(modCarObj);
-      } catch(error) {
-        return true;
-      }
-      return false;
-    }, modCarObj);
-    assert.isTrue(errored, 'insert failed raising an exception');
-  });
-
-  it('should be not inserted successfuly on wrong make ID', function () {
-    carObj['makeId'] = '<!burraca!>';
-    var modCarObj = JSON.parse(JSON.stringify(carObj));
     var errored = server.execute(function(modCarObj) {
       var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
       try {

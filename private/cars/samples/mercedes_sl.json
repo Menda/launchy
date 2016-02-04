@@ -3,10 +3,14 @@
     "name": "Mercedes-Benz"
   },
   "title": "Mercedes-Benz SL 500",
+  "price": 18000,
   "color": "Black Opal Metallic",
+  "fuel": "petrol",
   "transmission": "Manual",
   "body": "cabrio",
   "doors": 2,
+  "horsepower": 340,
+  "wheelDrive": "rwd",
   "year": 2011,
   "kilometers": 70000,
   "district": {
