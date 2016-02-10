@@ -1,3 +1,25 @@
 <template name="cars">
-    <h1>Cars</h1>
+  <section>
+    <header>
+      <h1>Autos en venta de segunda mano</h1>
+    </header>
+    <div id="all-cars">
+      {{#each cars}}
+        {{> car}}
+      {{/each}}
+    </div>
+  </section>
+</template>
+
+<template name="car">
+  <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
+    <header>
+      <span itemprop="name" class="h3">
+        <a href="{{urlCarDetails}}" title="Ver más información del modelo">{{make}} {{title}}</a>
+      </span>
+    </header>
+    <span itemprop="fuelType">{{fuel}}</span>
+    <span itemprop="dateVehicleFirstRegistered">{{year}}</span>
+    <span itemprop="mileageFromOdometer">{{kilometers}}</span>
+  </article>
 </template>

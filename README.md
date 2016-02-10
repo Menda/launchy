@@ -11,6 +11,18 @@ Base:
 * Backdoor (xolvio:backdoor)
 * collection2 (https://atmospherejs.com/aldeed/collection2)
 * FlowRouter (https://github.com/kadirahq/flow-router)
+* kadira:dochead
+* aldeed:autoform
+* twbs:bootstrap
+
+DebugOnly:
+* msavin:mongol
+
+TODO a instalar - comprobar en una shell si funciona sin instalar nada:
+* https://atmospherejs.com/alanning/roles
+* https://themeteorchef.com/snippets/using-the-roles-package/
+https://atmospherejs.com/sacha/spin
+https://atmospherejs.com/mrt/moment
 
 Testing:
 * Chimp (https://chimp.readme.io)
@@ -58,6 +70,9 @@ instead:
     $ MONGO_URL=mongodb://localhost:27017/launchy_test npm run-script start_dev_debug
 
 Then open in your browser: http://localhost:7272/debug?port=5050
+
+
+Also, press ctrl+m and you will have a Mongol window to debug.
 
 
 Mocha tests (unit and integration tests)
@@ -114,6 +129,12 @@ If you need a 'one-shot' test (for example CI), then execute:
 --------------------------------
 
     $ meteor test-packages ./
+
+
+Deployment
+==========
+
+    $ meteor deploy launchy.meteor.com
 
 
 Troubleshooting

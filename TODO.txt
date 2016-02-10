@@ -1,0 +1,27 @@
+https://developers.google.com/structured-data/testing-tool/
+http://static.googleusercontent.com/media/www.google.com/en/us/webmasters/docs/search-engine-optimization-starter-guide.pdf
+https://ghost.org/
+https://github.com/meteor-blog/meteor-blog
+https://github.com/percolatestudio/ground-control
+doors parsing
+Schemas.Model
+Schemas.Serie
+Fixtures con fotos
+Corregir scripts
+https://github.com/gterrono/houston
+https://github.com/CulturalMe/meteor-slingshot
+http://experimentsinmeteor.com/photo-blog-part-1/
+http://cloudinary.com/
+
+Final:
+https://dweldon.silvrback.com/common-mistakes
+https://silktide.com/tools/cookie-consent/
+Enlace desde rmunoz.net
+
+Improvements:
+https://github.com/arunoda/meteor-find-faster
+https://www.typeform.com/
+https://www.discovermeteor.com/blog/improving-the-performance-of-your-meteor-app/
+
+Reads:
+https://themeteorchef.com/snippets/using-the-check-package/

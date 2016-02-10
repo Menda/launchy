@@ -1,0 +1,16 @@
+<template name="createAd">
+  <section id="create-ad">
+    <header>
+      <h1>Sube el anuncio de tu coche</h1>
+    </header>
+
+    {{#autoForm  collection="Cars" id="insertBookForm" type="insert"}}
+    <fieldset>
+      <legend>Datos del vehículo</legend>
+      {{> afQuickField id="form-make" name="make" label="Marca" firstOption="-" options=makeOptions}}
+      {{> afQuickField id="form-district" name="district" label="Provincia" firstOption="-" options=districtOptions}}
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Insert</button>
+    {{/autoForm}}
+  </section>
+</template>

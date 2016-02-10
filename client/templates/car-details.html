@@ -1,0 +1,21 @@
+<template name="carDetails">
+  {{#with car}}
+  <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
+    <header>
+      <h1 itemprop="name" class="h2">
+        <a href="{{urlCarDetails}}" title="Ver">{{make}} {{title}}</a>
+      </h1>
+    </header>
+    <p>Precio: <span itemprop="">{{price}} €</span></p>
+    <p>Potencia: <span itemprop="">{{horsepower}}</span> cv</p>
+    <p>Cobustible: <span itemprop="fuelType">{{fuel}}</span></p>
+    <p>Transmisión: <span itemprop="">{{transmission}}</span></p>
+    <p>Año: <span itemprop="dateVehicleFirstRegistered">{{year}}</span></p>
+    <p>Kilómetros: <span itemprop="mileageFromOdometer">{{kilometers}}</span></p>
+    <p>Color: <span itemprop="">{{color}}</span></p>
+    <p>Tipo de carrocería: <span itemprop="">{{body}}</span></p>
+    <p>Puertas: <span itemprop="">{{doors}}</span></p>
+    <p>Localización: <span itemprop="">{{district.district}} ({{district.region}})</span></p>
+  </article>
+  {{/with}}
+</template>

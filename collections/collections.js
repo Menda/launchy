@@ -38,6 +38,20 @@ Schemas.Car = new SimpleSchema({
   makeId: {
     type: Meteor.ObjectID
   },
+  make: {
+    type: String,
+    max: 70,
+    autoValue: function() {
+      var make = Makes.findOne(this.field("makeId")["value"]);
+      if (this.isInsert) {
+        return make['name'];
+      } else if (this.isUpsert) {
+        return make['name'];
+      } else {
+        this.unset();  // Prevent user from supplying their own value
+      }
+    }
+  },
   modelId: {
     type: Meteor.ObjectID,
     optional: true

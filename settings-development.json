@@ -1,6 +1,9 @@
 {
   "public": {
-    "environment" : "development"
+    "environment": "development",
+    "country": "ES",
+    "language": "es-ES",
+    "site_name": "Launch Control"
   },
   "private": {
 
