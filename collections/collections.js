@@ -2,7 +2,7 @@ Makes = new Mongo.Collection('makes');
 Districts = new Mongo.Collection('districts');
 Cars = new Mongo.Collection("cars");
 
-var Schemas = {};
+Schemas = {};
 
 Schemas.Make = new SimpleSchema({
   name: {
@@ -36,13 +36,16 @@ Schemas.District = new SimpleSchema({
 
 Schemas.Car = new SimpleSchema({
   makeId: {
-    type: Meteor.ObjectID
+    type: String
   },
   make: {
     type: String,
     max: 70,
     autoValue: function() {
       var make = Makes.findOne(this.field("makeId")["value"]);
+      if (! make) {
+        return;
+      }
       if (this.isInsert) {
         return make['name'];
       } else if (this.isUpsert) {
@@ -66,37 +69,15 @@ Schemas.Car = new SimpleSchema({
   },
   price: {
     type: Number,
-    min: 0
-  },
-  color: {
-    type: String,
-    max: 100
+    min: 1
   },
   fuel: {
     type: String,
-    allowedValues: ['petrol', 'diesel', 'hybrid', 'lpg', 'electric']
+    allowedValues: Object.keys(FUELTYPES)
   },
   transmission: {
     type: String,
-    max: 100
-  },
-  doors: {
-    type: Number,
-    optional: true
-  },
-  body: {
-    type: String,
-    allowedValues: ['hatchback', 'cabrio', 'coupé', 'targa', 'wagon', 'sedan'],
-    optional: true
-  },
-  horsepower: {
-    type: Number,
-    optional: true
-  },
-  wheelDrive: {
-    type: String,
-    allowedValues: ['fwd', 'rwd', 'awd', '4wd'],
-    optional: true
+    allowedValues: Object.keys(TRANSMISSIONTYPES)
   },
   year: {
     type: Number,
@@ -108,6 +89,31 @@ Schemas.Car = new SimpleSchema({
   },
   district: {
     type: Schemas.District
+  },
+  color: {
+    type: String,
+    max: 100,
+    optional: true
+  },
+  doors: {
+    type: Number,
+    optional: true
+  },
+  body: {
+    type: String,
+    allowedValues: Object.keys(BODYTYPES),
+    optional: true
+  },
+  horsepower: {
+    type: Number,
+    optional: true,
+    min: 1,
+    max: 2000
+  },
+  wheelDrive: {
+    type: String,
+    allowedValues: Object.keys(WHEELDRIVETYPES),
+    optional: true
   },
   warranty: {
     type: String,

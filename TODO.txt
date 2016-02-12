@@ -22,6 +22,7 @@ Improvements:
 https://github.com/arunoda/meteor-find-faster
 https://www.typeform.com/
 https://www.discovermeteor.com/blog/improving-the-performance-of-your-meteor-app/
+gwendall:simple-schema-i18n
 
 Reads:
 https://themeteorchef.com/snippets/using-the-check-package/

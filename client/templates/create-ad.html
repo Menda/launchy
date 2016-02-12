@@ -3,14 +3,87 @@
     <header>
       <h1>Sube el anuncio de tu coche</h1>
     </header>
+    <div class="bs-callout bs-callout-warning">
+      <h4>Antes de publicar tu anuncio</h4>
+      <p>
+        ¡Hola! Para evitar frustraciones, ten en cuenta que estamos especializados en coches de alta gama, exclusivos o de disfrute y clásicos. Son valores muy relativos y que nosotros evaluamos en cada caso individualmente. Aún así durante el proceso irás obteniendo información si tu coche cumple dichos parámetros. Hemos preparado también una <a href="">entrada en en blog</a> si no tienes claro si tu coche reune los requisitos para ello.
+      </p>
+      <p>
+        Consulta también <a href="">en nuestro blog</a> los consejos que damos para vender mejor tu coche. ¡Podrías conseguir hasta 3 veces más compradores cuidando ciertos detalles!
+      </p>
+    </div>
+    <!--
+    TODO
+    <p>
+      <a class="btn btn-success" href="#" role="button">
+        Estoy de acuerdo y quiero publicar mi anuncio
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+      </a>
+    </p>-->
 
-    {{#autoForm  collection="Cars" id="insertBookForm" type="insert"}}
+    {{#autoForm schema=createAdForm id="createAdForm" type="method" meteormethod="createAd"}}
     <fieldset>
       <legend>Datos del vehículo</legend>
-      {{> afQuickField id="form-make" name="make" label="Marca" firstOption="-" options=makeOptions}}
-      {{> afQuickField id="form-district" name="district" label="Provincia" firstOption="-" options=districtOptions}}
+      {{> afQuickField id="form-makeId" name="makeId" label="Marca" firstOption="(Seleccionar marca)" options=makeIdOptions}}
+      {{> afQuickField id="form-title" name="title" label="Modelo" placeholder="Por ejemplo: Serie 3 335i, S3 Sportback, CLS 350 d Shooting Brake" }}
+      {{> afFormGroup type="select" id="form-districtId" name="districtId" label="Provincia" firstOption="(Seleccionar provincia)" options=districtOptions}}
+      <div class="form-group{{#if afFieldIsInvalid name='price'}} has-error{{/if}}">
+        <label for="form-price" class="control-label">Precio</label>
+        <div class="input-group">
+          {{> afFieldInput id="form-price" name="price" placeholder="Precio al que deseas vender el vehículo"}}
+          <span class="input-group-addon">€</span>
+        </div>
+        {{#if afFieldIsInvalid name='price'}}
+        <span class="help-block">{{afFieldMessage name='price'}}</span>
+        {{/if}}
+      </div>
+      {{> afQuickField id="form-fuel" name="fuel" label="Combustible" firstOption="(Seleccionar tipo de combustible)" options=fuelOptions}}
+      {{> afQuickField id="form-transmission" name="transmission" label="Tipo de cambio" firstOption="(Seleccionar tipo de cambio)" options=transmissionOptions}}
+      {{> afQuickField id="form-year" name="year" label="Año de matriculación" minCount=1900 placeholder="Año de primera matriculación del coche cuando se compró nuevo"}}
+      <div class="form-group{{#if afFieldIsInvalid name='kilometers'}} has-error{{/if}}">
+        <label for="form-kilometers" class="control-label">Kilómetros</label>
+        <div class="input-group">
+          {{> afFieldInput id="form-kilometers" name="kilometers" minCount=0}}
+          <span class="input-group-addon">km</span>
+        </div>
+        {{#if afFieldIsInvalid name='kilometers'}}
+        <span class="help-block">{{afFieldMessage name='kilometers'}}</span>
+        {{/if}}
+        <small class="text-muted">En Launch Control somos duros con las llamadas "afeitadas" de kilómetros. Piénsatelo dos veces antes de vender un coche manipulado, ¡es delito!</small>
+      </div>
     </fieldset>
-    <button type="submit" class="btn btn-primary">Insert</button>
+    <fieldset>
+      <legend>Datos opcionales</legend>
+      <p>Los siguientes datos no son obligatorios pero <strong>te recomendamos rellenarlos</strong>, pues ayudarán a vender mucho mejor tu coche. Si algún dato no lo sabes, no pasa nada, puedes dejarlo en blanco.</p>
+      {{> afQuickField id="form-doors" name="doors" label="Puertas" minCount=1 placeholder="Número de puertas" }}
+      {{> afQuickField id="form-color" name="color" label="Color" placeholder="Color de la carrocería. Por ejemplo: Azul - Nitrous Blue"}}
+      {{> afQuickField id="form-body" name="body" label="Tipo de carrocería" firstOption="(Seleccionar tipo de carrocería)" options=bodyOptions}}
+      <div class="form-group{{#if afFieldIsInvalid name='horsepower'}} has-error{{/if}}">
+        <label for="form-horsepower" class="control-label">Potencia</label>
+        <div class="input-group">
+          {{> afFieldInput id="form-horsepower" name="horsepower" placeholder="Potencia en caballos"}}
+          <span class="input-group-addon">cv</span>
+        </div>
+        {{#if afFieldIsInvalid name='horsepower'}}
+        <span class="help-block">{{afFieldMessage name='horsepower'}}</span>
+        {{/if}}
+      </div>
+      <div class="form-group{{#if afFieldIsInvalid name='warranty'}} has-error{{/if}}">
+        <label for="form-warranty" class="control-label">Garantía</label>
+        {{> afFieldInput id="form-warranty" name="warranty" rows=3}}
+        {{#if afFieldIsInvalid name='warranty'}}
+        <span class="help-block">{{afFieldMessage name='warranty'}}</span>
+        {{/if}}
+        <small class="text-muted">¿Eres un profesional o tu coche está todavía en garantía? Entonces te interesará detallar esta serie de garantías de compra a los compradores potenciales.</small>
+      </div>
+    </fieldset>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="">
+        Acepto las condiciones de uso
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear anuncio</button>
     {{/autoForm}}
   </section>
 </template>

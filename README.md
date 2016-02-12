@@ -13,12 +13,15 @@ Base:
 * FlowRouter (https://github.com/kadirahq/flow-router)
 * kadira:dochead
 * aldeed:autoform
+* Check ($ meteor add check)
 * twbs:bootstrap
 
 DebugOnly:
 * msavin:mongol
 
-TODO a instalar - comprobar en una shell si funciona sin instalar nada:
+TODO a instalar:
+gwendall:simple-schema-i18n (ver cómo configurar tap)
+comprobar en una shell si funciona sin instalar nada:
 * https://atmospherejs.com/alanning/roles
 * https://themeteorchef.com/snippets/using-the-roles-package/
 https://atmospherejs.com/sacha/spin
