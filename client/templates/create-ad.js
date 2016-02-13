@@ -69,13 +69,6 @@ Template.createAd.events({
 AutoForm.hooks({
   createAdForm: {
     formToDoc: function(doc) {
-      // Set Make
-      var makeId = AutoForm.getFieldValue('makeId'); // or doc['makeId']
-      var make = Makes.findOne({"_id": makeId});
-      if (make) {
-        doc.make = make['name'];
-      }
-
       // Set District
       var districtId = AutoForm.getFieldValue('districtId'); // or doc['districtId']
       var district = Districts.findOne({"_id": districtId});

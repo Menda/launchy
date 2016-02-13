@@ -44,7 +44,7 @@ Schemas.Car = new SimpleSchema({
     autoValue: function() {
       var make = Makes.findOne(this.field("makeId")["value"]);
       if (! make) {
-        return;
+        throw new Error('Make not found. ID: ' + this.field("makeId")["value"]);
       }
       if (this.isInsert) {
         return make['name'];
