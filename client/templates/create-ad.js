@@ -4,6 +4,9 @@ if (Meteor.settings.public.environment === 'development'|'staging') {
 }
 
 Template.createAd.helpers({
+  isSuccessfulAd: function() {
+    return Session.get('successfulAd');
+  },
   createAdForm: function() {
     return Forms.createAdForm;
   },
@@ -66,8 +69,16 @@ Template.createAd.events({
   }
 });
 
+Template.createAd.created = function() {
+  return Session.set('successfulAd', false);
+};
+
+Template.createAd.destroyed = function() {
+  return Session.set('successfulAd', false);
+};
+
 AutoForm.hooks({
-  createAdForm: {
+  'createAdForm': {
     formToDoc: function(doc) {
       // Set District
       var districtId = AutoForm.getFieldValue('districtId'); // or doc['districtId']
@@ -77,6 +88,10 @@ AutoForm.hooks({
         doc.district = district;
       }
       return doc;
+    },
+    onSuccess: function(formType, result) {
+      console.log('Form "createAdForm" sent successfully!');
+      return Session.set('successfulAd', true);
     }
   }
 });

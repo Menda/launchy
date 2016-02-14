@@ -26,6 +26,7 @@ Meteor.methods({
 
     // Important server-side check for security and data integrity
     check(doc, Schemas.Car);
-    throw new Error('TODO: Not Implemented');
+
+    Cars.insert(doc);
   }
 });

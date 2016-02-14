@@ -1,5 +1,18 @@
 <template name="createAd">
   <section id="create-ad">
+    {{#if isSuccessfulAd}}
+    <header>
+      <h1>¡Gracias por anunciar tu coche con nosotros!</h1>
+    </header>
+    <div class="bs-callout bs-callout-success">
+      <p>
+        Puesto que revisamos los anuncios, debes esperar a que lo aprobemos. Después de la revisión por nuestro personal, recibirás un email de confirmación.
+      </p>
+      <p>
+        Atentamente, personal de Launch Control.
+      </p>
+    </div>
+    {{else}}
     <header>
       <h1>Sube el anuncio de tu coche</h1>
     </header>
@@ -85,5 +98,6 @@
     </div>
     <button type="submit" class="btn btn-primary">Crear anuncio</button>
     {{/autoForm}}
+    {{/if}}
   </section>
 </template>
