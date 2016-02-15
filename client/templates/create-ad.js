@@ -89,6 +89,9 @@ AutoForm.hooks({
           doc.district = district;
         }
       }
+
+      // We need to convert string value to boolean in order to validate
+      doc['tc'] = $("#form-tc").is(':checked');
       return doc;
     },
     onSuccess: function(formType, result) {

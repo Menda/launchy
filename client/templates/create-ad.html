@@ -90,12 +90,19 @@
         <small class="text-muted">¿Eres un profesional o tu coche está todavía en garantía? Entonces te interesará detallar esta serie de garantías de compra a los compradores potenciales.</small>
       </div>
     </fieldset>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" value="">
-        Acepto las condiciones de uso
-      </label>
+
+    <div class="form-group{{#if afFieldIsInvalid name='tc'}} has-error{{/if}}">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="true" id="form-tc" name="tc" data-schema-key="tc">
+          Acepto los <a target="_blank" href="/terms">términos y condiciones</a>.
+        </label>
+      </div>
+      {{#if afFieldIsInvalid name='tc'}}
+      <span class="help-block">{{afFieldMessage name='tc'}}</span>
+      {{/if}}
     </div>
+
     <button type="submit" class="btn btn-primary">Crear anuncio</button>
     {{/autoForm}}
     {{/if}}

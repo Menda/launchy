@@ -33,7 +33,7 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="{{urlHome}}">
+        <a class="navbar-brand" href="{{urlHome}}" id="link-homepage-logo">
           <!--<img alt="Logo: {{siteName}}" src=".svg" />
           <img alt="Logo small: {{siteName}}" src=".svg" />-->
           {{siteName}}
@@ -41,9 +41,9 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="{{urlHome}}">Inicio</a></li>
-          <li><a href="{{urlCars}}">Todos los coches</a></li>
-          <li><a href="{{urlCreateAd}}">Crear tu anuncio</a></li>
+          <li class="active"><a href="{{urlHome}}" id="link-homepage">Inicio</a></li>
+          <li><a href="{{urlCars}}" id="link-cars">Todos los coches</a></li>
+          <li><a href="{{urlCreateAd}}" id="link-create-ad">Crear tu anuncio</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="../navbar/">Default</a></li>

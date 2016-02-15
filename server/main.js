@@ -13,8 +13,6 @@ Meteor.startup(function () {
 
 Meteor.methods({
   createAd: function(doc) {
-    // Delete values which are not in the schema and fill autovalues
-    delete doc['districtId'];
     Schemas.Car.clean(doc, {
       extendAutoValueContext: {
         isInsert: true,
@@ -27,6 +25,8 @@ Meteor.methods({
     // Important server-side check for security and data integrity
     check(doc, Schemas.Car);
 
+    console.log('Inserting ad with values: ');
+    console.log(doc);
     Cars.insert(doc);
   }
 });
