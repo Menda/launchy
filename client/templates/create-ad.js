@@ -82,10 +82,12 @@ AutoForm.hooks({
     formToDoc: function(doc) {
       // Set District
       var districtId = AutoForm.getFieldValue('districtId'); // or doc['districtId']
-      var district = Districts.findOne({"_id": districtId});
-      delete district['_id']; // we need to delete it because it's not in the schema
-      if (district) {
-        doc.district = district;
+      if (districtId) {
+        var district = Districts.findOne({"_id": districtId});
+        delete district['_id']; // we need to delete it because it's not in the schema
+        if (district) {
+          doc.district = district;
+        }
       }
       return doc;
     },
