@@ -1,6 +1,6 @@
 Template.cars.helpers({
   cars: function () {
-    return Cars.find({}); // limitar fields
+    return Cars.find({'published': true}); // TODO: limit fields
   }
 });
 
