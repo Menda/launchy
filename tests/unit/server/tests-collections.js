@@ -100,7 +100,7 @@ describe('@focus Car', function() {
     price: 34000,
     color: 'Pure Metal Silver',
     fuel: 'diesel',
-    transmission: 'Automatic DSG',
+    transmission: 'automatic',
     doors: 4,
     body: 'sedan',
     horsepower: 256,
