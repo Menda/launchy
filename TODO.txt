@@ -1,14 +1,13 @@
+Google:
 https://developers.google.com/structured-data/testing-tool/
 http://static.googleusercontent.com/media/www.google.com/en/us/webmasters/docs/search-engine-optimization-starter-guide.pdf
-https://ghost.org/
-https://github.com/meteor-blog/meteor-blog
-https://github.com/percolatestudio/ground-control
+
 doors parsing
 Schemas.Model
 Schemas.Serie
+
 Fixtures con fotos
 Corregir scripts
-https://github.com/gterrono/houston
 https://github.com/CulturalMe/meteor-slingshot
 http://experimentsinmeteor.com/photo-blog-part-1/
 http://cloudinary.com/

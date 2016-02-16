@@ -15,6 +15,15 @@ Base:
 * aldeed:autoform
 * Check ($ meteor add check)
 * twbs:bootstrap
+* brew install graphicsmagick
+* cfs:standard-packages
+* cfs:s3
+* cfs:gridfs
+* cfs:ui
+* numeral:numeral (a lo mejor no se necesita)
+
+Maybe uninstall:
+* $ meteor add houston:admin (branch https://github.com/gterrono/houston/tree/flow-like-a-router cloned in packages folder)
 
 DebugOnly:
 * msavin:mongol
@@ -138,6 +147,10 @@ Deployment
 ==========
 
     $ meteor deploy launchy.meteor.com
+
+Or:
+
+    $ meteor deploy launchy.meteor.com --settings settings.json
 
 
 Troubleshooting
