@@ -33,7 +33,7 @@ Template.createAd.helpers({
       return district['region'];
     });
     var sortedRegions = _.keys(groupedDistricts).sort();
-    sortedRegions.forEach(function(region){
+    sortedRegions.forEach(function(region) {
       var suboptions = [];
       groupedDistricts[region].forEach(function(district) {
         suboptions.push({
@@ -115,8 +115,7 @@ function getHandler(dropped) {
     metadata: function (fileObj) {
       return {
         session: Session.get('random'),  // util variable
-        assigned: false,  // image assigned to a created Ad
-        dropped: dropped
+        assigned: false  // image assigned to a created Ad
       };
     },
     after: function (error, fileObj) {
