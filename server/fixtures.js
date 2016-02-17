@@ -73,13 +73,22 @@ Meteor.startup(function () {
       console.log('Populating test Cars');
       var samples = ['golf_vii_r', 'lotus_elise', 'mercedes_sl'];
       var root = 'cars/samples/';
+
       _.each(samples, function(filename) {
         var car = JSON.parse(
           Assets.getText(root + filename + '.json'));
         var make = Makes.findOne({name: car["manufacturer"]["name"]});
         delete car["manufacturer"];
         car["makeId"] = make["_id"];
-        Cars.insert(car);
+        var id = Cars.insert(car);
+
+        _.each(['01', '02', '03'], function(picindex) {
+          var img = new FS.File();
+          img.name(filename + '-' + picindex + '.jpg');
+          img.attachData(process.env.PWD + '/private/cars/samples/images/' + filename + '-' + picindex + '.jpg')
+          var imageObj = Images.insert(img);
+          imageObj.update({$set: {'assigned': id}});
+        });
       });
     }
   }
