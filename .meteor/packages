@@ -29,10 +29,11 @@ aldeed:autoform
 msavin:mongol
 twbs:bootstrap
 check
-houston:admin
 cfs:standard-packages
 cfs:s3
 cfs:autoform
 cfs:gridfs
 cfs:ui
 numeral:numeral
+cfs:graphicsmagick
+random

@@ -6,7 +6,7 @@ doors parsing
 Schemas.Model
 Schemas.Serie
 
-Fixtures con fotos
+https://meteor-testing.readme.io/docs/jasmine-database-fixtures-for-integration-tests
 Corregir scripts
 https://github.com/CulturalMe/meteor-slingshot
 http://experimentsinmeteor.com/photo-blog-part-1/

@@ -20,10 +20,9 @@ Base:
 * cfs:s3
 * cfs:gridfs
 * cfs:ui
-* numeral:numeral (a lo mejor no se necesita)
-
-Maybe uninstall:
-* $ meteor add houston:admin (branch https://github.com/gterrono/houston/tree/flow-like-a-router cloned in packages folder)
+* numeral:numeral
+* cfs:graphicsmagick
+* Random ($ meteor add random)
 
 DebugOnly:
 * msavin:mongol

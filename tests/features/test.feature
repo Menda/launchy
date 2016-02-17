@@ -43,3 +43,12 @@ Feature: Create Ad functionality
     And Check the T&C
     And Submit the form
     Then I see the success page
+
+  Scenario: Ad is created successfully with picture
+    Given I have visited the createAd
+    When I fill a basic ad
+    And Add a picture to it
+    And Check the T&C
+    And Submit the form
+    Then I see the success page
+    And I the car inserted in the database

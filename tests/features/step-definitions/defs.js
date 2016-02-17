@@ -54,6 +54,12 @@ var myStepDefinitionsWrapper = function() {
     browser.selectByVisibleText('#form-districtId', 'Cantabria');
   });
 
+  this.When(/^Add a picture to it$/, function () {
+    browser.chooseFile(
+      '#form-images', 'tests/features/img/pic.jpg');
+    browser.waitForExist('div.media');
+  });
+
   this.When(/^Check the T&C$/, function () {
     browser.click('#form-tc');
   });
@@ -65,6 +71,15 @@ var myStepDefinitionsWrapper = function() {
   this.Then(/^I see the success page$/, function() {
     var expectedTitle = '¡Gracias por anunciar tu coche con nosotros!';
     return browser.waitForExist('h1=' + expectedTitle);
+  });
+
+  this.Then(/^I the car inserted in the database$/, function() {
+    var img = server.execute(function() {
+      var car = Cars.findOne({published: false}, {sort: {createdAt: -1, limit: 1}});
+      var img = Images.findOne({assigned: car._id});
+      return img;
+    });
+    expect(img['original']['name']).toMatch('pic.jpg');
   });
 
   this.Then(/^I see an error in the form$/, function() {

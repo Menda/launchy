@@ -1,7 +1,7 @@
 Makes = new Mongo.Collection('makes');
 Districts = new Mongo.Collection('districts');
-Cars = new Mongo.Collection("cars");
-Images = new FS.Collection("images", {
+Cars = new Mongo.Collection('cars');
+Images = new FS.Collection('images', {
   stores: [
     Stores.images,
     Stores.thumbs
@@ -57,10 +57,10 @@ Schemas.Car = new SimpleSchema({
     type: String,
     max: 70,
     autoValue: function() {
-      var value = this.field("makeId")["value"];
+      var value = this.field('makeId')['value'];
       var make = Makes.findOne(value);
       if (! make && value) {
-        throw new Error('Make not found. ID: ' + this.field("makeId")["value"]);
+        throw new Error('Make not found. ID: ' + this.field('makeId')['value']);
       } else if (! make) {
         return;
       }

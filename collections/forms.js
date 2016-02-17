@@ -17,6 +17,9 @@ Forms.createAdForm = new SimpleSchema([Schemas.Car, {
         return 'tc-required';
       }
     }
+  },
+  session: {  // used for assigning pictures to the ad
+    type: String
   }
 }]);
 

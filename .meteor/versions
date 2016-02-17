@@ -28,6 +28,7 @@ cfs:collection@0.5.5
 cfs:collection-filters@0.2.4
 cfs:data-man@0.0.6
 cfs:file@0.1.17
+cfs:graphicsmagick@0.0.18
 cfs:gridfs@0.0.33
 cfs:http-methods@0.0.30
 cfs:http-publish@0.0.13
@@ -60,7 +61,6 @@ es5-shim@4.1.14
 fastclick@1.0.7
 geojson-utils@1.0.4
 hot-code-push@1.0.0
-houston:admin@2.0.6
 html-tools@1.0.5
 htmljs@1.0.5
 http@1.1.1
@@ -113,7 +113,6 @@ srp@1.0.4
 standard-minifiers@1.0.2
 templating@1.1.5
 templating-tools@1.0.0
-tmeasday:paginated-subscription@0.2.4
 tracker@1.0.9
 twbs:bootstrap@3.3.6
 ui@1.0.8
