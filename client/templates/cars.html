@@ -13,6 +13,9 @@
 
 <template name="car">
   <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
+    <a href="{{urlCarDetails}}" title="Ver más información del modelo">
+      <img src="{{image.url store="thumbs"}}" alt="{{make}} {{title}}" />
+    </a>
     <header>
       <span itemprop="name" class="h3">
         <a href="{{urlCarDetails}}" title="Ver más información del modelo">{{make}} {{title}}</a>

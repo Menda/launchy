@@ -13,7 +13,7 @@ Template.carDetails.onRendered(function() {
                       'al caballaje';
   }
   setHead({
-    currentUrl: '',
+    currentUrl: '', // TODO
     title: title,
     metaDescription: metaDescription
   });
@@ -22,7 +22,9 @@ Template.carDetails.onRendered(function() {
 Template.carDetails.helpers({
   car: function () {
     var carId = FlowRouter.getParam("_id");
-    return Cars.findOne({"_id": carId});
+    var car = Cars.findOne({"_id": carId});
+    car.images = Images.find({assigned: car['_id']}).fetch();
+    return car;
   },
   urlCarDetails: function() {
     var car = this;

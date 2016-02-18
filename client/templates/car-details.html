@@ -1,6 +1,7 @@
 <template name="carDetails">
   {{#with car}}
   <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
+    <img src="{{images.[0].url store='thumbs'}}" alt="{{make}} {{title}}" />
     <header>
       <h1 itemprop="name" class="h2">
         <a href="{{urlCarDetails}}" title="Ver">{{make}} {{title}}</a>
@@ -8,7 +9,7 @@
     </header>
     <p>Precio: <span itemprop="">{{price}} €</span></p>
     <p>Potencia: <span itemprop="">{{horsepower}}</span> cv</p>
-    <p>Cobustible: <span itemprop="fuelType">{{fuel}}</span></p>
+    <p>Combustible: <span itemprop="fuelType">{{fuel}}</span></p>
     <p>Transmisión: <span itemprop="">{{transmission}}</span></p>
     <p>Año: <span itemprop="dateVehicleFirstRegistered">{{year}}</span></p>
     <p>Kilómetros: <span itemprop="mileageFromOdometer">{{kilometers}}</span></p>
@@ -16,6 +17,14 @@
     <p>Tipo de carrocería: <span itemprop="">{{body}}</span></p>
     <p>Puertas: <span itemprop="">{{doors}}</span></p>
     <p>Localización: <span itemprop="">{{district.district}} ({{district.region}})</span></p>
+
+    <ul>
+      {{#each images}}
+        <a href="{{url}}" title="Ver foto #{{@index}}" target="_blank">
+          <img src="{{url store="thumbs"}}" alt="{{make}} {{title}} ({{@index}})" />
+        </a>
+      {{/each}}
+    </ul>
   </article>
   {{/with}}
 </template>

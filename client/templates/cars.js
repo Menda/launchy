@@ -1,6 +1,10 @@
 Template.cars.helpers({
   cars: function () {
-    return Cars.find({'published': true}); // TODO: limit fields
+    var cars = Cars.find({'published': true}).fetch();  // TODO: limit fields
+    cars.forEach(function(car) {
+      car.image = Images.findOne({assigned: car['_id']});
+    });
+    return cars;
   }
 });
 
