@@ -28,6 +28,7 @@ Meteor.startup(function () {
 
 Meteor.methods({
   createAd: function(doc) {
+    console.log('Meteor.methods.createAd: Entering method');
     var session = doc.session;
 
     Schemas.Car.clean(doc, {
