@@ -5,6 +5,7 @@ http://static.googleusercontent.com/media/www.google.com/en/us/webmasters/docs/s
 doors parsing
 Schemas.Model
 Schemas.Serie
+Permitir cerrar anuncio con una nueva propiedad "active"
 
 https://meteor-testing.readme.io/docs/jasmine-database-fixtures-for-integration-tests
 Corregir scripts
@@ -13,6 +14,8 @@ http://experimentsinmeteor.com/photo-blog-part-1/
 http://cloudinary.com/
 
 Final:
+No dejar que alguien pueda borrar imágenes que estén asignadas o no sean suyas: "Securing Based on User Information"
+Eliminar paquetes insecure y autopublish
 https://dweldon.silvrback.com/common-mistakes
 https://silktide.com/tools/cookie-consent/
 Enlace desde rmunoz.net

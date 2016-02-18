@@ -97,6 +97,10 @@ Or to keep the test running waiting for changes:
 
     $ npm run-script mochawatch
 
+After running, if you want to run E2E tests or want to use it normally, then
+stop the server window and execute: `$ meteor reset`.
+
+
 Debug on test client
 ____________________
 
