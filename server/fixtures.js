@@ -85,7 +85,8 @@ Meteor.startup(function () {
         _.each(['01', '02', '03'], function(picindex) {
           var img = new FS.File();
           img.name(filename + '-' + picindex + '.jpg');
-          img.attachData(process.env.PWD + '/private/cars/samples/images/' + filename + '-' + picindex + '.jpg')
+          var data = Assets.getBinary('cars/samples/images/' + filename + '-' + picindex + '.jpg');
+          img.attachData(data, {type: "image/jpeg"});
           var imageObj = Images.insert(img);
           imageObj.update({$set: {'assigned': id}});
         });
