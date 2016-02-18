@@ -1,3 +1,12 @@
+* How to run commands on server hosting - Creo que no se puede, habría que hacer algo en Admin
+
+Mandatory upload at least 2 pictures
+Añadir propiedad "active" a Car, para saber si el anuncio lo ha desactivado el usuario
+Poner login/registro como último paso del proceso e ya
+Email a admin y usuario
+Admin usuario
+Admin admin
+
 Google:
 https://developers.google.com/structured-data/testing-tool/
 http://static.googleusercontent.com/media/www.google.com/en/us/webmasters/docs/search-engine-optimization-starter-guide.pdf
@@ -7,11 +16,7 @@ Schemas.Model
 Schemas.Serie
 Permitir cerrar anuncio con una nueva propiedad "active"
 
-https://meteor-testing.readme.io/docs/jasmine-database-fixtures-for-integration-tests
-Corregir scripts
-https://github.com/CulturalMe/meteor-slingshot
-http://experimentsinmeteor.com/photo-blog-part-1/
-http://cloudinary.com/
+Ver: https://themeteorchef.com/base/
 
 Final:
 No dejar que alguien pueda borrar imágenes que estén asignadas o no sean suyas: "Securing Based on User Information"
