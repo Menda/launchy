@@ -4,7 +4,7 @@
     <img src="{{images.[0].url store='thumbs'}}" alt="{{make}} {{title}}" />
     <header>
       <h1 itemprop="name" class="h2">
-        <a href="{{urlCarDetails}}" title="Ver">{{make}} {{title}}</a>
+        <a href="{{urlCarDetails}}" title="Ver anuncio {{make}} {{title}}">{{make}} {{title}}</a>
       </h1>
     </header>
     <p>Precio: <span itemprop="">{{price}} €</span></p>
@@ -20,7 +20,7 @@
 
     <ul>
       {{#each images}}
-        <a href="{{url}}" title="Ver foto #{{@index}}" target="_blank">
+        <a href="{{url store="images"}}" title="Ver foto #{{@index}} de {{make}} {{title}}" target="_blank">
           <img src="{{url store="thumbs"}}" alt="{{make}} {{title}} ({{@index}})" />
         </a>
       {{/each}}
