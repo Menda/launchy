@@ -1,6 +1,5 @@
 * How to run commands on server hosting - Creo que no se puede, habría que hacer algo en Admin
 
-Mandatory upload at least 2 pictures
 Añadir propiedad "active" a Car, para saber si el anuncio lo ha desactivado el usuario
 Poner login/registro como último paso del proceso e ya
 Email a admin y usuario

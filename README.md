@@ -149,7 +149,7 @@ If you need a 'one-shot' test (for example CI), then execute:
 Deployment
 ==========
 
-    $ DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy launchy.meteor.com --settings settings-development.json
+    $ DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy launchy-dev.meteorapp.com --settings settings-dev.json
 
 
 Troubleshooting
