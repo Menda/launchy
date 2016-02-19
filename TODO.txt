@@ -1,7 +1,10 @@
 * How to run commands on server hosting - Creo que no se puede, habría que hacer algo en Admin
+http://guide.meteor.com/deployment.html
 
-Añadir propiedad "active" a Car, para saber si el anuncio lo ha desactivado el usuario
-Poner login/registro como último paso del proceso e ya
+* Añadir propiedad "active" a Car, para saber si el anuncio lo ha desactivado el usuario
+* Añadir propiedad IP
+* Autoconfigurar login fb/Google/etc
+  http://stackoverflow.com/questions/22690393/meteor-accounts-ui-how-to-change-config
 Email a admin y usuario
 Admin usuario
 Admin admin
@@ -9,6 +12,8 @@ Admin admin
 Google:
 https://developers.google.com/structured-data/testing-tool/
 http://static.googleusercontent.com/media/www.google.com/en/us/webmasters/docs/search-engine-optimization-starter-guide.pdf
+
+meteor add okgrow:analytics
 
 doors parsing
 Schemas.Model
@@ -19,6 +24,7 @@ Ver: https://themeteorchef.com/base/
 
 Final:
 No dejar que alguien pueda borrar imágenes que estén asignadas o no sean suyas: "Securing Based on User Information"
+http://stackoverflow.com/questions/22815538/meteor-prevent-multiple-inserts-from-console
 Eliminar paquetes insecure y autopublish
 https://dweldon.silvrback.com/common-mistakes
 https://silktide.com/tools/cookie-consent/

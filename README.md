@@ -66,6 +66,15 @@ install some fixtures: users, ads.
 First run on all environments it will install all districts.
 
 
+How to run a shell
+==================
+
+    $ meteor shell
+
+It's only valid on local environment. To run a command on the server, you need
+to use instead the console.
+
+
 How to test
 ===========
 
