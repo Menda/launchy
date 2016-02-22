@@ -162,6 +162,10 @@ Schemas.Car = new SimpleSchema({
     defaultValue: false,
     optional: true
   },
+  active: {
+    type: Boolean,
+    defaultValue: true
+  },
   createdAt: {
     type: Date,
     autoValue: function() {

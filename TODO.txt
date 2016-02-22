@@ -4,6 +4,7 @@ http://guide.meteor.com/deployment.html
 * Añadir propiedad "active" a Car, para saber si el anuncio lo ha desactivado el usuario
 * Añadir propiedad IP
 * Autoconfigurar login fb/Google/etc
+  http://bulenttastan.net/login-with-facebook-using-meteor-js/
   http://stackoverflow.com/questions/22690393/meteor-accounts-ui-how-to-change-config
 Email a admin y usuario
 Admin usuario

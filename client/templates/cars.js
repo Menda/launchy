@@ -1,6 +1,6 @@
 Template.cars.helpers({
   cars: function () {
-    var cars = Cars.find({'published': true}).fetch();  // TODO: limit fields
+    var cars = Cars.find({'published': true, 'active': true}).fetch();  // TODO: limit fields
     cars.forEach(function(car) {
       car.image = Images.findOne({assigned: car['_id']});
     });
