@@ -7,15 +7,22 @@ if (Meteor.settings.public.environment === 'development'|'staging') {
 Template.createAd.created = function() {
   Session.set('successfulAd', false);
   Session.set('random', Random.id());
+  Session.set('carId', null);
+  Session.set('finishedAd', false);
 };
 Template.createAd.destroyed = function() {
   Session.set('successfulAd', false);
   Session.set('destroyed random', null);
+  Session.set('carId', null);
+  Session.set('finishedAd', false);
 };
 
 Template.createAd.helpers({
   isSuccessfulAd: function() {
     return Session.get('successfulAd');
+  },
+  isFinishedAd: function() {
+    return Session.get('finishedAd');
   },
   createAdForm: function() {
     return Forms.createAdForm;
@@ -67,6 +74,9 @@ Template.createAd.helpers({
     return Object.keys(BODYTYPES).map(function(value, index) {
       return {'label': BODYTYPES[value]['es'], 'value': value};
     });
+  },
+  uploadedImages: function() {
+    return Images.find({session: Session.get('random')});
   }
 });
 
@@ -97,11 +107,15 @@ AutoForm.hooks({
 
       // Current session, so pictures are assigned to current Ad
       doc['session'] = Session.get('random');
-
+      if (Meteor.userId()) {
+        doc['userId'] = Meteor.userId();
+        Session.set('finishedAd', true);
+      }
       return doc;
     },
     onSuccess: function(formType, result) {
       console.log('Form "createAdForm" sent successfully!');
+      Session.set('carId', result);
       return Session.set('successfulAd', true);
     }
   }
@@ -136,8 +150,14 @@ Meteor.startup(function () {
   });
 });
 
-Template.createAd.helpers({
-  uploadedImages: function() {
-    return Images.find({session: Session.get('random')});
+// If the user created the ad, but did not log in, then we react over
+// login and we check if the random session variable is set
+Accounts.onLogin(function () {
+  var userId = Meteor.userId();
+  var carId = Session.get('carId');
+  if (userId && carId) {
+    Meteor.call('assignAccountAd', userId, carId);
+    Session.set('carId', null);  // delete var to avoid more calls
+    Session.set('finishedAd', true);
   }
 });

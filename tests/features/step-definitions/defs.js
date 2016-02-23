@@ -68,6 +68,11 @@ var myStepDefinitionsWrapper = function() {
     browser.click('button[type=submit]');
   });
 
+  this.Then(/^I see the 'almost there' page$/, function() {
+    var expectedTitle = '¡Ya te queda poco! Inicia sesión o regístrate, por favor';
+    return browser.waitForExist('h1=' + expectedTitle);
+  });
+
   this.Then(/^I see the success page$/, function() {
     var expectedTitle = '¡Gracias por anunciar tu coche con nosotros!';
     return browser.waitForExist('h1=' + expectedTitle);
@@ -87,42 +92,34 @@ var myStepDefinitionsWrapper = function() {
   });
 
   this.Given(/^I am not logged in$/, function () {
-    return this.client
-      .url(process.env.ROOT_URL)
-      .waitForExist('body *')
-      .executeAsync(function (done) {
-        Meteor.logout(done);
-      });
-  });
-
-  this.Given(/^I have an account$/, function () {
-    return this.server.call('createAccount', {
-      email: 'ivan@impatient.com',
-      password: 'hurryup'
+    client.execute(function() {
+      Meteor.logout();
     });
   });
 
-  this.Given(/"([^"]*)" has logged in/, function(name, calback) {
-     // 1. create a user
-     var userData = {email: name + '@example.com', password: 'abc123456'};
-    _createUser(userData, function(createdUser) {
-      // 2. Login with that user
-      browser.executeAsync(function (user, done) {
-        // this code is run in the browser 
-        Meteor.loginWithPassword(user.email, user.password, done); // done is what tells the async function to finish
-        }, createdUser). // createdUser is passed in as a param to executeAsync
-        // 3. Wait for the UI to react
-        waitForExist('.logged-in-indicator', true).
-        call(callback);
+  this.Given(/^I have an account$/, function () {
+    server.execute(function() {
+      try {
+        Accounts.createUser({
+          email: "any@email.com",
+          password: "<PASSWORD>",
+          profile: {name: "<USERNAME>"}
+        });
+      } catch (e) {}
+    });
+  });
+
+  this.Given(/^I am logged in$/, function() {
+    client.execute(function() {
+      Meteor.loginWithPassword('any@email.com', '<PASSWORD>');
+    });
+  });
+
+  this.When(/^I log in$/, function () {
+    client.execute(function() {
+      Meteor.loginWithPassword('any@email.com', '<PASSWORD>');
     });
   });
 };
 
 module.exports = myStepDefinitionsWrapper;
-
-// TODO
-function _createUser(user, callback) {
-  global.ddp.call('fixtures/user/create', [user], function () {
-    callback(user);
-  });
-}

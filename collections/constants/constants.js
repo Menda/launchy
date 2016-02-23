@@ -34,6 +34,9 @@ BODYTYPES = {
   },
   'sedan': {
     'es': 'Sedán'
+  },
+  'suv': {
+    'es': 'SUV/4x4'
   }
 };
 

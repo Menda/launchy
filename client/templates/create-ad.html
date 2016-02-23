@@ -1,17 +1,31 @@
 <template name="createAd">
   <section id="create-ad">
     {{#if isSuccessfulAd}}
-    <header>
-      <h1>¡Gracias por anunciar tu coche con nosotros!</h1>
-    </header>
-    <div class="bs-callout bs-callout-success">
-      <p>
-        Puesto que revisamos los anuncios, debes esperar a que lo aprobemos. Después de la revisión por nuestro personal, recibirás un email de confirmación.
-      </p>
-      <p>
-        Atentamente, personal de Launch Control.
-      </p>
-    </div>
+      {{#if isFinishedAd}}
+      <header>
+        <h1>¡Gracias por anunciar tu coche con nosotros!</h1>
+      </header>
+      <div class="bs-callout bs-callout-success">
+        <p>
+          Puesto que revisamos los anuncios, debes esperar a que lo aprobemos. Después de la revisión por nuestro personal, recibirás un email de confirmación.
+        </p>
+        <p>
+          Atentamente, personal de Launch Control.
+        </p>
+      </div>
+      {{else}}
+      <header>
+        <h1>¡Ya te queda poco! Inicia sesión o regístrate, por favor</h1>
+      </header>
+      <div class="bs-callout bs-callout-success">
+        <p>
+          Regístrate o inicia sesión para asignar este anuncio a tu cuenta para que así puedas modificarlo en cualquier momento.
+        </p>
+        <p>
+          Utiliza para ello el menú de arriba que pone "Sign in".
+        </p>
+      </div>
+      {{/if}}
     {{else}}
     <header>
       <h1>Sube el anuncio de tu coche</h1>
@@ -25,17 +39,8 @@
         Consulta también <a href="">en nuestro blog</a> los consejos que damos para vender mejor tu coche. ¡Podrías conseguir hasta 3 veces más compradores cuidando ciertos detalles!
       </p>
     </div>
-    <!--
-    TODO
-    <p>
-      <a class="btn btn-success" href="#" role="button">
-        Estoy de acuerdo y quiero publicar mi anuncio
-        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-      </a>
-    </p>-->
 
     {{#autoForm schema=createAdForm id="createAdForm" type="method" meteormethod="createAd"}}
-
 
     <fieldset>
       <legend>Fotos del vehículo</legend>
@@ -70,7 +75,7 @@
       <div class="form-group{{#if afFieldIsInvalid name='kilometers'}} has-error{{/if}}">
         <label for="form-kilometers" class="control-label">Kilómetros</label>
         <div class="input-group">
-          {{> afFieldInput id="form-kilometers" name="kilometers" minCount=0}}
+          {{> afFieldInput id="form-kilometers" name="kilometers" placeholder="Número actual de kilómetros del coche" minCount=0}}
           <span class="input-group-addon">km</span>
         </div>
         {{#if afFieldIsInvalid name='kilometers'}}

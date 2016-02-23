@@ -157,6 +157,12 @@ Schemas.Car = new SimpleSchema({
     type: String,
     optional: true
   },
+
+  // Metadata
+  userId: {
+    type: String,
+    optional: true
+  },
   published: {
     type: Boolean,
     defaultValue: false,

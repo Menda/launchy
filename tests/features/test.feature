@@ -37,15 +37,35 @@ Feature: Create Ad functionality
     And Submit the form
     Then I see an error in the form
 
-  Scenario: Ad is created successfully
+  Scenario: Ad is created but not assigned to user
     Given I have visited the createAd
+    And I am not logged in
+    When I fill a basic ad
+    And Check the T&C
+    And Submit the form
+    Then I see the 'almost there' page
+
+  Scenario: Ad is created with a pre-logged in user
+    Given I have visited the createAd
+    And I have an account
+    And I am logged in
     When I fill a basic ad
     And Check the T&C
     And Submit the form
     Then I see the success page
 
+  Scenario: Ad is created with a post-logged in user
+    Given I have visited the createAd
+    When I fill a basic ad
+    And Check the T&C
+    And Submit the form
+    And I log in
+    Then I see the success page
+
   Scenario: Ad is created successfully with picture
     Given I have visited the createAd
+    And I have an account
+    And I am logged in
     When I fill a basic ad
     And Add a picture to it
     And Check the T&C
