@@ -23,6 +23,7 @@ Base:
 * numeral:numeral
 * cfs:graphicsmagick
 * Random ($ meteor add random)
+* accounts-base ($ meteor add accounts-base)
 
 DebugOnly:
 * msavin:mongol
@@ -130,12 +131,6 @@ Then open: http://localhost:8080/?ws=localhost:8080&port=5858
 If Google Chrome doesn't show any code, reload.
 
 
-Headless browser tests (end to end)
------------------------------------
-
-See zombie.js or phantomJS.
-
-
 Browser tests (end to end)
 --------------------------
 
@@ -149,10 +144,10 @@ If you need a 'one-shot' test (for example CI), then execute:
   $ node_modules/chimp/bin/chimp --cucumber --path=tests/features
 
 
-[NOT USED] TinyTest (unit tests)
---------------------------------
+Headless browser tests (end to end)
+-----------------------------------
 
-    $ meteor test-packages ./
+See zombie.js or phantomJS.
 
 
 Deployment
