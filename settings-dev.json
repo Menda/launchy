@@ -8,7 +8,10 @@
   "private": {
     "AWSAccessKeyId" : "AKIAIWMT6XQKKLSXMLSA",
     "AWSSecretAccessKey" : "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",
-    "AWSBucket" : "launchy-dev"
+    "AWSBucket" : "launchy-dev",
+    "emails": {
+      "from": "Sistema <do.not.reply@launchcontrol.es>"
+    }
   },
   "galaxy.meteor.com": {
     "env": {

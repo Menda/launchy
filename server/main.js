@@ -50,6 +50,15 @@ Meteor.methods({
     Images.update({session: session}, {
       $set: {assigned: id}}, {multi: true});
 
+    Meteor.defer(function() {
+      Email.send({
+        from: Meteor.settings.private.emails.from,
+        to: "bymenda@gmail.com",
+        subject: "Subject",
+        text: "Here is some text"
+      });
+    });
+
     return id;
   },
 
