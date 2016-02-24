@@ -19,7 +19,8 @@ meteor add okgrow:analytics
 doors parsing
 Schemas.Model
 Schemas.Serie
-Permitir cerrar anuncio con una nueva propiedad "active"
+
+* Comando para limpiar imágenes no usadas
 
 Ver: https://themeteorchef.com/base/
 
@@ -39,3 +40,7 @@ gwendall:simple-schema-i18n
 
 Reads:
 https://themeteorchef.com/snippets/using-the-check-package/
+http://meteorpatterns.com/Sewdn/project-builds
+https://meteorhacks.com/flow-router-and-subscription-management/
+https://kadira.io/academy/meteor-routing-guide/content/subscriptions-and-data-management
+https://bulletproofmeteor.com

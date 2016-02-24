@@ -12,9 +12,6 @@ var myStepDefinitionsWrapper = function() {
     browser.click('#link-homepage-logo');
     expect(browser.getTitle()).toMatch(
       'Compra y venta de coches de gama alta, clásicos y de disfrute');
-    browser.click('#link-homepage');
-    expect(browser.getTitle()).toMatch(
-      'Compra y venta de coches de gama alta, clásicos y de disfrute');
 
     // All cars
     browser.click('#link-cars');

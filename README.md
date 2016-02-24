@@ -14,6 +14,7 @@ Base:
 * kadira:dochead
 * aldeed:autoform
 * Check ($ meteor add check)
+* Email ($ meteor add email)
 * twbs:bootstrap
 * brew install graphicsmagick
 * cfs:standard-packages

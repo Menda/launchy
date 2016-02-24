@@ -1,4 +1,4 @@
-var checkEnvVars = function() {
+function checkEnvVars() {
   console.log('Checking environment variables...');
   if (! Meteor.settings.public.environment) {
     throw new Error('--settings are missing');
@@ -9,7 +9,7 @@ var checkEnvVars = function() {
 /**
  * Image upload and handling settings.
  */
-var setFSSettings = function() {
+function setFSSettings() {
   if (Meteor.settings.public.environment === 'development'|'staging') {
     FS.debug = true; // enable CFS debug logging
   }
