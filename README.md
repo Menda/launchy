@@ -125,7 +125,7 @@ To debug with a Google Chrome debugger, install Node Inspector first. Then:
 
 In other window, execute:
 
-    $ node_modules/chimp/bin/chimp --ddp=http://localhost:3000 --mocha --path=tests --watch --debugMocha
+    $ node_modules/chimp/bin/chimp.js --ddp=http://localhost:3000 --mocha --path=tests --watch --debugMocha
 
 Then open: http://localhost:8080/?ws=localhost:8080&port=5858
 
@@ -138,11 +138,11 @@ Browser tests (end to end)
 To keep a window open on the browser inspecting tests changes and running
 automatically when something changed:
 
-  $ node_modules/chimp/bin/chimp --cucumber --ddp=http://localhost:3000 --watch --path=tests/features
+  $ npm run-script cucumberwatch
 
 If you need a 'one-shot' test (for example CI), then execute:
 
-  $ node_modules/chimp/bin/chimp --cucumber --path=tests/features
+  $ node_modules/chimp/bin/chimp.js --cucumber --path=tests/features
 
 
 Headless browser tests (end to end)
