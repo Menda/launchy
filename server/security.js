@@ -1,3 +1,6 @@
+import {Images} from '/server/collections.js';
+
+
 function trueFunc(userId) {
   if (!userId) {
     // must be logged in

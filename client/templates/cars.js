@@ -1,3 +1,7 @@
+import {Images} from '/client/imports/collections.js';
+import {Cars} from '/collections/collections.js';
+
+
 Template.cars.helpers({
   cars: function () {
     var cars = Cars.find({'published': true, 'active': true}).fetch();  // TODO: limit fields

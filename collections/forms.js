@@ -1,4 +1,8 @@
-Forms = {};
+import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+import {Schemas} from '/collections/schemas.js';
+
+
+export const Forms = {};
 
 // Inherits from Schemas.Car
 Forms.createAdForm = new SimpleSchema([Schemas.Car, {

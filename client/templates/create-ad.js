@@ -1,3 +1,11 @@
+import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+import {Images} from '/client/imports/collections.js';
+import {Makes, Districts} from '/collections/collections.js';
+import {FUELTYPES, TRANSMISSIONTYPES,
+        WHEELDRIVETYPES, BODYTYPES} from '/collections/constants.js';
+import {Forms} from '/collections/forms.js';
+
+
 if (Meteor.settings.public.environment === 'development'|'staging') {
     SimpleSchema.debug = true;
     AutoForm.debug();

@@ -1,3 +1,7 @@
+import {Districts, Makes, Cars} from '../../../collections/collections.js';
+import {Images} from '../../../server/collections.js';
+
+
 describe('@focus Make', function() {
   beforeEach(function() {
     server.execute(function() {

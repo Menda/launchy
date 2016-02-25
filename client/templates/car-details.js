@@ -1,3 +1,7 @@
+import {Images} from '/client/imports/collections.js';
+import {Cars} from '/collections/collections.js';
+
+
 Template.carDetails.onRendered(function() {
   var carId = FlowRouter.getParam("_id");
   var car = Cars.findOne({"_id": carId},

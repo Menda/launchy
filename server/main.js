@@ -1,3 +1,8 @@
+import {Cars} from '/collections/collections.js';
+import {Schemas} from '/collections/schemas.js';
+import {Images} from '/server/collections.js';
+
+
 function checkEnvVars() {
   console.log('Checking environment variables...');
   if (! Meteor.settings.public.environment) {
@@ -20,14 +25,14 @@ function setFSSettings() {
   ]);
 }
 
-Meteor.startup(function () {
+Meteor.startup(() => {
   checkEnvVars();
   setFSSettings();
   console.log('You are running environment: ' + Meteor.settings.public.environment);
 });
 
 Meteor.methods({
-  createAd: function(doc) {
+  createAd: (doc) => {
     console.log('Meteor.methods.createAd: Entering method');
     var session = doc.session;
 
@@ -66,7 +71,7 @@ Meteor.methods({
    * Assigns an advertisement to a certain user. For security reasons, already assigned ads cannot
    * be assigned again.
    */
-  assignAccountAd: function(userId, carId) {
+  assignAccountAd: (userId, carId) => {
     console.log('Meteor.methods.assignAccountAd: Entering method. ' +
                 'userId: ' + userId + ', carId: ' + carId);
     if (! userId || ! carId) {

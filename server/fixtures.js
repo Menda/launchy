@@ -1,3 +1,7 @@
+import {Districts, Makes, Cars} from '/collections/collections.js';
+import {Images} from '/server/collections.js';
+
+
 Meteor.startup(function () {
   // Districts population
   if (Districts.find().count() === 0) {

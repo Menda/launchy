@@ -1,4 +1,4 @@
-FUELTYPES = {
+export const FUELTYPES = {
   'petrol': {
     'es': 'Gasolina'
   },
@@ -16,7 +16,7 @@ FUELTYPES = {
   }
 };
 
-BODYTYPES = {
+export const BODYTYPES = {
   'hatchback': {
     'es': 'Hatchback'
   },
@@ -40,7 +40,7 @@ BODYTYPES = {
   }
 };
 
-TRANSMISSIONTYPES = {
+export const TRANSMISSIONTYPES = {
   'automatic': {
     'es': 'Automático'
   },
@@ -49,7 +49,7 @@ TRANSMISSIONTYPES = {
   }
 };
 
-WHEELDRIVETYPES = {
+export const WHEELDRIVETYPES = {
   'fwd': {
     'es': 'Tracción delantera'
   },
