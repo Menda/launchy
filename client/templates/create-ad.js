@@ -145,6 +145,10 @@ function getHandler(dropped) {
       if (! error) {
         console.log('Image inserted', fileObj.name());
       }
+      // We need to clean the input file, because after adding the files,
+      // the value of it is not cleaned.
+      let inputFile = $('#form-images');
+      inputFile.replaceWith(inputFile = inputFile.clone(true));
     }
   });
 }
