@@ -1,3 +1,4 @@
+import {AutoForm} from 'meteor/aldeed:autoform';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {Images} from '/client/imports/collections.js';
 import {Makes, Districts} from '/collections/collections.js';
@@ -12,13 +13,13 @@ if (Meteor.settings.public.environment === 'development'|'staging') {
 }
 
 // Clean success page variable
-Template.createAd.created = function() {
+Template.createAd.created = () => {
   Session.set('successfulAd', false);
   Session.set('random', Random.id());
   Session.set('carId', null);
   Session.set('finishedAd', false);
 };
-Template.createAd.destroyed = function() {
+Template.createAd.destroyed = () => {
   Session.set('successfulAd', false);
   Session.set('destroyed random', null);
   Session.set('carId', null);
@@ -26,31 +27,31 @@ Template.createAd.destroyed = function() {
 };
 
 Template.createAd.helpers({
-  isSuccessfulAd: function() {
+  isSuccessfulAd() {
     return Session.get('successfulAd');
   },
-  isFinishedAd: function() {
+  isFinishedAd() {
     return Session.get('finishedAd');
   },
-  createAdForm: function() {
+  createAdForm() {
     return Forms.createAdForm;
   },
-  makeIdOptions: function () {
-    return Makes.find().map(function (m) {
+  makeIdOptions() {
+    return Makes.find().map((m) => {
       return {'label': m.name, 'value': m._id, 'data-allowed': m.allowed};
     });
     return options;
   },
-  districtOptions: function () {
-    var options = [];
-    var districts = Districts.find().fetch();
-    var groupedDistricts = _.groupBy(districts, function(district) {
+  districtOptions() {
+    const options = [];
+    const districts = Districts.find().fetch();
+    const groupedDistricts = _.groupBy(districts, (district) => {
       return district['region'];
     });
-    var sortedRegions = _.keys(groupedDistricts).sort();
-    sortedRegions.forEach(function(region) {
-      var suboptions = [];
-      groupedDistricts[region].forEach(function(district) {
+    const sortedRegions = _.keys(groupedDistricts).sort();
+    sortedRegions.forEach((region) => {
+      const suboptions = [];
+      groupedDistricts[region].forEach((district) => {
         suboptions.push({
           label: district['district'],
           value: district['_id']
@@ -63,34 +64,34 @@ Template.createAd.helpers({
     });
     return options;
   },
-  fuelOptions: function () {
-    return Object.keys(FUELTYPES).map(function(value, index) {
+  fuelOptions() {
+    return Object.keys(FUELTYPES).map((value, index) => {
       return {'label': FUELTYPES[value]['es'], 'value': value};
     });
   },
-  transmissionOptions: function () {
-    return Object.keys(TRANSMISSIONTYPES).map(function(value, index) {
+  transmissionOptions() {
+    return Object.keys(TRANSMISSIONTYPES).map((value, index) => {
       return {'label': TRANSMISSIONTYPES[value]['es'], 'value': value};
     });
   },
-  wheelDriveOptions: function () {
-    return Object.keys(WHEELDRIVETYPES).map(function(value, index) {
+  wheelDriveOptions() {
+    return Object.keys(WHEELDRIVETYPES).map((value, index) => {
       return {'label': WHEELDRIVETYPES[value]['es'], 'value': value};
     });
   },
-  bodyOptions: function () {
-    return Object.keys(BODYTYPES).map(function(value, index) {
+  bodyOptions() {
+    return Object.keys(BODYTYPES).map((value, index) => {
       return {'label': BODYTYPES[value]['es'], 'value': value};
     });
   },
-  uploadedImages: function() {
+  uploadedImages() {
     return Images.find({session: Session.get('random')});
   }
 });
 
 Template.createAd.events({
-  'change #form-makeId': function (evt) {
-    var allowed = $(evt.target).find(':selected').data('allowed');
+  'change #form-makeId': (evt) => {
+    const allowed = $(evt.target).find(':selected').data('allowed');
     if (allowed == false) {
       console.log('Disable form and display error');
     }
@@ -99,11 +100,11 @@ Template.createAd.events({
 
 AutoForm.hooks({
   'createAdForm': {
-    formToDoc: function(doc) {
+    formToDoc(doc) {
       // Set District
-      var districtId = AutoForm.getFieldValue('districtId'); // or doc['districtId']
+      const districtId = AutoForm.getFieldValue('districtId'); // or doc['districtId']
       if (districtId) {
-        var district = Districts.findOne({'_id': districtId});
+        const district = Districts.findOne({'_id': districtId});
         delete district['_id']; // we need to delete it because it's not in the schema
         if (district) {
           doc.district = district;
@@ -121,7 +122,7 @@ AutoForm.hooks({
       }
       return doc;
     },
-    onSuccess: function(formType, result) {
+    onSuccess(formType, result) {
       console.log('Form "createAdForm" sent successfully!');
       Session.set('carId', result);
       return Session.set('successfulAd', true);
@@ -134,13 +135,13 @@ AutoForm.hooks({
  */
 function getHandler(dropped) {
   return FS.EventHandlers.insertFiles(Images, {
-    metadata: function (fileObj) {
+    metadata(fileObj) {
       return {
         session: Session.get('random'),  // util variable
         assigned: false  // image assigned to a created Ad
       };
     },
-    after: function (error, fileObj) {
+    after(error, fileObj) {
       if (! error) {
         console.log('Image inserted', fileObj.name());
       }
@@ -150,7 +151,7 @@ function getHandler(dropped) {
 
 // Can't call getHandler until startup so that Images object is available
 // This is loaded anywhere (at any URL) in the app only once it's started.
-Meteor.startup(function () {
+Meteor.startup(() => {
   Template.createAd.events({
     'dropped .imageArea': getHandler(true),
     'dropped .imageDropArea': getHandler(true),
@@ -160,9 +161,9 @@ Meteor.startup(function () {
 
 // If the user created the ad, but did not log in, then we react over
 // login and we check if the random session variable is set
-Accounts.onLogin(function () {
-  var userId = Meteor.userId();
-  var carId = Session.get('carId');
+Accounts.onLogin(() => {
+  const userId = Meteor.userId();
+  const carId = Session.get('carId');
   if (userId && carId) {
     Meteor.call('assignAccountAd', userId, carId);
     Session.set('carId', null);  // delete var to avoid more calls

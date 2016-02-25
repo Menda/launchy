@@ -16,7 +16,7 @@ Forms.createAdForm = new SimpleSchema([Schemas.Car, {
   tc: {
     type: Boolean,
     defaultValue: false,
-    custom: function() {
+    custom() {
       if (! this.value) {
         return 'tc-required';
       }

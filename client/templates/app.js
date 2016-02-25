@@ -1,15 +1,18 @@
+import {FlowRouter} from 'meteor/kadira:flow-router';
+
+
 // Common variables for the whole application
 Template.appHeader.helpers({
-  siteName: function() {
+  siteName() {
     return Meteor.settings.public.site_name;
   },
-  urlHome: function() {
+  urlHome() {
     return FlowRouter.path('home');
   },
-  urlCars: function() {
+  urlCars() {
     return FlowRouter.path('cars');
   },
-  urlCreateAd: function() {
+  urlCreateAd() {
     return FlowRouter.path('createAd');
   }
 });

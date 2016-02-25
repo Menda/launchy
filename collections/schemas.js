@@ -43,7 +43,7 @@ Schemas.Car = new SimpleSchema({
   make: {
     type: String,
     max: 70,
-    autoValue: function() {
+    autoValue() {
       var value = this.field('makeId')['value'];
       var make = Makes.findOne(value);
       if (! make && value) {
@@ -141,7 +141,7 @@ Schemas.Car = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    autoValue: function() {
+    autoValue() {
       if (this.isInsert) {
         return new Date();
       } else if (this.isUpsert) {
@@ -153,7 +153,7 @@ Schemas.Car = new SimpleSchema({
   },
   updatedAt: {
     type: Date,
-    autoValue: function() {
+    autoValue() {
       if (this.isUpdate) {
         return new Date();
       }
