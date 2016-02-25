@@ -1,4 +1,4 @@
-import {Stores} from '/collections/stores.js';
+import {Stores} from '/client/imports/stores.js';
 
 
 // On the client just create a generic FS Store as don't have

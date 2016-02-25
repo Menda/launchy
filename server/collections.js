@@ -1,4 +1,4 @@
-import {Stores} from '/collections/stores.js';
+import {Stores} from '/server/stores.js';
 
 
 export const Images = new FS.Collection('images', {
