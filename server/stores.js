@@ -1,3 +1,4 @@
+'use strict';
 export const Stores = {};
 
 // Use GridFS on development/staging

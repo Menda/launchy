@@ -40,3 +40,4 @@ accounts-base
 email
 standard-minifier-css
 standard-minifier-js
+avital:mocha

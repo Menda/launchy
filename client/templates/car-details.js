@@ -1,6 +1,7 @@
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {Images} from '/client/imports/collections.js';
 import {Cars} from '/collections/collections.js';
+import {setHead} from '/lib/utils.js';
 
 
 Template.carDetails.onRendered(() => {

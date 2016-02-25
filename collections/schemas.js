@@ -1,3 +1,4 @@
+'use strict';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {Makes} from '/collections/collections.js';
 import {FUELTYPES, TRANSMISSIONTYPES,

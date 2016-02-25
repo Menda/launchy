@@ -28,6 +28,7 @@ Base:
 
 DebugOnly:
 * msavin:mongol
+* avital:mocha
 
 TODO a instalar:
 gwendall:simple-schema-i18n (ver cómo configurar tap)

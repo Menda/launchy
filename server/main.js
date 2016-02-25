@@ -1,3 +1,7 @@
+'use strict';
+import {check} from 'meteor/check';
+import {Meteor} from 'meteor/meteor';
+
 import {Cars} from '/collections/collections.js';
 import {Schemas} from '/collections/schemas.js';
 import {Images} from '/server/collections.js';
@@ -55,7 +59,7 @@ Meteor.methods({
     Images.update({session: session}, {
       $set: {assigned: id}}, {multi: true});
 
-    Meteor.defer(function() {
+    Meteor.defer(() => {
       Email.send({
         from: Meteor.settings.private.emails.from,
         to: "bymenda@gmail.com",

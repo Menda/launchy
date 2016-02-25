@@ -1,4 +1,7 @@
+'use strict';
+import {Mongo} from 'meteor/mongo';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+
 import {Schemas} from '/collections/schemas.js';
 
 

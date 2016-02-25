@@ -1,3 +1,4 @@
+'use strict';
 import {Images} from '/server/collections.js';
 
 

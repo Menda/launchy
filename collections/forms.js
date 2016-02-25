@@ -1,3 +1,4 @@
+'use strict';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {Schemas} from '/collections/schemas.js';
 
