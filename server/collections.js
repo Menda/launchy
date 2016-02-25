@@ -1,5 +1,6 @@
 'use strict';
 import {Stores} from '/server/stores.js';
+import {FS} from 'meteor/cfs:base-package';
 
 
 // Needs to be duplicated here and also in client because we need to

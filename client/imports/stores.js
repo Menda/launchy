@@ -1,3 +1,7 @@
+'use strict';
+import {FS} from 'meteor/cfs:base-package';
+
+
 export const Stores = {};
 
 Stores.images = new FS.Store.GridFS('images');

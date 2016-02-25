@@ -1,5 +1,8 @@
+'use strict';
 import {AutoForm} from 'meteor/aldeed:autoform';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+import {Template} from 'meteor/templating';
+
 import {Images} from '/client/imports/collections.js';
 import {Makes, Districts} from '/collections/collections.js';
 import {FUELTYPES, TRANSMISSIONTYPES,

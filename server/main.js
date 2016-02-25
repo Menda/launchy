@@ -1,5 +1,7 @@
 'use strict';
+import {FS} from 'meteor/cfs:base-package';
 import {check} from 'meteor/check';
+import {Email} from 'meteor/email';
 import {Meteor} from 'meteor/meteor';
 
 import {Cars} from '/collections/collections.js';

@@ -1,4 +1,7 @@
+'use strict';
 import {FlowRouter} from 'meteor/kadira:flow-router';
+import {Template} from 'meteor/templating';
+
 import {Images} from '/client/imports/collections.js';
 import {Cars} from '/collections/collections.js';
 

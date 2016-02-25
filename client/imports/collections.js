@@ -1,3 +1,5 @@
+'use strict';
+import {FS} from 'meteor/cfs:base-package';
 import {Stores} from '/client/imports/stores.js';
 
 

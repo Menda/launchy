@@ -1,4 +1,6 @@
+'use strict';
 import {FlowRouter} from 'meteor/kadira:flow-router';
+import {Template} from 'meteor/templating';
 
 
 // Common variables for the whole application
