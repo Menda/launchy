@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "chimp": "^0.30.0",
-    "node-inspector": "0.12.x"
+    "node-inspector": "0.12.x",
+    "expect": "^1.14.0"
   }
 }

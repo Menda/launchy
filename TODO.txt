@@ -37,6 +37,7 @@ https://github.com/arunoda/meteor-find-faster
 https://www.typeform.com/
 https://www.discovermeteor.com/blog/improving-the-performance-of-your-meteor-app/
 gwendall:simple-schema-i18n
+https://jmperezperez.com/medium-image-progressive-loading-placeholder/
 
 Reads:
 https://themeteorchef.com/snippets/using-the-check-package/

@@ -81,6 +81,23 @@ to use instead the console.
 How to test
 ===========
 
+Mocha tests (unit tests)
+------------------------
+
+Or to keep the test running waiting for changes:
+
+    $ meteor test-app --unit --driver-package avital:mocha --settings=settings-dev.json
+
+After running, if you want to run E2E tests or want to use it normally, then
+stop the server window and execute: `$ meteor reset`.
+
+
+Browser tests (end to end)
+--------------------------
+
+Server
+______
+
 There are different ways to test. At least, Mocha and Cucumber tests need
 before a running meteor server, so do as a first step:
 
@@ -95,23 +112,27 @@ instead:
 Then open in your browser: http://localhost:7272/debug?port=5050
 
 
-Also, press ctrl+m and you will have a Mongol window to debug.
+Client (test)
+_____________
+
+To keep a window open on the browser inspecting tests changes and running
+automatically when something changed:
+
+  $ npm run-script cucumberwatch
+
+If you need a 'one-shot' test (for example CI), then execute:
+
+  $ node_modules/chimp/bin/chimp.js --cucumber --path=tests/features
 
 
-Mocha tests (unit and integration tests)
-----------------------------------------
+Headless browser tests (end to end)
+-----------------------------------
 
-For a 'one-shot' test (good for CI), execute:
+See zombie.js or phantomJS.
 
-    $ npm run-script mocha
 
-Or to keep the test running waiting for changes:
-
-    $ npm run-script mochawatch
-
-After running, if you want to run E2E tests or want to use it normally, then
-stop the server window and execute: `$ meteor reset`.
-
+How to debug
+============
 
 Debug on test client
 ____________________
@@ -132,24 +153,7 @@ Then open: http://localhost:8080/?ws=localhost:8080&port=5858
 
 If Google Chrome doesn't show any code, reload.
 
-
-Browser tests (end to end)
---------------------------
-
-To keep a window open on the browser inspecting tests changes and running
-automatically when something changed:
-
-  $ npm run-script cucumberwatch
-
-If you need a 'one-shot' test (for example CI), then execute:
-
-  $ node_modules/chimp/bin/chimp.js --cucumber --path=tests/features
-
-
-Headless browser tests (end to end)
------------------------------------
-
-See zombie.js or phantomJS.
+Also, press ctrl+m and you will have a Mongol window to debug.
 
 
 Deployment
