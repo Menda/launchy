@@ -1,4 +1,8 @@
 'use strict';
+import {FS} from 'meteor/cfs:base-package';
+import {Meteor} from 'meteor/meteor';
+
+
 export const Stores = {};
 
 // Use GridFS on development/staging

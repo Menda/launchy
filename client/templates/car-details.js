@@ -11,7 +11,7 @@ Template.carDetails.onRendered(() => {
   const carId = FlowRouter.getParam('_id');
   const car = Cars.findOne({'_id': carId},
                          {fields: {'make': 1, 'title': 1, 'district.district': 1}});
-  const title = car['make'] + ' ' + car['title'] + ' en venta en ' + car['district']['district'];
+  const title = `${car['make']} ${car['title']} en venta en ${car['district']['district']}`;
   let metaDescription;
   if (car['make'] == 'Volkswagen') {
     metaDescription = '"Das Auto". Un lema tan simple no puede decir más. VW es una de las ' +

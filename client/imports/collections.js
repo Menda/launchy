@@ -1,5 +1,7 @@
 'use strict';
 import {FS} from 'meteor/cfs:base-package';
+import {Meteor} from 'meteor/meteor';
+
 import {Stores} from '/client/imports/stores.js';
 
 
@@ -20,3 +22,8 @@ export const Images = new FS.Collection('images', {
     }
   }
 });
+
+Meteor.subscribe('districts');
+Meteor.subscribe('makes');
+Meteor.subscribe('cars');
+Meteor.subscribe('images');
