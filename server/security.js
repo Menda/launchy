@@ -1,30 +1,37 @@
+// Here we define for each action related a certain collection, which actions
+// are allowed from the client code to be executed. This does not apply to
+// Meteor.methods actions, as those are executed server-side.
 'use strict';
+import {Districts, Makes, Cars} from '/collections/collections.js';
 import {Images} from '/server/collections.js';
 
 
-function trueFunc(userId) {
-  if (!userId) {
-    // must be logged in
-    return false;
-  }
-
-  return true;
-}
-
-function falseFunc() {
-  return false;
-}
-
-Images.allow({
-  insert: trueFunc,
-  update: trueFunc,
-  remove: trueFunc,
-  download: trueFunc
+Districts.deny({
+  insert: () => true,
+  update: () => true,
+  remove: () => true,
 });
 
-Images.deny({
-  insert: falseFunc,
-  update: falseFunc,
-  remove: falseFunc,
-  download: falseFunc
+Makes.deny({
+  insert: () => true,
+  update: () => true,
+  remove: () => true,
+});
+
+Cars.deny({
+  insert: () => true,
+  update: () => true,
+  remove: () => true,
+});
+
+Images.allow({
+  insert: () => true,
+  update: () => true,
+  remove: (userId, doc) => {
+    if (! doc.assigned === false) {
+      return false;
+    }
+    return true;
+  },
+  download: () => true,
 });

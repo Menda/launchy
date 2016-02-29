@@ -69,7 +69,7 @@ Meteor.methods({
           from: Meteor.settings.private.emails.from,
           to: admin.email,
           subject: `Nuevo anuncio: ${doc.make} ${doc.title}`,
-          text: `ID: ${doc._id}`
+          text: `ID: ${id}`
         });
       });
     });
