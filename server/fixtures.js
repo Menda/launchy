@@ -8,7 +8,7 @@ Meteor.startup(() => {
   if (Districts.find().count() === 0) {
     console.log('Populating Spanish districts');
 
-    var districtsSpain = [
+    const districtsSpain = [
       'alava', 'albacete', 'alicante', 'almeria', 'asturias', 'avila',
       'badajoz', 'barcelona', 'burgos',
       'caceres', 'cadiz', 'cantabria', 'castellon', 'ceuta', 'ciudad_real', 'cordoba', 'cuenca',
@@ -26,9 +26,9 @@ Meteor.startup(() => {
       'valencia', 'valladolid', 'vizcaya',
       'zamora', 'zaragoza'
     ]
-    var root = 'districts/spain/';
-    _.each(districtsSpain, function(filename) {
-      var district = JSON.parse(
+    const root = 'districts/spain/';
+    _.each(districtsSpain, (filename) => {
+      const district = JSON.parse(
         Assets.getText(root + filename + '.json'));
       Districts.insert(district);
     });
@@ -37,7 +37,7 @@ Meteor.startup(() => {
   // Makes population
   if (Makes.find().count() === 0) {
     console.log('Populating Makes');
-    var makes = [
+    const makes = [
       'abarth', 'alfaromeo', 'alpina', 'alpine', 'aro', 'asia', 'astonmartin', 'audi', 'austin',
       'autobianchi', 'bedford', 'bentley', 'bertone', 'bmw', 'buick', 'cadillac', 'caterham',
       'chevrolet', 'chrysler', 'citroen', 'dacia', 'daewoo', 'daf', 'daihatsu', 'daimler', 'dodge',
@@ -51,9 +51,9 @@ Meteor.startup(() => {
       'tesla', 'toyota', 'triumph', 'tvr', 'umm', 'vauxhall', 'volkswagen', 'volvo', 'wartburg',
       'yugozastava', 'zaztavria'
     ]
-    var root = 'makes/';
-    _.each(makes, function(filename) {
-      var make = JSON.parse(
+    const root = 'makes/';
+    _.each(makes, (filename) => {
+      const make = JSON.parse(
         Assets.getText(root + filename + '.json'));
       Makes.insert(make);
     });
@@ -85,23 +85,23 @@ Meteor.startup(() => {
     // Test cars population
     if (Cars.find().count() == 0) {
       console.log('Populating test Cars');
-      var samples = ['golf_vii_r', 'lotus_elise', 'mercedes_sl'];
-      var root = 'cars/samples/';
+      const samples = ['golf_vii_r', 'lotus_elise', 'mercedes_sl'];
+      const root = 'cars/samples/';
 
-      _.each(samples, function(filename) {
-        var car = JSON.parse(
+      _.each(samples, (filename) => {
+        const car = JSON.parse(
           Assets.getText(root + filename + '.json'));
-        var make = Makes.findOne({name: car["manufacturer"]["name"]});
+        const make = Makes.findOne({name: car["manufacturer"]["name"]});
         delete car["manufacturer"];
         car["makeId"] = make["_id"];
-        var id = Cars.insert(car);
+        const id = Cars.insert(car);
 
-        _.each(['01', '02', '03'], function(picindex) {
-          var img = new FS.File();
+        _.each(['01', '02', '03'], (picindex) => {
+          const img = new FS.File();
           img.name(filename + '-' + picindex + '.jpg');
-          var data = Assets.getBinary('cars/samples/images/' + filename + '-' + picindex + '.jpg');
+          const data = Assets.getBinary(`cars/samples/images/${filename}-${picindex}.jpg`);
           img.attachData(data, {type: "image/jpeg"});
-          var imageObj = Images.insert(img);
+          const imageObj = Images.insert(img);
           imageObj.update({$set: {'assigned': id}});
         });
       });

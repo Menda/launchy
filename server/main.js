@@ -34,7 +34,7 @@ function setFSSettings() {
 Meteor.startup(() => {
   checkEnvVars();
   setFSSettings();
-  console.log('You are running environment: ' + Meteor.settings.public.environment);
+  console.log(`You are running environment: ${Meteor.settings.public.environment}`);
 });
 
 Meteor.methods({
@@ -78,8 +78,8 @@ Meteor.methods({
    * be assigned again.
    */
   assignAccountAd: (userId, carId) => {
-    console.log('Meteor.methods.assignAccountAd: Entering method. ' +
-                'userId: ' + userId + ', carId: ' + carId);
+    console.log(`Meteor.methods.assignAccountAd: Entering method. ` +
+                `userId: {userId}, carId: {carId}`);
     if (! userId || ! carId) {
       throw new Meteor.Error('403', 'You are not authorized to access this content');
     }
