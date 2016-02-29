@@ -34,8 +34,8 @@ Template.carDetails.onRendered(() => {
 
 Template.carDetails.helpers({
   car() {
-    const carId = FlowRouter.getParam("_id");
-    const car = Cars.findOne({"_id": carId});
+    const carId = FlowRouter.getParam('_id');
+    const car = Cars.findOne({'_id': carId});
     car.images = Images.find({assigned: car['_id']}).fetch();
     return car;
   },

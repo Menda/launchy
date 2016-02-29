@@ -19,14 +19,14 @@ if (Meteor.settings.public.environment === 'development'|'staging') {
 // Use S3 on production
 } else {
   Stores.images = new FS.Store.S3('images', {
-    region: "eu-west-1",
+    region: 'eu-west-1',
     accessKeyId: Meteor.settings.private.AWS.accessKeyId,
     secretAccessKey: Meteor.settings.private.AWS.secretAccessKey,
     bucket: Meteor.settings.private.AWS.bucket
   });
 
   Stores.thumbs = new FS.Store.S3('thumbs', {
-    region: "eu-west-1",
+    region: 'eu-west-1',
     accessKeyId: Meteor.settings.private.AWS.accessKeyId,
     secretAccessKey: Meteor.settings.private.AWS.secretAccessKey,
     bucket: Meteor.settings.private.AWS.bucket + '-thumbs',

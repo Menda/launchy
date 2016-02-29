@@ -98,16 +98,16 @@ Meteor.startup(() => {
       _.each(samples, (filename) => {
         const car = JSON.parse(
           Assets.getText(root + filename + '.json'));
-        const make = Makes.findOne({name: car["manufacturer"]["name"]});
-        delete car["manufacturer"];
-        car["makeId"] = make["_id"];
+        const make = Makes.findOne({name: car['manufacturer']['name']});
+        delete car['manufacturer'];
+        car['makeId'] = make['_id'];
         const id = Cars.insert(car);
 
         _.each(['01', '02', '03'], (picindex) => {
           const img = new FS.File();
           img.name(filename + '-' + picindex + '.jpg');
           const data = Assets.getBinary(`cars/samples/images/${filename}-${picindex}.jpg`);
-          img.attachData(data, {type: "image/jpeg"});
+          img.attachData(data, {type: 'image/jpeg'});
           const imageObj = Images.insert(img);
           imageObj.update({$set: {'assigned': id}});
         });
