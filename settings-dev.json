@@ -6,9 +6,11 @@
     "site_name": "Launch Control"
   },
   "private": {
-    "AWSAccessKeyId" : "AKIAIWMT6XQKKLSXMLSA",
-    "AWSSecretAccessKey" : "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",
-    "AWSBucket" : "launchy-dev",
+    "AWS": {
+      "accessKeyId" : "AKIAIWMT6XQKKLSXMLSA",
+      "secretAccessKey" : "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",
+      "bucket" : "launchy-dev"
+    },
     "emails": {
       "from": "Sistema <do.not.reply@launchcontrol.es>"
     },

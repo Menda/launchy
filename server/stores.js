@@ -16,16 +16,16 @@ if (Meteor.settings.public.environment === 'development'|'staging') {
 } else {
   Stores.images = new FS.Store.S3('images', {
     region: "eu-west-1",
-    accessKeyId: Meteor.settings.private.AWSAccessKeyId,
-    secretAccessKey: Meteor.settings.private.AWSSecretAccessKey,
-    bucket: Meteor.settings.private.AWSBucket
+    accessKeyId: Meteor.settings.private.AWS.accessKeyId,
+    secretAccessKey: Meteor.settings.private.AWS.secretAccessKey,
+    bucket: Meteor.settings.private.AWS.bucket
   });
 
   Stores.thumbs = new FS.Store.S3('thumbs', {
     region: "eu-west-1",
-    accessKeyId: Meteor.settings.private.AWSAccessKeyId,
-    secretAccessKey: Meteor.settings.private.AWSSecretAccessKey,
-    bucket: Meteor.settings.private.AWSBucket + '-thumbs',
+    accessKeyId: Meteor.settings.private.AWS.accessKeyId,
+    secretAccessKey: Meteor.settings.private.AWS.secretAccessKey,
+    bucket: Meteor.settings.private.AWS.bucket + '-thumbs',
 
     transformWrite(fileObj, readStream, writeStream) {
       // Transform the image into little thumbnail
