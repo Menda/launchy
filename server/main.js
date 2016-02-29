@@ -62,11 +62,15 @@ Meteor.methods({
       $set: {assigned: id}}, {multi: true});
 
     Meteor.defer(() => {
-      Email.send({
-        from: Meteor.settings.private.emails.from,
-        to: "bymenda@gmail.com",
-        subject: "Subject",
-        text: "Here is some text"
+      console.log(doc);
+      const admins = Roles.getUsersInRole('admin').fetch();
+      _.each(admins, (admin) => {
+        Email.send({
+          from: Meteor.settings.private.emails.from,
+          to: admin.email,
+          subject: `Nuevo anuncio: ${doc.make} ${doc.title}`,
+          text: `ID: ${doc._id}`
+        });
       });
     });
 
