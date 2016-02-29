@@ -8,6 +8,10 @@ import {setHead} from '/lib/utils.js';
 
 
 Template.carDetails.onRendered(() => {
+  // TODO bug:
+  // Si se recarga la página de detalles de coche salen una serie de excepciones
+  // porque las colecciones no están cargadas todavía, y devuelve 0 resultados.
+  // Fix: https://forums.meteor.com/t/collection-not-available-onrendered-when-using-flow-router-solved/8105
   const carId = FlowRouter.getParam('_id');
   const car = Cars.findOne({'_id': carId},
                          {fields: {'make': 1, 'title': 1, 'district.district': 1}});
