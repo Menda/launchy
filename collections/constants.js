@@ -65,5 +65,3 @@ export const WHEELDRIVETYPES = {
     'es': 'Tracción total conectable (4WD)'
   }
 };
-
-export const USERROLES = ['admin', 'employee'];

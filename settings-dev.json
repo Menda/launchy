@@ -16,8 +16,12 @@
     },
     "users": {
       "admin": {
-        "password": "sisisi",
-        "roles": ["admin", "employee"]
+        "password": "adminDev",
+        "roles": ["admin"]
+      },
+      "employee_carlos": {
+        "password": "carlosDev",
+        "roles": ["employee"]
       }
     }
   },
