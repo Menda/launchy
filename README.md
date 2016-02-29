@@ -25,18 +25,16 @@ Base:
 * cfs:graphicsmagick
 * Random ($ meteor add random)
 * accounts-base ($ meteor add accounts-base)
+* roles ($ meteor add alanning:roles)
 
 DebugOnly:
 * msavin:mongol
 * avital:mocha
 
 TODO a instalar:
-gwendall:simple-schema-i18n (ver cómo configurar tap)
-comprobar en una shell si funciona sin instalar nada:
-* https://atmospherejs.com/alanning/roles
-* https://themeteorchef.com/snippets/using-the-roles-package/
-https://atmospherejs.com/sacha/spin
-https://atmospherejs.com/mrt/moment
+* gwendall:simple-schema-i18n (ver cómo configurar tap)
+* https://atmospherejs.com/sacha/spin
+* https://atmospherejs.com/mrt/moment
 
 Testing:
 * Chimp (https://chimp.readme.io)

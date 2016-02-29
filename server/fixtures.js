@@ -64,12 +64,21 @@ Meteor.startup(() => {
     // Test users population
     if (Accounts.users.find().count() === 0) {
       console.log('Populating test Users');
-      var samples = ['peibol', 'castigaliano'];
-      var root = 'users/samples/';
-      _.each(samples, function(filename) {
-        var account = JSON.parse(
+      const samples = ['peibol', 'castigaliano', 'admin'];
+      const root = 'users/samples/';
+      _.each(samples, (filename) => {
+        const account = JSON.parse(
           Assets.getText(root + filename + '.json'));
-        Accounts.createUser(account);
+        if (! account['password']) {
+          account['password'] = Meteor.settings.private.users[filename]['password'];
+        }
+        const userId = Accounts.createUser(account);
+        if (Meteor.settings.private.users[filename]) {
+          const roles = Meteor.settings.private.users[filename]['roles'];
+          if (roles) {
+            Roles.addUsersToRoles(userId, roles);
+          }
+        }
       });
     }
 

@@ -11,6 +11,12 @@
     "AWSBucket" : "launchy-dev",
     "emails": {
       "from": "Sistema <do.not.reply@launchcontrol.es>"
+    },
+    "users": {
+      "admin": {
+        "password": "sisisi",
+        "roles": ["admin", "employee"]
+      }
     }
   },
   "galaxy.meteor.com": {
