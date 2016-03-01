@@ -13,9 +13,9 @@ Meteor.publish('makes', () => {
   return Makes.find();
 });
 
+// Only show cars which are published or the owner or the admin
+// or employee are logged in.
 Meteor.publish('cars', function() {
-  // Only show cars which are published or the owner or the admin
-  // or employee are logged in.
   const userId = this.userId;
   if (! userId) {
     return Cars.find({published: true});
@@ -24,7 +24,7 @@ Meteor.publish('cars', function() {
     const isEmployee = Roles.userIsInRole(userId, 'employee');
     if (isAdmin || isEmployee) {
       return Cars.find({});
-    } else{
+    } else {
       return Cars.find({userId: userId});
     }
   }

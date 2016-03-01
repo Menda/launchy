@@ -4,7 +4,7 @@ import {Meteor} from 'meteor/meteor';
 import {chai, assert} from 'meteor/practicalmeteor:chai';
 
 import {Districts, Makes, Cars} from '/collections/collections.js';
-import {} from '/server/main.js';
+import {} from '/server/methods.js';
 
 
 describe('Meteor.methods.assignAccountAd', function() {
