@@ -13,8 +13,9 @@ Meteor.publish('makes', () => {
   return Makes.find();
 });
 
-// Only show cars which are published or the owner or the admin
-// or employee are logged in.
+// Only return to the view cars which are published or the owner or the admin
+// or employee are logged in. Then of course, this is refiltered again inside
+// the view in order to have a smaller scope and not showing everything.
 Meteor.publish('cars', function() {
   const userId = this.userId;
   if (! userId) {

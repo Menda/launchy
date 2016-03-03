@@ -33,10 +33,10 @@
     <div class="bs-callout bs-callout-warning">
       <h4>Antes de publicar tu anuncio</h4>
       <p>
-        ¡Hola! Para evitar frustraciones, ten en cuenta que estamos especializados en coches de alta gama, exclusivos o de disfrute y clásicos. Son valores muy relativos y que nosotros evaluamos en cada caso individualmente. Aún así durante el proceso irás obteniendo información si tu coche cumple dichos parámetros. Hemos preparado también una <a href="">entrada en en blog</a> si no tienes claro si tu coche reune los requisitos para ello.
+        ¡Hola! Para evitar frustraciones, ten en cuenta que estamos especializados en <strong>coches de alta gama, exclusivos o de disfrute y clásicos</strong>. Son valores muy relativos y que nosotros evaluamos en cada caso individualmente. Aún así durante el proceso irás obteniendo información si tu coche cumple dichos parámetros. Hemos preparado también una <a href="">entrada en en blog</a> si no tienes claro si tu coche reune los requisitos para ello.
       </p>
       <p>
-        Consulta también <a href="">en nuestro blog</a> los consejos que damos para vender mejor tu coche. ¡Podrías conseguir hasta 3 veces más compradores cuidando ciertos detalles!
+        Consulta también <a href="">en nuestro blog</a> los consejos que damos para <strong>vender mejor tu coche</strong>. ¡Podrías conseguir hasta 3 veces más compradores cuidando ciertos detalles!
       </p>
     </div>
 
@@ -44,6 +44,7 @@
 
     <fieldset>
       <legend>Fotos del vehículo</legend>
+      <p>La <strong>primera foto</strong> que subas será la foto principal del anuncio</p>
       <div class="well imageDropArea">
         <input type="file" id="form-images" multiple class="images">
       </div>
@@ -75,7 +76,7 @@
       <div class="form-group{{#if afFieldIsInvalid name='kilometers'}} has-error{{/if}}">
         <label for="form-kilometers" class="control-label">Kilómetros</label>
         <div class="input-group">
-          {{> afFieldInput id="form-kilometers" name="kilometers" placeholder="Número actual de kilómetros del coche" minCount=0}}
+          {{> afFieldInput id="form-kilometers" name="kilometers" placeholder="Número actual de kilómetros del coche"}}
           <span class="input-group-addon">km</span>
         </div>
         {{#if afFieldIsInvalid name='kilometers'}}
@@ -87,7 +88,7 @@
     <fieldset>
       <legend>Datos opcionales</legend>
       <p>Los siguientes datos no son obligatorios pero <strong>te recomendamos rellenarlos</strong>, pues ayudarán a vender mucho mejor tu coche. Si algún dato no lo sabes, no pasa nada, puedes dejarlo en blanco.</p>
-      {{> afQuickField id="form-doors" name="doors" label="Puertas" minCount=1 placeholder="Número de puertas" }}
+      {{> afQuickField id="form-doors" name="doors" label="Puertas" placeholder="Número de puertas" }}
       {{> afQuickField id="form-color" name="color" label="Color" placeholder="Color de la carrocería. Por ejemplo: Azul - Nitrous Blue"}}
       {{> afQuickField id="form-body" name="body" label="Tipo de carrocería" firstOption="(Seleccionar tipo de carrocería)" options=bodyOptions}}
       <div class="form-group{{#if afFieldIsInvalid name='horsepower'}} has-error{{/if}}">
@@ -99,6 +100,15 @@
         {{#if afFieldIsInvalid name='horsepower'}}
         <span class="help-block">{{afFieldMessage name='horsepower'}}</span>
         {{/if}}
+      </div>
+      {{> afQuickField id="form-owners" name="owners" label="Dueños" placeholder="Número de propietarios del coche incluido el dueño actual" }}
+      <div class="form-group{{#if afFieldIsInvalid name='maintenance'}} has-error{{/if}}">
+        <label for="form-maintenance" class="control-label">Mantenimiento</label>
+        {{> afFieldInput id="form-maintenance" name="maintenance" rows=3}}
+        {{#if afFieldIsInvalid name='maintenance'}}
+        <span class="help-block">{{afFieldMessage name='maintenance'}}</span>
+        {{/if}}
+        <small class="text-muted">¿Tratas bien tu coche? Explica al nuevo comprador qué tipos de cuidados haces a tu coche, si tienes el libro de mantenimiento al día u otras cosas que quieras destacar.</small>
       </div>
       <div class="form-group{{#if afFieldIsInvalid name='warranty'}} has-error{{/if}}">
         <label for="form-warranty" class="control-label">Garantía</label>

@@ -103,7 +103,8 @@ Schemas.Car = new SimpleSchema({
   },
   doors: {
     type: Number,
-    optional: true
+    optional: true,
+    min: 2
   },
   body: {
     type: String,
@@ -119,6 +120,16 @@ Schemas.Car = new SimpleSchema({
   wheelDrive: {
     type: String,
     allowedValues: Object.keys(WHEELDRIVETYPES),
+    optional: true
+  },
+  owners: {
+    type: Number,
+    optional: true,
+    min: 1,
+    max: 20
+  },
+  maintenance: {
+    type: String,
     optional: true
   },
   warranty: {
