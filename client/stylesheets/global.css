@@ -90,3 +90,7 @@ body {
   width: 300px;
   max-width: 300px;
 }
+
+.media:first-of-type {
+  border: 2px solid red;
+}
