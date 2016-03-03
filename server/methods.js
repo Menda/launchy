@@ -1,4 +1,5 @@
 'use strict';
+import {Roles} from 'meteor/alanning:roles';
 import {check} from 'meteor/check';
 import {Email} from 'meteor/email';
 import {Meteor} from 'meteor/meteor';
@@ -6,6 +7,15 @@ import {Meteor} from 'meteor/meteor';
 import {Cars} from '/collections/collections.js';
 import {Schemas} from '/collections/schemas.js';
 import {Images} from '/server/collections.js';
+import {EmailBuilder} from '/server/email_builder.js';
+
+
+// Wrap the check function in a object to be able to stub/spy it
+export const Check = {
+  check() {
+    return check;
+  }
+};
 
 
 Meteor.methods({
@@ -23,7 +33,7 @@ Meteor.methods({
     });
 
     // Important server-side check for security and data integrity
-    check(doc, Schemas.Car);
+    Check.check(doc, Schemas.Car);
 
     console.log('Inserting ad with values: ');
     console.log(doc);
@@ -32,16 +42,16 @@ Meteor.methods({
     Images.update({session: session}, {
       $set: {assigned: id}}, {multi: true});
 
-    Meteor.defer(() => {
-      console.log(doc);
-      const admins = Roles.getUsersInRole('admin').fetch();
-      _.each(admins, (admin) => {
-        Email.send({
-          from: Meteor.settings.private.emails.from,
-          to: admin.email,
-          subject: `Nuevo anuncio: ${doc.make} ${doc.title}`,
-          text: `ID: ${id}`
-        });
+    const admins = Roles.getUsersInRole('admin').fetch();
+    _.each(admins, (admin) => {
+      const data = EmailBuilder.adminNewAd({
+        to: admin.email,
+        make: doc.make,
+        title: doc.title,
+        id
+      });
+      Meteor.defer(() => {
+        Email.send(data);
       });
     });
 

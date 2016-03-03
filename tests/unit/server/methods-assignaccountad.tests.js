@@ -1,7 +1,7 @@
 'use strict';
 import expect from 'expect';
 import {Meteor} from 'meteor/meteor';
-import {chai, assert} from 'meteor/practicalmeteor:chai';
+import {assert} from 'meteor/practicalmeteor:chai';
 
 import {Districts, Makes, Cars} from '/collections/collections.js';
 import {} from '/server/methods.js';
@@ -41,7 +41,7 @@ describe('Meteor.methods.assignAccountAd', function() {
     insertSyncCars(carObj);
   });
 
-  it('should reject invalid params are passed', function () {
+  it('should reject invalid params are passed', () => {
     expect(function() {
       Meteor.call('assignAccountAd');
     }).toThrow('403');
@@ -55,13 +55,13 @@ describe('Meteor.methods.assignAccountAd', function() {
     }).toThrow('403');
   });
 
-  it('should deny when carId is not found', function () {
+  it('should deny when carId is not found', () => {
     expect(function() {
       Meteor.apply('assignAccountAd', ['<USER_ID>', '<FAKE>']);
     }).toThrow('403');
   });
 
-  it('should deny when user is assigned already', function () {
+  it('should deny when user is assigned already', () => {
     const updateSync = Meteor.wrapAsync(Cars.update, Cars);
     updateSync({_id: 'carId'}, {$set: {userId: '<USER_ID>'}});
 
@@ -70,7 +70,7 @@ describe('Meteor.methods.assignAccountAd', function() {
     }).toThrow('403');
   });
 
-  it('should go fine when no user was assigned', function () {
+  it('should go fine when no user was assigned', () => {
     Meteor.apply('assignAccountAd', ['<USER_ID>', 'carId']);
     const car = Cars.findOne({_id: 'carId'});
     assert.equal(car.userId, '<USER_ID>');
