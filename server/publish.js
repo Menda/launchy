@@ -25,7 +25,12 @@ Meteor.publish('cars', function() {
     if (isAdmin || isEmployee) {
       return Cars.find({});
     } else {
-      return Cars.find({userId: userId});
+      return Cars.find({
+        $or: [
+          {userId: userId},
+          {published: true}
+        ]
+      });
     }
   }
 });
