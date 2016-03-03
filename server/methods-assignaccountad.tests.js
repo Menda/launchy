@@ -34,6 +34,7 @@ describe('Meteor.methods.assignAccountAd', function() {
       horsepower: 256,
       year: 2015,
       kilometers: 120000,
+      description: 'Luxury and comfort like never experienced.',
       district: districtObj,
       warranty: '2 years with unlimited kilometers',
     };

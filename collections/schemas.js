@@ -61,17 +61,20 @@ Schemas.Car = new SimpleSchema({
       }
     }
   },
-  modelId: {
+  modelId: { // TODO
     type: Meteor.ObjectID,
     optional: true
   },
-  engineId: {
+  engineId: { // TODO
     type: Meteor.ObjectID,
     optional: true
   },
   title: {
     type: String,
     max: 200
+  },
+  district: {
+    type: Schemas.District
   },
   price: {
     type: Number,
@@ -93,9 +96,12 @@ Schemas.Car = new SimpleSchema({
     type: Number,
     min: 0
   },
-  district: {
-    type: Schemas.District
+  description: {
+    type: String,
+    max: 10000
   },
+
+  // Optional fields
   color: {
     type: String,
     max: 100,
@@ -130,11 +136,13 @@ Schemas.Car = new SimpleSchema({
   },
   maintenance: {
     type: String,
-    optional: true
+    optional: true,
+    max: 1000,
   },
   warranty: {
     type: String,
-    optional: true
+    optional: true,
+    max: 1000,
   },
 
   // Metadata

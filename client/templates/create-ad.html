@@ -84,12 +84,20 @@
         {{/if}}
         <small class="text-muted">En Launch Control somos duros con las llamadas "afeitadas" de kilómetros. Piénsatelo dos veces antes de vender un coche manipulado, ¡es delito!</small>
       </div>
+      <div class="form-group{{#if afFieldIsInvalid name='description'}} has-error{{/if}}">
+        <label for="form-description" class="control-label">Descripción general</label>
+        {{> afFieldInput id="form-description" name="description" rows=3}}
+        {{#if afFieldIsInvalid name='description'}}
+        <span class="help-block">{{afFieldMessage name='description'}}</span>
+        {{/if}}
+        <small class="text-muted">Aquí puedes detallar el uso que ha tenido el coche, los extras o modificaciones que tiene.</small>
+      </div>
     </fieldset>
     <fieldset>
       <legend>Datos opcionales</legend>
       <p>Los siguientes datos no son obligatorios pero <strong>te recomendamos rellenarlos</strong>, pues ayudarán a vender mucho mejor tu coche. Si algún dato no lo sabes, no pasa nada, puedes dejarlo en blanco.</p>
-      {{> afQuickField id="form-doors" name="doors" label="Puertas" placeholder="Número de puertas" }}
       {{> afQuickField id="form-color" name="color" label="Color" placeholder="Color de la carrocería. Por ejemplo: Azul - Nitrous Blue"}}
+      {{> afQuickField id="form-doors" name="doors" label="Puertas" placeholder="Número de puertas" }}
       {{> afQuickField id="form-body" name="body" label="Tipo de carrocería" firstOption="(Seleccionar tipo de carrocería)" options=bodyOptions}}
       <div class="form-group{{#if afFieldIsInvalid name='horsepower'}} has-error{{/if}}">
         <label for="form-horsepower" class="control-label">Potencia</label>
@@ -104,11 +112,11 @@
       {{> afQuickField id="form-owners" name="owners" label="Dueños" placeholder="Número de propietarios del coche incluido el dueño actual" }}
       <div class="form-group{{#if afFieldIsInvalid name='maintenance'}} has-error{{/if}}">
         <label for="form-maintenance" class="control-label">Mantenimiento</label>
-        {{> afFieldInput id="form-maintenance" name="maintenance" rows=3}}
+        {{> afFieldInput id="form-maintenance" name="maintenance" rows=6}}
         {{#if afFieldIsInvalid name='maintenance'}}
         <span class="help-block">{{afFieldMessage name='maintenance'}}</span>
         {{/if}}
-        <small class="text-muted">¿Tratas bien tu coche? Explica al nuevo comprador qué tipos de cuidados haces a tu coche, si tienes el libro de mantenimiento al día u otras cosas que quieras destacar.</small>
+        <small class="text-muted">¿Tratas bien tu coche? ¿Ha pasado la ITV? ¿Dónde ha estado aparcado normalmente? Explica al nuevo comprador qué tipos de cuidados haces a tu coche, si tienes el libro de mantenimiento al día o cuándo ha tenido su última revisión mecánica.</small>
       </div>
       <div class="form-group{{#if afFieldIsInvalid name='warranty'}} has-error{{/if}}">
         <label for="form-warranty" class="control-label">Garantía</label>

@@ -27,12 +27,13 @@ var myStepDefinitionsWrapper = function() {
   });
 
   this.When(/^I fill a basic ad$/, function() {
-    browser.setValue('#form-title', 'Leon Cupra 280');
+    browser.setValue('#form-title', 'Leon Cupra 290');
     browser.setValue('#form-price', '22000');
     browser.setValue('#form-year', '2015');
     browser.setValue('#form-kilometers', '2500');
     browser.selectByValue('#form-fuel', 'petrol');
     browser.selectByValue('#form-transmission', 'manual');
+    browser.setValue('#form-description', 'Unidad muy especial y limitada.');
 
     // Wait until all makes are populated from DB
     browser.waitUntil(function() {
