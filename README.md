@@ -84,7 +84,9 @@ Mocha tests (unit tests)
 
 Or to keep the test running waiting for changes:
 
-    $ meteor test-app --unit --driver-package avital:mocha --settings=settings-dev.json
+    $ meteor test --driver-package avital:mocha --settings=settings-dev.json
+
+Then visit http://localhost:3000
 
 After running, if you want to run E2E tests or want to use it normally, then
 stop the server window and execute: `$ meteor reset`.
