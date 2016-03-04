@@ -3,6 +3,7 @@ import {Roles} from 'meteor/alanning:roles';
 import {Meteor} from 'meteor/meteor';
 import {assert} from 'meteor/practicalmeteor:chai';
 import {spies} from 'meteor/practicalmeteor:sinon';
+import {_} from 'meteor/underscore';
 
 import {Cars} from '/collections/collections.js';
 import {Schemas} from '/collections/schemas.js';

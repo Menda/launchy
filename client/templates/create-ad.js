@@ -2,6 +2,7 @@
 import {AutoForm} from 'meteor/aldeed:autoform';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {Template} from 'meteor/templating';
+import {_} from 'meteor/underscore';
 //Accounts import TODO
 //Forms import TODO
 //Session import TODO
