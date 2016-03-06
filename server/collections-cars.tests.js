@@ -9,7 +9,7 @@ import {Districts, Makes, Cars} from '/collections/collections.js';
 describe('Car', () => {
   // Prepare data
   var makeId; // will be filled in before each iteration
-  var districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
+  const districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
   const contactObj = {email: 'fake@email.com', phone: '666777888', fullname: 'Pepe Marcha'}
   var carObj = {
     makeId: '',
@@ -34,8 +34,8 @@ describe('Car', () => {
     Districts.remove({});
     Cars.remove({});
 
-    var makeObj = {'name': 'BMW', '_value': 'xxx'};
-    var insertSync = Meteor.wrapAsync(Makes.insert, Makes);
+    const makeObj = {'name': 'BMW', '_value': 'xxx'};
+    const insertSync = Meteor.wrapAsync(Makes.insert, Makes);
     insertSync(makeObj);
     makeId = Makes.findOne({name: makeObj['name']})['_id'];
   });
@@ -100,7 +100,7 @@ describe('Car', () => {
     const modCarObj = JSON.parse(JSON.stringify(carObj));
     modCarObj['year'] = 1899;
     let errored;
-    var insertSync = Meteor.wrapAsync(Cars.insert, Cars);
+    const insertSync = Meteor.wrapAsync(Cars.insert, Cars);
     try {
       insertSync(modCarObj);
       errored = false;

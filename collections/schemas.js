@@ -62,8 +62,8 @@ Schemas.Car = new SimpleSchema({
     type: String,
     max: 70,
     autoValue() {
-      var value = this.field('makeId')['value'];
-      var make = Makes.findOne(value);
+      const value = this.field('makeId')['value'];
+      const make = Makes.findOne(value);
       if (! make && value) {
         throw new Error('Make not found. ID: ' + this.field('makeId')['value']);
       } else if (! make) {

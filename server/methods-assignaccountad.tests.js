@@ -20,9 +20,9 @@ describe('Meteor.methods.assignAccountAd', () => {
     Makes.findOne({name: makeObj['name']})['_id'];
 
     // Insert a car
-    var districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
+    const districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
     const contactObj = {email: 'fake@email.com', phone: '666777888', fullname: 'Pepe Marcha'}
-    var carObj = {
+    const carObj = {
       _id: 'carId',
       makeId: 'makeId',
       title: 'BMW 7 Series F01 730d SE N57 3.0d',

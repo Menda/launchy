@@ -8,7 +8,7 @@ import {Cars} from '/collections/collections.js';
 
 Template.cars.helpers({
   cars() {
-    var cars = Cars.find({'published': true, 'active': true}).fetch();  // TODO: limit fields
+    const cars = Cars.find({'published': true, 'active': true}).fetch();  // TODO: limit fields
     cars.forEach(function(car) {
       car.image = Images.findOne({assigned: car['_id']});
     });
@@ -18,12 +18,12 @@ Template.cars.helpers({
 
 Template.car.helpers({
   urlCarDetails() {
-    var car = this;
-    var params = {
-        _id: car._id
+    const car = this;
+    const params = {
+      _id: car._id
     };
-    var routeName = 'carDetails';
-    var path = FlowRouter.path(routeName, params);
+    const routeName = 'carDetails';
+    const path = FlowRouter.path(routeName, params);
     return path;
   }
 });

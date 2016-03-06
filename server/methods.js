@@ -22,7 +22,7 @@ export const Check = {
 Meteor.methods({
   createAd: (doc) => {
     console.log('Meteor.methods.createAd: Entering method');
-    var session = doc.session;
+    const session = doc.session;
 
     Schemas.Car.clean(doc, {
       extendAutoValueContext: {
@@ -38,7 +38,7 @@ Meteor.methods({
 
     console.log('Inserting ad with values: ');
     console.log(doc);
-    var id = Cars.insert(doc);
+    const id = Cars.insert(doc);
 
     Images.update({session: session}, {
       $set: {assigned: id}}, {multi: true});
@@ -46,7 +46,7 @@ Meteor.methods({
     const admins = Roles.getUsersInRole('admin').fetch();
     _.each(admins, (admin) => {
       const data = EmailBuilder.adminNewAd({
-        to: admin.email,
+        to: admin.emails[0].address,
         make: doc.make,
         title: doc.title,
         id
@@ -69,7 +69,7 @@ Meteor.methods({
     if (! userId || ! carId) {
       throw new Meteor.Error('403', 'You are not authorized to access this content');
     }
-    var car = Cars.findOne(carId);
+    const car = Cars.findOne(carId);
     if (! car) {
       throw new Meteor.Error('403', 'You are not authorized to access this content');
     } else if (car && car['userId']) {

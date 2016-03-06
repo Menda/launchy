@@ -19,7 +19,7 @@ describe('District', () => {
 
   it('should not be inserted successfuly', () => {
     let errored;
-    var insertSync = Meteor.wrapAsync(Districts.insert, Districts);
+    const insertSync = Meteor.wrapAsync(Districts.insert, Districts);
     try {
       insertSync({country: 'España', region: 'País Vasco'});
       errored = false;
