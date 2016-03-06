@@ -8,7 +8,8 @@ import {Cars} from '/collections/collections.js';
 
 Template.cars.helpers({
   cars() {
-    const cars = Cars.find({'published': true, 'active': true}).fetch();  // TODO: limit fields
+    // TODO: limit fields, order DESC
+    const cars = Cars.find({'published': true, 'active': true}).fetch();
     cars.forEach(function(car) {
       car.image = Images.findOne({assigned: car['_id']});
     });

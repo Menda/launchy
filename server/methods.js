@@ -43,6 +43,7 @@ Meteor.methods({
     Images.update({session: session}, {
       $set: {assigned: id}}, {multi: true});
 
+    // TODO move to assignAccountAd better, and set ReplyTo
     const admins = Roles.getUsersInRole('admin').fetch();
     _.each(admins, (admin) => {
       const data = EmailBuilder.adminNewAd({
