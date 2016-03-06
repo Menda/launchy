@@ -24,8 +24,8 @@ describe('Meteor.methods.createAd', () => {
     const obj = {
       fetch() {
         return [
-          {'email': '<FAKE1>'},
-          {'email': '<FAKE2>'}
+          {'emails': [{address: '<FAKE1>'}]},
+          {'emails': [{address: '<FAKE2>'}]}
         ]
       }
     }
