@@ -1,0 +1,36 @@
+{
+  "public": {
+    "environment": "staging",
+    "country": "ES",
+    "language": "es-ES",
+    "site_name": "Launch Control"
+  },
+  "private": {
+    "AWS": {
+      "accessKeyId" : "-",
+      "secretAccessKey" : "-",
+      "bucket" : "-"
+    },
+    "emails": {
+      "username": "launchcontrol.dev@gmail.com",
+      "password": "-",
+      "from": "Sistema <do.not.reply@launchcontrol.es>"
+    },
+    "users": {
+      "admin": {
+        "password": "adminDev",
+        "roles": ["admin"]
+      },
+      "employee_carlos": {
+        "password": "carlosDev",
+        "roles": ["employee"]
+      }
+    }
+  },
+  "galaxy.meteor.com": {
+    "env": {
+      "ROOT_URL": "http://launchy.meteor.com",
+      "MONGO_URL": "-"
+    }
+  }
+}
