@@ -1,26 +1,4 @@
 @watch
-Feature: App functionality
-
-  As a human
-  I want to see the basic app functionality works
-  So I can use the portal
-
-  Scenario: See all links
-    Given I have visited the homepage
-    Then Links work as expected
-
-@watch
-Feature: Homepage functionality
-
-  As a human
-  I want to see the homepage
-  So I can start browsing
-
-  Scenario: See the page title
-    Given I have visited the homepage
-    Then I see the header "Coches usados de gama alta, de disfrute, exclusivos y clásicos."
-
-@watch
 Feature: Create Ad functionality
 
   As a human
@@ -30,6 +8,23 @@ Feature: Create Ad functionality
   Scenario: See the createAd page
     Given I have visited the createAd
     Then I see the header "Sube el anuncio de tu coche"
+
+  Scenario: No phone or email is filled
+    Given I have visited the createAd
+    When I fill a basic ad
+    And "email" is not filled
+    And "phone" is not filled
+    And Check the T&C
+    And Submit the form
+    Then I see an error in the form
+
+  Scenario: No fullname is filled
+    Given I have visited the createAd
+    When I fill a basic ad
+    And "fullname" is not filled
+    And Check the T&C
+    And Submit the form
+    Then I see an error in the form
 
   Scenario: T&C are not accepted
     Given I have visited the createAd

@@ -93,6 +93,7 @@
         <small class="text-muted">Aquí puedes detallar el uso que ha tenido el coche, los extras o modificaciones que tiene.</small>
       </div>
     </fieldset>
+
     <fieldset>
       <legend>Datos opcionales</legend>
       <p>Los siguientes datos no son obligatorios pero <strong>te recomendamos rellenarlos</strong>, pues ayudarán a vender mucho mejor tu coche. Si algún dato no lo sabes, no pasa nada, puedes dejarlo en blanco.</p>
@@ -126,6 +127,13 @@
         {{/if}}
         <small class="text-muted">¿Eres un profesional o tu coche está todavía en garantía? Entonces te interesará detallar esta serie de garantías de compra a los compradores potenciales.</small>
       </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Datos de contacto</legend>
+      {{> afQuickField id="form-email" name="email" label="Email" }}
+      {{> afQuickField id="form-phone" name="phone" label="Teléfono" }}
+      {{> afQuickField id="form-fullname" name="fullname" label="Nombre y apellidos" }}
     </fieldset>
 
     <div class="form-group{{#if afFieldIsInvalid name='tc'}} has-error{{/if}}">

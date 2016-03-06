@@ -119,6 +119,23 @@ AutoForm.hooks({
         }
       }
 
+      // Build contact
+      const email = AutoForm.getFieldValue('email');
+      const phone = AutoForm.getFieldValue('phone');
+      const fullname = AutoForm.getFieldValue('fullname');
+      if ((email || phone) && fullname) {
+        doc['contact'] = {};
+        if (email) {
+          doc.contact.email = email;
+        }
+        if (phone) {
+          doc.contact.phone = phone;
+        }
+        if (fullname) {
+          doc.contact.fullname = fullname;
+        }
+      }
+
       // We need to convert string value to boolean in order to validate
       doc['tc'] = $('#form-tc').is(':checked');
 

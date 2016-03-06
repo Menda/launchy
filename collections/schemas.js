@@ -37,6 +37,23 @@ Schemas.District = new SimpleSchema({
   }
 });
 
+Schemas.Contact = new SimpleSchema({
+  email: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Email,
+    optional: true
+  },
+  phone: {
+    type: String,
+    max: 20,
+    optional: true
+  },
+  fullname: {
+    type: String,
+    max: 40
+  }
+});
+
 Schemas.Car = new SimpleSchema({
   makeId: {
     type: String
@@ -99,6 +116,9 @@ Schemas.Car = new SimpleSchema({
   description: {
     type: String,
     max: 10000
+  },
+  contact: {
+    type: Schemas.Contact
   },
 
   // Optional fields

@@ -1,7 +1,7 @@
 'use strict';
 import expect from 'expect';
 import {Meteor} from 'meteor/meteor';
-import {chai, assert} from 'meteor/practicalmeteor:chai';
+import {assert} from 'meteor/practicalmeteor:chai';
 
 import {Districts} from '/collections/collections.js';
 

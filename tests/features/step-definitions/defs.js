@@ -34,6 +34,9 @@ var myStepDefinitionsWrapper = function() {
     browser.selectByValue('#form-fuel', 'petrol');
     browser.selectByValue('#form-transmission', 'manual');
     browser.setValue('#form-description', 'Unidad muy especial y limitada.');
+    browser.setValue('#form-email', 'fake@email.com');
+    browser.setValue('#form-phone', '655443322');
+    browser.setValue('#form-fullname', 'Pepe Perol');
 
     // Wait until all makes are populated from DB
     browser.waitUntil(function() {
@@ -56,6 +59,10 @@ var myStepDefinitionsWrapper = function() {
     browser.chooseFile(
       '#form-images', 'tests/features/img/pic.jpg');
     browser.waitForExist('div.media');
+  });
+
+  this.When(/^"([^"]*)" is not filled$/, function(selector) {
+    browser.setValue('#form-' + selector, '');
   });
 
   this.When(/^Check the T&C$/, function () {

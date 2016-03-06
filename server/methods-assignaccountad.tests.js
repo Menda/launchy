@@ -7,8 +7,8 @@ import {Districts, Makes, Cars} from '/collections/collections.js';
 import {} from '/server/methods.js';
 
 
-describe('Meteor.methods.assignAccountAd', function() {
-  beforeEach(function() {
+describe('Meteor.methods.assignAccountAd', () => {
+  beforeEach(() => {
     Makes.remove({});
     Districts.remove({});
     Cars.remove({});
@@ -21,6 +21,7 @@ describe('Meteor.methods.assignAccountAd', function() {
 
     // Insert a car
     var districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
+    const contactObj = {email: 'fake@email.com', phone: '666777888', fullname: 'Pepe Marcha'}
     var carObj = {
       _id: 'carId',
       makeId: 'makeId',
@@ -37,27 +38,28 @@ describe('Meteor.methods.assignAccountAd', function() {
       description: 'Luxury and comfort like never experienced.',
       district: districtObj,
       warranty: '2 years with unlimited kilometers',
+      contact: contactObj
     };
     const insertSyncCars = Meteor.wrapAsync(Cars.insert, Cars);
     insertSyncCars(carObj);
   });
 
   it('should reject invalid params are passed', () => {
-    expect(function() {
+    expect(() => {
       Meteor.call('assignAccountAd');
     }).toThrow('403');
 
-    expect(function() {
+    expect(() => {
       Meteor.apply('assignAccountAd', ['<USER_ID>', null]);
     }).toThrow('403');
 
-    expect(function() {
+    expect(() => {
       Meteor.apply('assignAccountAd', [null, '<CAR_ID>']);
     }).toThrow('403');
   });
 
   it('should deny when carId is not found', () => {
-    expect(function() {
+    expect(() => {
       Meteor.apply('assignAccountAd', ['<USER_ID>', '<FAKE>']);
     }).toThrow('403');
   });
@@ -66,7 +68,7 @@ describe('Meteor.methods.assignAccountAd', function() {
     const updateSync = Meteor.wrapAsync(Cars.update, Cars);
     updateSync({_id: 'carId'}, {$set: {userId: '<USER_ID>'}});
 
-    expect(function() {
+    expect(() => {
       Meteor.apply('assignAccountAd', ['<USER_ID>', 'carId']);
     }).toThrow('403');
   });

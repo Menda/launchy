@@ -1,7 +1,7 @@
 'use strict';
 import expect from 'expect';
 import {Meteor} from 'meteor/meteor';
-import {chai, assert} from 'meteor/practicalmeteor:chai';
+import {assert} from 'meteor/practicalmeteor:chai';
 
 import {Districts, Makes, Cars} from '/collections/collections.js';
 
@@ -10,6 +10,7 @@ describe('Car', () => {
   // Prepare data
   var makeId; // will be filled in before each iteration
   var districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
+  const contactObj = {email: 'fake@email.com', phone: '666777888', fullname: 'Pepe Marcha'}
   var carObj = {
     makeId: '',
     title: 'BMW 7 Series F01 730d SE N57 3.0d',
@@ -25,6 +26,7 @@ describe('Car', () => {
     description: 'Luxury and comfort like never experienced.',
     district: districtObj,
     warranty: '2 years with unlimited kilometers',
+    contact: contactObj
   };
 
   beforeEach(() => {
