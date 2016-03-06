@@ -10,7 +10,7 @@ Template.cars.helpers({
   cars() {
     // TODO: limit fields, order DESC
     const cars = Cars.find({'published': true, 'active': true}).fetch();
-    cars.forEach(function(car) {
+    cars.forEach((car) => {
       car.image = Images.findOne({assigned: car['_id']});
     });
     return cars;
