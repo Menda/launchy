@@ -1,9 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,300italic);
+
 html {
   position: relative;
   min-height: 100%;
 }
 body {
   /* Margin bottom by footer height */
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
   margin-bottom: 100px;
 }
 .footer {
@@ -19,6 +23,31 @@ body {
 }
 #login-buttons {
   padding: 15px;
+}
+
+/**
+ * Car details
+ */
+#car-details-images {
+  padding: 20px 0 20px 0;
+}
+#car-details-images a {
+  text-decoration: none;
+}
+  #car-details-images li {
+    display: inline;
+    padding: 0 5px 0 5px;
+  }
+#car-details-data {
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  padding: 15px;
+}
+table.car-details tr {
+  border-bottom: 1px solid #e3e3e3;
+}
+table.car-details td {
+  padding: 10px 0 10px 0;
 }
 
 /**
