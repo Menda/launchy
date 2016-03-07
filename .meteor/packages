@@ -19,7 +19,6 @@ kadira:flow-router
 kadira:blaze-layout
 aldeed:collection2
 xolvio:backdoor
-accounts-ui
 accounts-password
 kadira:dochead
 aldeed:autoform
@@ -40,3 +39,4 @@ standard-minifier-css
 standard-minifier-js
 avital:mocha
 alanning:roles
+ian:accounts-ui-bootstrap-3

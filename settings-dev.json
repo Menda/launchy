@@ -2,7 +2,8 @@
   "public": {
     "environment": "development",
     "country": "ES",
-    "language": "es-ES",
+    "language": "es",
+    "language-local": "es-ES",
     "site_name": "Launch Control"
   },
   "private": {

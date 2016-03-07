@@ -6,7 +6,7 @@ Install mongodb:
     $ brew install mongodb
 
 Base:
-* Accounts UI and Password (meteor add accounts-ui accounts-password)
+* Password (meteor add accounts-password)
 * BlazeLayout (https://github.com/kadirahq/blaze-layout)
 * Backdoor (xolvio:backdoor)
 * collection2 (https://atmospherejs.com/aldeed/collection2)
@@ -26,6 +26,7 @@ Base:
 * Random ($ meteor add random)
 * accounts-base ($ meteor add accounts-base)
 * roles ($ meteor add alanning:roles)
+* ian:accounts-ui-bootstrap-3
 
 DebugOnly:
 * msavin:mongol
