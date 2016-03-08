@@ -23,6 +23,57 @@ body {
 }
 
 /**
+ * Cars list
+ */
+.card-car-ad {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  display: block;
+  float: left;
+  margin: 0 10px 20px 10px;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: 22%;
+}
+
+a.card-car-ad:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .card-car-ad {
+    margin: 5px;
+    width: 48%;
+  }
+}
+
+@media (max-width:640px) {
+  .card-car-ad {
+    width: 100%;
+  }
+}
+
+.card-car-ad img {
+  max-height: 135px;
+  max-width: 100%;
+}
+
+.card-car-ad span {
+  display: block;
+}
+
+span.card-car-ad-name {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis; /** IE6+, Firefox 7+, Opera 11+, Chrome, Safari **/
+  -o-text-overflow: ellipsis; /** Opera 9 & 10 **/
+  white-space: nowrap;
+  width: 100%; /* note that this width will have to be smaller to see the effect */
+}
+
+/**
  * Car details
  */
 #car-details-images {

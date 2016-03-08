@@ -12,17 +12,14 @@
 </template>
 
 <template name="car">
-  <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
-    <a href="{{urlCarDetails}}" title="Ver más información del modelo">
+  <a class="card-car-ad" href="{{urlCarDetails}}" title="Ver más información del modelo">
+    <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
       <img src="{{image.url store="thumbs"}}" alt="{{make}} {{title}}" />
-    </a>
-    <header>
-      <span itemprop="name" class="h3">
-        <a href="{{urlCarDetails}}" title="Ver más información del modelo">{{make}} {{title}}</a>
-      </span>
-    </header>
-    <span itemprop="fuelType">{{fuel}}</span>
-    <span itemprop="dateVehicleFirstRegistered">{{year}}</span>
-    <span itemprop="mileageFromOdometer">{{kilometers}}</span>
-  </article>
+      <header>
+        <span itemprop="name" class="card-car-ad-name">{{make}} {{title}}</span>
+      </header>
+      <span itemprop="dateVehicleFirstRegistered">Año {{year}}</span>
+      <span itemprop="mileageFromOdometer">{{kilometers}} km</span>
+    </article>
+  </a>
 </template>
