@@ -10,6 +10,9 @@ body {
   font-size: 16px;
   margin-bottom: 100px;
 }
+#logo-site {
+  width: 200px;
+}
 .footer {
   position: absolute;
   bottom: 0;
