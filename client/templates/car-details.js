@@ -4,6 +4,7 @@ import {Template} from 'meteor/templating';
 
 import {Images} from '/client/imports/collections.js';
 import {Cars} from '/collections/collections.js';
+import {Forms} from '/collections/forms.js';
 import {setHead} from '/lib/utils.js';
 
 
@@ -32,7 +33,18 @@ Template.carDetails.onRendered(() => {
   });
 });
 
+Template.carDetails.created = () => {
+  Session.set('showContactOwnerForm', false);
+};
+
+Template.carDetails.destroyed = () => {
+  Session.set('showContactOwnerForm', false);
+};
+
 Template.carDetails.helpers({
+  showContactOwnerForm() {
+    return Session.get('showContactOwnerForm');
+  },
   car() {
     const carId = FlowRouter.getParam('_id');
     const car = Cars.findOne({'_id': carId});
@@ -47,5 +59,41 @@ Template.carDetails.helpers({
     const routeName = 'carDetails';
     const path = FlowRouter.path(routeName, params);
     return path;
+  }
+});
+
+Template.carDetails.events({
+  'click #contact-owner': () => {
+    Session.set('showContactOwnerForm', true);
+  }
+});
+
+
+///////////////////
+// contactOwnerForm
+
+Template.contactOwnerForm.created = () => {
+  Session.set('successfulContactOwner', false);
+};
+
+Template.contactOwnerForm.destroyed = () => {
+  Session.set('successfulContactOwner', false);
+};
+
+Template.contactOwnerForm.helpers({
+  contactOwnerFormSchema() {
+    return Forms.contactOwnerFormSchema;
+  },
+  isSuccessfulContactOwner() {
+    return Session.get('successfulContactOwner');
+  }
+});
+
+AutoForm.hooks({
+  'contactOwnerForm': {
+    onSuccess(formType, result) {
+      console.log('Form "contactOwnerForm" sent successfully!');
+      Session.set('successfulContactOwner', true);
+    }
   }
 });

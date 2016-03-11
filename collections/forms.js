@@ -52,6 +52,24 @@ Forms.createAdForm = new SimpleSchema([Schemas.Car, {
   }
 }]);
 
+Forms.contactOwnerFormSchema = new SimpleSchema({
+  carId: {
+    type: String
+  },
+  name: {
+    type: String,
+    max: 50
+  },
+  email: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Email
+  },
+  message: {
+    type: String,
+    max: 1000
+  }
+});
+
 SimpleSchema.messages({
   'tc-required': 'Para crear el anuncio es obligatorio aceptar los términos y condiciones',
   'min-email-required': 'Debes indicar al menos un email si no has rellenado un teléfono',

@@ -2,7 +2,7 @@
 import {Roles} from 'meteor/alanning:roles';
 import {Meteor} from 'meteor/meteor';
 import {assert} from 'meteor/practicalmeteor:chai';
-import {spies} from 'meteor/practicalmeteor:sinon';
+import {stubs, spies} from 'meteor/practicalmeteor:sinon';
 import {_} from 'meteor/underscore';
 
 import {Cars} from '/collections/collections.js';
@@ -14,7 +14,7 @@ import {Check} from '/server/methods.js';
 
 
 describe('Meteor.methods.createAd', () => {
-  it('should send email to each admin', () => {
+  it('should send email with right params', () => {
     stubs.create('schemasCarClean', Schemas.Car, 'clean');
     stubs.create('checkCheck', Check, 'check');
     stubs.create('carsInsert', Cars, 'insert');

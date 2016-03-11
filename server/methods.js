@@ -6,6 +6,7 @@ import {Meteor} from 'meteor/meteor';
 import {_} from 'meteor/underscore';
 
 import {Cars} from '/collections/collections.js';
+import {Forms} from '/collections/forms.js';
 import {Schemas} from '/collections/schemas.js';
 import {Images} from '/server/collections.js';
 import {EmailBuilder} from '/server/email_builder.js';
@@ -66,7 +67,7 @@ Meteor.methods({
    */
   assignAccountAd: (userId, carId) => {
     console.log(`Meteor.methods.assignAccountAd: Entering method. ` +
-                `userId: {userId}, carId: {carId}`);
+                `userId: ${userId}, carId: ${carId}`);
     if (! userId || ! carId) {
       throw new Meteor.Error('403', 'You are not authorized to access this content');
     }
@@ -77,5 +78,25 @@ Meteor.methods({
       throw new Meteor.Error('403', 'You are not authorized to access this content');
     }
     Cars.update({_id: carId}, {$set: {userId: userId}});
+  },
+
+  sendOwnerEmail: (doc) => {
+    console.log('Meteor.methods.sendOwnerEmail: Entering method');
+    check(doc, Forms.contactOwnerFormSchema);
+
+    const car = Cars.findOne(doc.carId);
+    const admins = Roles.getUsersInRole('admin').fetch();
+    _.each(admins, (admin) => {
+      const data = EmailBuilder.contactOwner({
+        car: car,
+        to: admin.emails[0].address,
+        name: doc.name,
+        email: doc.email,
+        message: doc.message
+      });
+      Meteor.defer(() => {
+        Email.send(data);
+      });
+    });
   }
 });

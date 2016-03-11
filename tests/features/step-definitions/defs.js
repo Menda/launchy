@@ -1,4 +1,8 @@
 var myStepDefinitionsWrapper = function() {
+
+  ////////////////////
+  // Check app feature
+
   this.Given(/^I have visited the homepage$/, function() {
     browser.url(process.env.ROOT_URL);
   });
@@ -21,6 +25,9 @@ var myStepDefinitionsWrapper = function() {
     browser.click('#link-create-ad');
     expect(browser.getTitle()).toMatch('Crear anuncio de tu coche');
   });
+
+  ////////////////////
+  // Create ad feature
 
   this.Given(/^I have visited the createAd$/, function() {
     browser.url(process.env.ROOT_URL + '/crear-anuncio');
@@ -128,6 +135,37 @@ var myStepDefinitionsWrapper = function() {
     client.execute(function() {
       Meteor.loginWithPassword('any@email.com', '<PASSWORD>');
     });
+  });
+
+  ///////////////////////
+  // Contact form feature
+
+  this.Given(/^I visit the car list page$/, function () {
+    browser.url(process.env.ROOT_URL + '/coches');
+  });
+
+  this.Given(/^I click on any car$/, function () {
+    browser.waitForExist('a.card-car-ad');
+    browser.click('a.card-car-ad');
+  });
+
+  this.Given(/^I click the contact seller button$/, function () {
+    browser.waitForExist('#contact-owner');
+    browser.click('#contact-owner');
+  });
+
+  this.When(/^I fill the contact form$/, function () {
+    browser.setValue('#form-name', 'Wechewere Alaperri');
+    browser.setValue('#form-email', 'wecher@misdies.com');
+    browser.setValue('#form-message', 'Ola k ase\n\nPor aquí todo bien.');
+  });
+
+  this.When(/^submit the form$/, function () {
+    browser.submitForm('#contactOwnerForm');
+  });
+
+  this.Then(/^I expect a success message$/, function () {
+    browser.waitForExist('#success-contact-owner-form');
   });
 };
 

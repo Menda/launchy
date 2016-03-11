@@ -1,68 +1,95 @@
 <template name="carDetails">
-    {{#with car}}
-    <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
-      <ul id="car-details-images" class="text-center">
-        {{#each images}}
-        <li>
-          <a href="{{url store="images"}}" title="Ver foto #{{@index}} de {{make}} {{title}}" target="_blank">
-            <img src="{{url store="thumbs"}}" alt="{{make}} {{title}} ({{@index}})" class="img-thumbnail" />
-          </a>
-        </li>
-        {{/each}}
-      </ul>
-      <div class="row">
-        <div class="col-md-8">
-          <header>
-            <h1 itemprop="name" class="h2">
-              <strong>{{make}}</strong> {{title}}
-            </h1>
-          </header>
-          <p>Localización: <span itemprop="">{{district.district}} ({{district.region}})</span></p>
-          <p>Color: <span itemprop="">{{color}}</span></p>
-          <p>{{description}}</p>
-        </div>
-        <div class="col-md-4">
-          <div id="car-details-data">
-            <table class="table car-details">
-              <tr>
-                <td>Precio</td>
-                <td class="text-right"><b>{{price}} €</b></td>
-              </tr>
-              <tr>
-                <td>Potencia</td>
-                <td class="text-right"><b>{{horsepower}} cv</b></td>
-              </tr>
-              <tr>
-                <td>Combustible</td>
-                <td class="text-right"><b><span itemprop="fuelType">{{fuel}}</span></b></td>
-              </tr>
-              <tr>
-                <td>Transmisión</td>
-                <td class="text-right"><b>{{transmission}}</b></td>
-              </tr>
-              <tr>
-                <td>Año</td>
-                <td class="text-right"><b><span itemprop="dateVehicleFirstRegistered">{{year}}</span></b></td>
-              </tr>
-              <tr>
-                <td>Kilómetros</td>
-                <td class="text-right"><b>{{kilometers}}</b></td>
-              </tr>
-              <tr>
-                <td>Tipo de carrocería</td>
-                <td class="text-right"><b>{{body}}</b></td>
-              </tr>
-              <tr>
-                <td>Número de puertas</td>
-                <td class="text-right"><b>{{doors}}</b></td>
-              </tr>
-            </table>
-            <p>
-              <button class="btn btn-danger">Contactar con vendedor</button>
-            </p>
-          </div>
+  {{#with car}}
+  <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
+    <ul id="car-details-images" class="text-center">
+      {{#each images}}
+      <li>
+        <a href="{{url store="images"}}" title="Ver foto #{{@index}} de {{make}} {{title}}" target="_blank">
+          <img src="{{url store="thumbs"}}" alt="{{make}} {{title}} ({{@index}})" class="img-thumbnail" />
+        </a>
+      </li>
+      {{/each}}
+    </ul>
+    <div class="row">
+      <div class="col-md-8">
+        <header>
+          <h1 itemprop="name" class="h2">
+            <strong>{{make}}</strong> {{title}}
+          </h1>
+        </header>
+        <p>Localización: <span itemprop="">{{district.district}} ({{district.region}})</span></p>
+        <p>Color: <span itemprop="">{{color}}</span></p>
+        <p>{{description}}</p>
+      </div>
+      <div class="col-md-4">
+        <div id="car-details-data">
+          <table class="table car-details">
+            <tr>
+              <td>Precio</td>
+              <td class="text-right"><b>{{price}} €</b></td>
+            </tr>
+            <tr>
+              <td>Potencia</td>
+              <td class="text-right"><b>{{horsepower}} cv</b></td>
+            </tr>
+            <tr>
+              <td>Combustible</td>
+              <td class="text-right"><b><span itemprop="fuelType">{{fuel}}</span></b></td>
+            </tr>
+            <tr>
+              <td>Transmisión</td>
+              <td class="text-right"><b>{{transmission}}</b></td>
+            </tr>
+            <tr>
+              <td>Año</td>
+              <td class="text-right"><b><span itemprop="dateVehicleFirstRegistered">{{year}}</span></b></td>
+            </tr>
+            <tr>
+              <td>Kilómetros</td>
+              <td class="text-right"><b>{{kilometers}}</b></td>
+            </tr>
+            <tr>
+              <td>Tipo de carrocería</td>
+              <td class="text-right"><b>{{body}}</b></td>
+            </tr>
+            <tr>
+              <td>Número de puertas</td>
+              <td class="text-right"><b>{{doors}}</b></td>
+            </tr>
+          </table>
+
+          <span id="contact-owner-anchor"></span>
+
+          {{#unless showContactOwnerForm}}
+          <p>
+            <a href="#contact-owner-anchor" id="contact-owner" class="btn btn-danger">Contactar con vendedor</a>
+          </p>
+          {{/unless}}
+          {{#if showContactOwnerForm}}
+            {{>contactOwnerForm carId=_id}}
+          {{/if}}
         </div>
       </div>
-    </article>
-    {{/with}}
+    </div>
+  </article>
+  {{/with}}
+</template>
+
+<template name="contactOwnerForm">
+  <fieldset>
+    <legend>Contacta con el anunciante</legend>
+    {{#if isSuccessfulContactOwner}}
+      <span id="success-contact-owner-form"><strong>Tu mensaje al vendedor ha sido enviado.</strong> Muchas gracias.</span>
+    {{else}}
+      {{#autoForm schema=contactOwnerFormSchema id="contactOwnerForm" type="method" meteormethod="sendOwnerEmail"}}
+      {{> afQuickField id="form-carId" name="carId" value=carId type="hidden"}}
+      {{> afQuickField id="form-name" name="name" label="Nombre"}}
+      {{> afQuickField id="form-email" name="email" label="Email"}}
+      {{> afQuickField id="form-message" name="message" label="Mensaje" rows=10}}
+      <div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      </div>
+      {{/autoForm}}
+    {{/if}}
+  </fieldset>
 </template>
