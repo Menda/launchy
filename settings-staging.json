@@ -2,7 +2,8 @@
   "public": {
     "environment": "staging",
     "country": "ES",
-    "language": "es-ES",
+    "language": "es",
+    "language-local": "es-ES",
     "site_name": "Launch Control"
   },
   "private": {
@@ -12,8 +13,10 @@
       "bucket" : "-"
     },
     "emails": {
-      "username": "launchcontrol.dev",
+      "username": "-",
       "password": "-",
+      "servername": "-",
+      "serverport": 25,
       "from": "Sistema <do.not.reply@launchcontrol.es>"
     },
     "users": {
@@ -29,7 +32,7 @@
   },
   "galaxy.meteor.com": {
     "env": {
-      "ROOT_URL": "http://launchy.meteor.com",
+      "ROOT_URL": "-",
       "MONGO_URL": "-"
     }
   }

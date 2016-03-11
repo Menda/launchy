@@ -31,8 +31,8 @@ function setEmailSettings() {
     const smtp = {
       username: Meteor.settings.private.emails.username,
       password: Meteor.settings.private.emails.password,
-      server: 'smtp.gmail.com',
-      port: 25
+      server: Meteor.settings.private.emails.servername,
+      port: Meteor.settings.private.emails.serverport
     };
     process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
   }

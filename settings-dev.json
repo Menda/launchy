@@ -28,8 +28,8 @@
   },
   "galaxy.meteor.com": {
     "env": {
-      "ROOT_URL": "http://launchy.meteor.com",
-      "MONGO_URL": "mongodb://launchy:JNTH6XWTC4ZHAK4JSMMW@ds055935.mongolab.com:55935/launchy-dev"
+      "ROOT_URL": "http://launchy-dev.meteorapp.com",
+      "MONGO_URL": "mongodb://launchy:JNTH6XWTC4ZHAK4JSMMW@ds055935.mlab.com:55935/launchy-dev"
     }
   }
 }
