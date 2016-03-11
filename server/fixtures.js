@@ -61,26 +61,26 @@ Meteor.startup(() => {
     });
   }
 
-  console.log('Populating Admins and Employees');
-  const samples = ['admin', 'employee_carlos'];
-  const root = 'users/production/';
-  _.each(samples, (filename) => {
-    const account = JSON.parse(
-      Assets.getText(`${root}${filename}.json`));
-    if (! account['password']) {
-      account['password'] = Meteor.settings.private.users[filename]['password'];
-    }
-    try {
-      const userId = Accounts.createUser(account);
-      const roles = Meteor.settings.private.users[filename]['roles'];
-      Roles.addUsersToRoles(userId, roles);
-    } catch (error) { }
-  });
+  if (Accounts.users.find().count() === 0) {
+    console.log('Populating Admins and Employees');
+    const samples = ['admin', 'employee_carlos'];
+    const root = 'users/production/';
+    _.each(samples, (filename) => {
+      const account = JSON.parse(
+        Assets.getText(`${root}${filename}.json`));
+      if (! account['password']) {
+        account['password'] = Meteor.settings.private.users[filename]['password'];
+      }
+      try {
+        const userId = Accounts.createUser(account);
+        const roles = Meteor.settings.private.users[filename]['roles'];
+        Roles.addUsersToRoles(userId, roles);
+      } catch (error) { }
+    });
 
-  // Only development and staging
-  if (Meteor.settings.public.environment === 'development'|'staging') {
-    // Test users population
-    if (Accounts.users.find().count() === 0) {
+    // Only development and staging
+    if (Meteor.settings.public.environment === 'development'|'staging') {
+      // Test users population
       console.log('Populating test Users');
       const samples = ['peibol', 'castigaliano'];
       const root = 'users/samples/';
@@ -90,7 +90,9 @@ Meteor.startup(() => {
         Accounts.createUser(account);
       });
     }
+  }
 
+  if (Meteor.settings.public.environment === 'development'|'staging') {
     // Test cars population
     if (Cars.find().count() == 0) {
       console.log('Populating test Cars');
