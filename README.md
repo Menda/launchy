@@ -160,7 +160,13 @@ Also, press ctrl+m and you will have a Mongol window to debug.
 Deployment
 ==========
 
+Development:
+
     $ DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy launchy-dev.meteorapp.com --settings settings-dev.json
+
+Staging:
+
+    $ DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy launchy-staging.meteorapp.com --settings settings-staging.json
 
 
 Troubleshooting

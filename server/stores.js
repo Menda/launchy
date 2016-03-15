@@ -5,19 +5,8 @@ import {Meteor} from 'meteor/meteor';
 
 export const Stores = {};
 
-// Use GridFS on development/staging
-if (Meteor.settings.public.environment === 'development'|'staging') {
-  Stores.images = new FS.Store.GridFS('images');
-  Stores.thumbs = new FS.Store.GridFS('thumbs', {
-    transformWrite(fileObj, readStream, writeStream) {
-      // Transform the image into a 60px x 60px PNG thumbnail
-      gm(readStream).resize(200).stream('JPG').pipe(writeStream);
-      // The new file size will be automatically detected and set for this store
-    }
-  });
-
-// Use S3 on production
-} else {
+// Use S3 if settings have the credentials
+if (Meteor.settings.private.AWS) {
   Stores.images = new FS.Store.S3('images', {
     region: 'eu-west-1',
     accessKeyId: Meteor.settings.private.AWS.accessKeyId,
@@ -34,6 +23,17 @@ if (Meteor.settings.public.environment === 'development'|'staging') {
     transformWrite(fileObj, readStream, writeStream) {
       // Transform the image into little thumbnail
       gm(readStream).resize(200).stream('JPG').pipe(writeStream);
+    }
+  });
+
+// Otherwise use GridFS on development/staging
+} else {
+  Stores.images = new FS.Store.GridFS('images');
+  Stores.thumbs = new FS.Store.GridFS('thumbs', {
+    transformWrite(fileObj, readStream, writeStream) {
+      // Transform the image into a 60px x 60px PNG thumbnail
+      gm(readStream).resize(200).stream('JPG').pipe(writeStream);
+      // The new file size will be automatically detected and set for this store
     }
   });
 }
