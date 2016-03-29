@@ -58,8 +58,11 @@ a.card-car-ad:hover {
   }
 }
 
-.card-car-ad img {
-  max-height: 135px;
+.card-car-ad-img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 135px;
   max-width: 100%;
 }
 
