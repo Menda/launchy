@@ -20,5 +20,8 @@ Template.appHeader.helpers({
   },
   urlCreateAd() {
     return FlowRouter.path('createAd');
+  },
+  urlMyAds() {
+    return FlowRouter.path('myAds');
   }
 });

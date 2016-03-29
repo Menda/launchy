@@ -98,5 +98,21 @@ Meteor.methods({
         Email.send(data);
       });
     });
+  },
+
+  /**
+   * Returns all ads created by the current logged-in user. Needs a server method as we are not
+   * publishing sensitive data like 'userId' for every ad, as it can be used to see what
+   * every user is posting, and that's not nice.
+   */
+  getMyAds: () => {
+    const fields = {
+      '_id': 1,
+      'make': 1,
+      'title': 1,
+      'published': 1,
+      'active': 1
+    };
+    return Cars.find({'userId': Meteor.userId()}, {fields: fields}).fetch();
   }
 });

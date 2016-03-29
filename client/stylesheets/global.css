@@ -177,3 +177,8 @@ table.car-details td {
 .media:first-of-type {
   border: 2px solid red;
 }
+
+.my-ads-car {
+  border-bottom: 1px solid #e3e3e3;
+  padding: 10px 0 10px 0;
+}

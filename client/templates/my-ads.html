@@ -1,0 +1,43 @@
+<template name="myAds">
+  <section>
+    <header>
+      <h1>Mis anuncios</h1>
+    </header>
+    <div class="container">
+      {{#if loading}}
+        Cargando...
+      {{else}}
+        {{#each ads}}
+          {{> adDetails}}
+        {{/each}}
+      {{/if}}
+    </div>
+  </section>
+</template>
+
+
+<template name="adDetails">
+  <div class="row my-ads-car">
+    <div class="col-lg-4">
+      <a href="{{urlCarDetails}}" title="Ver más información del modelo">{{make}} {{title}}</a>
+    </div>
+    <div class="col-lg-2">
+      <!--<button type="button" class="btn btn-default btn-xs">Cerrar anuncio</button>-->
+    </div>
+    <div class="col-lg-2">
+      {{#if active}}
+        {{#if published}}
+          <!-- published -->
+        {{else}}
+          <span class="btn-warning btn-xs">Esperando aprobación</span>
+        {{/if}}
+      {{else}}
+        {{#if published}}
+          <span class="btn-primary btn-xs">Cerrado</span>
+        {{else}}
+          <span class="btn-danger btn-xs">No aprobado</span>
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</template>

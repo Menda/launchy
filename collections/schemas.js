@@ -170,12 +170,12 @@ Schemas.Car = new SimpleSchema({
     type: String,
     optional: true
   },
-  published: {
+  published: {  // depends on the admin
     type: Boolean,
     defaultValue: false,
     optional: true
   },
-  active: {
+  active: {  // depends on the user and admin
     type: Boolean,
     defaultValue: true
   },
