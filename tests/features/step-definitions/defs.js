@@ -26,6 +26,10 @@ var myStepDefinitionsWrapper = function() {
     expect(browser.getTitle()).toMatch('Crear anuncio de tu coche');
   });
 
+
+  // TODO Tries to go to private links, like /mis-anuncios
+  // TODO
+
   ////////////////////
   // Create ad feature
 
