@@ -44,11 +44,15 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           {{> loginButtons align="right"}}
-          {{#if currentUser}}
-          <li class="active"><a href="{{urlMyAds}}">Mis anuncios</a></li>
-          {{/if}}
         </ul>
       </div>
     </div>
   </header>
+</template>
+
+<template name="_loginButtonsAdditionalLoggedInDropdownActions">
+  <a class="btn btn-default btn-block" href="{{urlMyAds}}">
+    <span class="glyphicon glyphicon-pushpin fa-flip-horizontal" aria-hidden="true"></span>
+    Mis anuncios
+  </a>
 </template>

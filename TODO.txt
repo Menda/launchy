@@ -39,3 +39,6 @@ http://meteorpatterns.com/Sewdn/project-builds
 https://meteorhacks.com/flow-router-and-subscription-management/
 https://kadira.io/academy/meteor-routing-guide/content/subscriptions-and-data-management
 https://bulletproofmeteor.com
+
+Crear PR para bootstrap-ui:
+http://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-box

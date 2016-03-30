@@ -3,7 +3,8 @@
     {{#if isSuccessfulAd}}
       {{#if isFinishedAd}}
       <header>
-        <h1>¡Gracias por anunciar tu coche con nosotros!</h1>
+        <span class="glyphicon glyphicon-ok title-icon" aria-hidden="true"></span>
+        <h1 class="title-with-icon">¡Gracias por anunciar tu coche con nosotros!</h1>
       </header>
       <div class="bs-callout bs-callout-success">
         <p>
@@ -15,7 +16,8 @@
       </div>
       {{else}}
       <header>
-        <h1>¡Ya te queda poco! Inicia sesión o regístrate, por favor</h1>
+        <span class="glyphicon glyphicon-hand-right title-icon" aria-hidden="true"></span>
+        <h1 class="title-with-icon">¡Ya te queda poco! Inicia sesión o regístrate, por favor</h1>
       </header>
       <div class="bs-callout bs-callout-warning">
         <p>
@@ -28,7 +30,8 @@
       {{/if}}
     {{else}}
     <header>
-      <h1>Sube el anuncio de tu coche</h1>
+      <span class="glyphicon glyphicon-plus title-icon" aria-hidden="true"></span>
+      <h1 class="title-with-icon">Sube el anuncio de tu coche</h1>
     </header>
     <div class="bs-callout bs-callout-warning">
       <h4>Antes de publicar tu anuncio</h4>

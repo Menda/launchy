@@ -28,6 +28,7 @@ Base:
 * roles ($ meteor add alanning:roles)
 * ian:accounts-ui-bootstrap-3
 * peppelg:bootstrap-3-modal
+* fortawesome:fontawesome
 
 DebugOnly:
 * msavin:mongol

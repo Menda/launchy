@@ -1,12 +1,12 @@
 <template name="myAds">
   <section>
     <header>
-      <span class="glyphicon glyphicon-pushpin title-icon" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-pushpin title-icon fa-flip-horizontal" aria-hidden="true"></span>
       <h1 class="title-with-icon">Mis anuncios</h1>
     </header>
     <div class="container">
       {{#if loading}}
-        Cargando...
+        <i class="fa fa-refresh fa-spin"></i>
       {{else}}
         {{#each ads}}
           {{> adDetails}}

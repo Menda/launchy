@@ -20,7 +20,10 @@ Template.appHeader.helpers({
   },
   urlCreateAd() {
     return FlowRouter.path('createAd');
-  },
+  }
+});
+
+Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
   urlMyAds() {
     return FlowRouter.path('myAds');
   }
