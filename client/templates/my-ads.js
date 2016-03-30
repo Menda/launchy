@@ -13,6 +13,7 @@ Template.myAds.created = () => {
     Session.set('ads', result);
   });
 };
+
 Template.myAds.destroyed = () => {
   Session.set('ads', null);
 };
@@ -35,5 +36,32 @@ Template.adDetails.helpers({
     const routeName = 'carDetails';
     const path = FlowRouter.path(routeName, params);
     return path;
+  }
+});
+
+Template.adDetails.events({
+  'click .close-ad': (event, template) => {
+    const id = $(event.currentTarget).data('closeId');
+    const name = $(event.currentTarget).data('closeName');
+    Modal.show('closeConfirmation', () => {
+      return {
+        'id': id,
+        'name': name
+      }
+    });
+  }
+});
+
+Template.closeConfirmation.events({
+  'click .confirm-close-ad': (event, template) => {
+    const carId = $(event.currentTarget).data('closeId');
+    Meteor.call('closeAd', carId, (error, result) => {
+      if (result) {
+        Meteor.call('getMyAds', (error, result) => {
+          Session.set('ads', result);
+        });
+      }
+    });
+
   }
 });

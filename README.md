@@ -27,6 +27,7 @@ Base:
 * accounts-base ($ meteor add accounts-base)
 * roles ($ meteor add alanning:roles)
 * ian:accounts-ui-bootstrap-3
+* peppelg:bootstrap-3-modal
 
 DebugOnly:
 * msavin:mongol

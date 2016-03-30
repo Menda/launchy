@@ -114,5 +114,10 @@ Meteor.methods({
       'active': 1
     };
     return Cars.find({'userId': Meteor.userId()}, {fields: fields}).fetch();
+  },
+
+  closeAd: (carId) => {
+    Cars.update({_id: carId, userId: Meteor.userId(), active: true}, {$set: {active: false}});
+    return true;
   }
 });

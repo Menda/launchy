@@ -178,6 +178,17 @@ table.car-details td {
   border: 2px solid red;
 }
 
+.title-icon {
+  font-size: 25px;
+  padding-right: 10px;
+}
+.title-with-icon {
+  display: inline-block;
+}
+
+/**
+ * My Ads
+ */
 .my-ads-car {
   border-bottom: 1px solid #e3e3e3;
   padding: 10px 0 10px 0;
