@@ -42,3 +42,5 @@ https://bulletproofmeteor.com
 
 Crear PR para bootstrap-ui:
 http://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-box
+CALIDAD FOTOS RETINA
+http://comunidad.atresmedia.com/login login para bootstrap

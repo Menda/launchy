@@ -1,15 +1,17 @@
 <template name="cars">
-  <section>
-    <header>
-      <i class="fa fa-automobile title-icon-fa"></i>
-      <h1 class="title-with-icon">Coches en venta de segunda mano</h1>
-    </header>
-    <div id="all-cars">
-      {{#each cars}}
-        {{> car}}
-      {{/each}}
-    </div>
-  </section>
+  <main role="main" class="container">
+    <section>
+      <header>
+        <i class="fa fa-automobile title-icon-fa"></i>
+        <h1 class="title-with-icon">Coches en venta de segunda mano</h1>
+      </header>
+      <div id="all-cars">
+        {{#each cars}}
+          {{> car}}
+        {{/each}}
+      </div>
+    </section>
+  </main>
 </template>
 
 <template name="car">

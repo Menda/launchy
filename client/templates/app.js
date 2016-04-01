@@ -7,7 +7,6 @@ import {Template} from 'meteor/templating';
 
 accountsUIBootstrap3.setLanguage(Meteor.settings.public.language);
 
-// Common variables for the whole application
 Template.appHeader.helpers({
   siteName() {
     return Meteor.settings.public.site_name;
@@ -20,6 +19,15 @@ Template.appHeader.helpers({
   },
   urlCreateAd() {
     return FlowRouter.path('createAd');
+  }
+});
+
+Template.appFooter.helpers({
+  urlCreateAd() {
+    return FlowRouter.path('createAd');
+  },
+  urlTC() {
+    return FlowRouter.path('termsAndConditions');
   }
 });
 

@@ -13,17 +13,49 @@ body {
 #logo-site {
   width: 200px;
 }
+main {
+  margin-bottom: 280px;
+}
 .footer {
-  position: absolute;
+  background-color: #353535;
   bottom: 0;
-  width: 100%;
+  color: #898989;
   /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #f5f5f5;
+  height: 220px;
+  padding-top: 20px;
+  position: absolute;
+  width: 100%;
 }
-.container .text-muted {
-  margin: 20px 0;
+.footer a {
+  color: #898989;
 }
+.footer h4 {
+  color: #fff;
+}
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+.footer i.fa {
+  margin-right: 10px;
+}
+
+/**
+ * Home
+ */
+#home-cover {
+  background-image: url(img/cover.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 1px #e7e7e7;
+  color: #fff;
+  height: 500px;
+  margin-top: -20px;
+  padding-top: 100px;
+  text-shadow: 1px 1px 1px #222;
+}
+
 
 /**
  * Cars list
@@ -33,7 +65,7 @@ body {
   border-radius: 6px;
   display: block;
   float: left;
-  margin: 0 10px 20px 10px;
+  margin: 0 25px 20px 0;
   padding: 10px;
   position: relative;
   text-align: center;
@@ -64,6 +96,7 @@ a.card-car-ad:hover {
   background-size: contain;
   height: 135px;
   max-width: 100%;
+  /* TODO round border photo*/
 }
 
 .card-car-ad span {
@@ -107,6 +140,10 @@ table.car-details td {
 /**
  * Create ad
  */
+legend .glyphicon, legend .fa {
+  font-size: 18px;
+  padding-right: 5px;
+}
 .bs-callout {
   padding: 20px;
   margin: 20px 0;
@@ -162,9 +199,6 @@ table.car-details td {
 }
 .bs-callout-info h4 {
   color: #5bc0de;
-}
-.imageArea {
-  margin-bottom: 70px;
 }
 .imageArea .media {
   margin-top: 0;
