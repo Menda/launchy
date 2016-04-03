@@ -45,6 +45,9 @@ main {
 .footer i.fa {
   margin-right: 10px;
 }
+.footer i.fa:hover {
+  color: #fff;
+}
 
 /**
  * Home
