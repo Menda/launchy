@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-8">
           <header>
-            <h1 itemprop="name" class="h2">
+            <h1 itemprop="name" class="h2 car-details-title">
               {{#if active}}
                 {{#unless published}}
                   <span class="btn-warning btn">Anuncio esperando aprobación</span>
@@ -29,8 +29,20 @@
               <strong>{{make}}</strong> {{title}}
             </h1>
           </header>
-          <p>Localización: <span itemprop="">{{district.district}} ({{district.region}})</span></p>
-          <p>Color: <span itemprop="">{{color}}</span></p>
+          <p><span class="property-title">Localización:</span> <span itemprop="">{{district.district}} ({{district.region}})</span></p>
+          {{#if color}}
+            <p><span class="property-title">Color:</span> <span itemprop="">{{color}}</span></p>
+          {{/if}}
+          <p><span class="property-title">Tracción:</span> <span itemprop="">{{wheelDrive}}</span></p>
+          {{#if owners}}
+            <p><span class="property-title">Número de propietarios:</span> <span itemprop="">{{owners}}</span></p>
+          {{/if}}
+          {{#if maintenance}}
+            <p><span class="property-title">Mantenimiento:</span> <span itemprop="">{{maintenance}}</span></p>
+          {{/if}}
+          {{#if warranty}}
+          <p><span class="property-title">Garantía:</span> <span itemprop="">{{warranty}}</span></p>
+          {{/if}}
           <p>{{description}}</p>
         </div>
         <div class="col-md-4">
