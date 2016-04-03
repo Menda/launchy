@@ -64,6 +64,7 @@ Template.carDetails.helpers({
 
 Template.carDetails.events({
   'click #contact-owner': () => {
+    $('html, body').animate({scrollTop: $("#contact-owner").offset().top});
     Session.set('showContactOwnerForm', true);
   }
 });

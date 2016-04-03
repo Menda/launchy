@@ -98,8 +98,8 @@ stop the server window and execute: `$ meteor reset`.
 Browser tests (end to end)
 --------------------------
 
-Server
-______
+Initialize server
+_________________
 
 There are different ways to test. At least, Mocha and Cucumber tests need
 before a running meteor server, so do as a first step:
