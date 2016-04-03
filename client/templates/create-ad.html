@@ -181,7 +181,7 @@
         {{/unless}}
       {{else}}
         Subiendo: {{this.uploadProgress}}%
-        <p>{{> FS.UploadProgressBar}}</p>
+        <p>{{> FS.UploadProgressBar bootstrap=true}}</p>
       {{/if}}
       {{#FS.DeleteButton class="btn btn-danger btn-xs"}}Borrar{{/FS.DeleteButton}}
     </div>
