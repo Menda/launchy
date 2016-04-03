@@ -17,7 +17,8 @@
 <template name="car">
   <a class="card-car-ad" href="{{urlCarDetails}}" title="Ver más información del modelo">
     <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
-      <div style="background-image: url({{image.url store="thumbs"}})" class="card-car-ad-img"></div>
+      <div style="background-image: url({{image.url store="thumbs-retina"}})" class="card-car-ad-img hidden-xs"></div>
+      <div style="background-image: url({{image.url store="thumbs"}})" class="card-car-ad-img visible-xs"></div>
       <header>
         <span itemprop="name" class="card-car-ad-name">{{make}} {{title}}</span>
       </header>

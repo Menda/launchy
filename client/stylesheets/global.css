@@ -136,6 +136,9 @@ table.car-details tr {
 table.car-details td {
   padding: 10px 0 10px 0;
 }
+.img-thumbnail {
+  width: 250px;
+}
 
 /**
  * Create ad

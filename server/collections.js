@@ -9,6 +9,7 @@ import {FS} from 'meteor/cfs:base-package';
 export const Images = new FS.Collection('images', {
   stores: [
     Stores.images,
+    Stores.thumbs_retina,
     Stores.thumbs
   ],
   filter: {
