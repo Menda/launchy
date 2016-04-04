@@ -20,7 +20,6 @@ kadira:blaze-layout
 aldeed:collection2
 xolvio:backdoor
 accounts-password
-kadira:dochead
 aldeed:autoform
 msavin:mongol
 twbs:bootstrap
@@ -43,3 +42,5 @@ ian:accounts-ui-bootstrap-3
 peppelg:bootstrap-3-modal
 fortawesome:fontawesome
 markdown
+kadira:dochead
+mdg:seo
