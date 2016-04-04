@@ -29,13 +29,13 @@
               <strong>{{make}}</strong> {{title}}
             </h1>
           </header>
-          <p><span class="property-title">Localización:</span> <span itemprop="">{{district.district}} ({{district.region}})</span></p>
+          <p><span class="property-title">Localización:</span> {{district.district}} ({{district.region}})</p>
           {{#if color}}
-            <p><span class="property-title">Color:</span> <span itemprop="">{{color}}</span></p>
+            <p><span class="property-title">Color:</span> <span itemprop="color">{{color}}</span></p>
           {{/if}}
-          <p><span class="property-title">Tracción:</span> <span itemprop="">{{wheelDrive}}</span></p>
+          <p><span class="property-title">Tracción:</span> <span itemprop="driveWheelConfiguration">{{wheelDrive}}</span></p>
           {{#if owners}}
-            <p><span class="property-title">Número de propietarios:</span> <span itemprop="">{{owners}}</span></p>
+            <p><span class="property-title">Número de propietarios:</span> <span itemprop="numberOfPreviousOwners">{{owners}}</span></p>
           {{/if}}
           {{#if maintenance}}
             <p><span class="property-title">Mantenimiento:</span> <span>{{#markdown}}{{maintenance}}{{/markdown}}</span></p>
@@ -62,7 +62,7 @@
               </tr>
               <tr>
                 <td>Transmisión</td>
-                <td class="text-right"><b>{{transmission}}</b></td>
+                <td class="text-right"><b><span itemprop="vehicleTransmission">{{transmission}}</span></b></td>
               </tr>
               <tr>
                 <td>Año</td>
@@ -78,7 +78,7 @@
               </tr>
               <tr>
                 <td>Número de puertas</td>
-                <td class="text-right"><b>{{doors}}</b></td>
+                <td class="text-right"><b><span itemprop="numberOfDoors">{{doors}}</span></b></td>
               </tr>
             </table>
 
