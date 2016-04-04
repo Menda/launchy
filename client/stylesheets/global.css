@@ -146,7 +146,8 @@ span.card-car-ad-name {
 }
   #car-details-images li {
     display: inline;
-    padding: 0 5px 0 5px;
+    line-height: 190px;
+    padding: 15px;
   }
 .car-details-title {
   margin-top: 0px;
