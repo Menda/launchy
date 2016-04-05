@@ -11,10 +11,10 @@ body {
   margin-bottom: 100px;
 }
 a {
-  color: #666;
+  color: #e74826;
 }
 a:hover {
-  color: #000;
+  color: #bc361b;
 }
 #logo-site {
   width: 200px;
@@ -81,6 +81,7 @@ main {
 .card-car-ad {
   border: 1px solid #eee;
   border-radius: 6px;
+  color: #666;
   display: block;
   float: left;
   margin: 0 25px 20px 0;
@@ -92,6 +93,7 @@ main {
 }
 .card-car-ad:hover {
   border: 1px solid #ccc;
+  color: #000;
 }
 .card-car-ad-name {
   font-size: 18px;
@@ -261,4 +263,16 @@ legend .glyphicon, legend .fa {
 .my-ads-car {
   border-bottom: 1px solid #e3e3e3;
   padding: 10px 0 10px 0;
+}
+
+/**
+ * Cookie policy
+ */
+.cookie-policy {
+  background-color: #353535;
+}
+@media (min-width: 992px) {
+  .cookie-policy {
+    text-transform: none;
+  }
 }

@@ -25,7 +25,7 @@ Template.carDetails.onRendered(function() {
                         'al caballaje';
     }
     setHead({
-      currentUrl: '', // TODO
+      currentUrl: FlowRouter.path('carDetails', {_id: carId}),
       title: title,
       metaDescription: metaDescription
     });

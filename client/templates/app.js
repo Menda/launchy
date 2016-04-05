@@ -36,3 +36,10 @@ Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
     return FlowRouter.path('myAds');
   }
 });
+
+
+Template.createAd.helpers({
+  urlTC() {
+    return FlowRouter.path('termsAndConditions');
+  }
+});
