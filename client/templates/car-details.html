@@ -40,11 +40,14 @@
             <p><span class="property-title">Número de propietarios:</span> <span itemprop="numberOfPreviousOwners">{{owners}}</span></p>
           {{/if}}
           {{#if maintenance}}
-            <p><span class="property-title">Mantenimiento:</span> <span>{{#markdown}}{{maintenance}}{{/markdown}}</span></p>
+            <p><span class="property-title">Mantenimiento:</span></p>
+            <p><span>{{#markdown}}{{maintenance}}{{/markdown}}</span></p>
           {{/if}}
           {{#if warranty}}
-          <p><span class="property-title">Garantía:</span> <span>{{#markdown}}{{warranty}}{{/markdown}}</span></p>
+            <p><span class="property-title">Garantía:</span></p>
+            <p><span>{{#markdown}}{{warranty}}{{/markdown}}</span></p>
           {{/if}}
+          <hr />
           <p>{{#markdown}}{{description}}{{/markdown}}</p>
         </div>
         <div class="col-md-4">
