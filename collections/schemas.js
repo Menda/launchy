@@ -115,7 +115,7 @@ Schemas.Car = new SimpleSchema({
   },
   description: {
     type: String,
-    max: 10000
+    max: 20000
   },
   contact: {
     type: Schemas.Contact
@@ -157,12 +157,12 @@ Schemas.Car = new SimpleSchema({
   maintenance: {
     type: String,
     optional: true,
-    max: 1000,
+    max: 20000,
   },
   warranty: {
     type: String,
     optional: true,
-    max: 1000,
+    max: 20000,
   },
 
   // Metadata
