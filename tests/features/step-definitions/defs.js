@@ -1,4 +1,10 @@
 var myStepDefinitionsWrapper = function() {
+  ////////////////////
+  // Acceptance cookies feature
+
+  this.Then(/^I accept the cookies$/, function() {
+    browser.click('#acceptCookies');
+  });
 
   ////////////////////
   // Check app feature
