@@ -44,7 +44,8 @@ export const EmailBuilder = {
 
     return {
       to: data.to,
-      from: data.email,
+      from: Meteor.settings.private.emails.from,
+      replyTo: data.email,
       subject: `Contacto. ${data.name} - ${data.car.make} ${data.car.title}`,
       text: text
     }

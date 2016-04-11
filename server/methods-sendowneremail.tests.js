@@ -52,8 +52,9 @@ describe('Meteor.methods.sendOwnerEmail', () => {
                          `Dueño original: Gosia B <gosiunia@mi.pl> - +49111222333\n\n` +
                          `This is the msg`;
     const expectedArgs = {
-      from: 'any@email.com',
+      from: Meteor.settings.private.emails.from,
       to: '<FAKE1>',
+      replyTo: 'any@email.com',
       subject: 'Contacto. Marta Sanacha - Maserati Ghibli S Q4',
       text: expectedText
     };
