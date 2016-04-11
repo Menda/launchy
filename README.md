@@ -29,6 +29,9 @@ Base:
 * ian:accounts-ui-bootstrap-3
 * peppelg:bootstrap-3-modal
 * fortawesome:fontawesome
+* markdown
+* mdg:seo
+* selaias:cookie-consent
 
 DebugOnly:
 * msavin:mongol
@@ -169,6 +172,10 @@ Development:
 Staging:
 
     $ DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy launchy-staging.meteorapp.com --settings settings-staging.json
+
+Live:
+
+    $ DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy www.launchcontrol.es --settings settings-production.json
 
 
 Troubleshooting
