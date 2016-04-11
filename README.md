@@ -181,6 +181,26 @@ Live:
 Troubleshooting
 ===============
 
+Deployment fails
+----------------
+
+If when deploying appears an error like:
+
+    Deploying your app...
+
+    Errors prevented deploying:
+    While linking the program:
+    error: this app is not compatible with architecture 'os.linux.x86_64'
+
+Then do:
+
+    $ meteor reset
+
+And finally:
+
+    $ rm -rf node_modules
+
+
 npm install fails
 -----------------
 
@@ -188,6 +208,7 @@ if `npm install --only=dev` is giving you errors like: "WARN package.json Depend
 exists in both dependencies and devDependencies", then follow this thread:
 
 https://github.com/npm/npm/issues/7741
+
 
 Meteor refuses to start webserver
 ---------------------------------
