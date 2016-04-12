@@ -26,6 +26,9 @@ Template.appFooter.helpers({
   urlCreateAd() {
     return FlowRouter.path('createAd');
   },
+  urlMeetUs() {
+    return FlowRouter.path('meetUs');
+  },
   urlTC() {
     return FlowRouter.path('termsAndConditions');
   }

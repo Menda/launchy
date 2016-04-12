@@ -266,6 +266,45 @@ legend .glyphicon, legend .fa {
 }
 
 /**
+ * Meet us
+ */
+#meetus-cover {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 1px #e7e7e7;
+  color: #fff;
+  height: 300px;
+  margin-top: -20px;
+  margin-bottom: 50px;
+  padding-top: 100px;
+  text-shadow: 1px 1px 1px #222;
+}
+@media (max-width: 768px) {
+  #meetus-cover {
+    background-image: url(img/meet-us/cover-mobile.jpg);
+  }
+}
+@media (min-width: 769px) {
+  #meetus-cover {
+    background-image: url(img/meet-us/cover.jpg);
+  }
+}
+img.meet-us {
+  width: 250px;
+}
+#founders {
+  margin-top: 30px;
+}
+#founders > .row {
+  padding-bottom: 50px;
+}
+.meet-us-name {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/**
  * Cookie policy
  */
 .cookie-policy {
