@@ -42,19 +42,19 @@ Meteor.publish('cars', function() {
     'active': 1
   }
   if (! userId) {
-    return Cars.find({published: true}, {fields: fields});
+    return Cars.find({published: true}, {fields: fields, sort: {createdAt: -1}});
   } else {
     const isAdmin = Roles.userIsInRole(userId, 'admin');
     const isEmployee = Roles.userIsInRole(userId, 'employee');
     if (isAdmin || isEmployee) {
-      return Cars.find({}, {fields: fields});
+      return Cars.find({}, {fields: fields, sort: {createdAt: -1}});
     } else {
       return Cars.find({
         $or: [
           {userId: userId},
           {published: true}
         ]
-      }, {fields: fields});
+      }, {fields: fields, sort: {createdAt: -1}});
     }
   }
 });
