@@ -34,7 +34,7 @@ var myStepDefinitionsWrapper = function() {
 
 
   // TODO Tries to go to private links, like /mis-anuncios
-  // TODO
+  // TODO Check links to meetUs, T&C
 
   ////////////////////
   // Create ad feature
