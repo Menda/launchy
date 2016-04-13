@@ -104,6 +104,10 @@ Meteor.methods({
    * Returns all ads created by the current logged-in user. Needs a server method as we are not
    * publishing sensitive data like 'userId' for every ad, as it can be used to see what
    * every user is posting, and that's not nice.
+   * TODO
+   * Substitute for a publish and subscription better, and make userId public only
+   * for that publish call. See http://stackoverflow.com/a/21853298
+   * See also: https://meteorhacks.com/flow-router-and-subscription-management/
    */
   getMyAds: () => {
     const fields = {

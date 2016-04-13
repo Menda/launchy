@@ -1,3 +1,7 @@
+* https://www.fiverr.com/jessicasinatra/advertise-your-business-in-10-spanish-classified-ads-submissions--6?context=advanced_search&context_type=auto&context_referrer=search_gigs&pos=22&funnel=a7cbc4a4-bb06-4ded-8473-0e883a3acbb9
+* https://www.fiverr.com/nsanyi23/submit-your-site-to-over-100-free-seo-friendly-spanish-web-directory?context=advanced_search&context_type=auto&context_referrer=search_gigs&pos=23&funnel=a7cbc4a4-bb06-4ded-8473-0e883a3acbb9
+
+
 * How to run commands on server hosting - Creo que no se puede, habría que hacer algo en Admin
 http://guide.meteor.com/deployment.html
 
