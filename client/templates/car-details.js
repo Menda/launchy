@@ -32,6 +32,31 @@ Template.carDetails.onRendered(function() {
   });
 });
 
+Template.picsCarousel.onRendered(function() {
+  $('.owl-carousel').owlCarousel({
+    responsiveClass: true,
+    margin: 10,
+    nav: true,
+    dots: false,
+    navText: ["Anterior","Siguiente"],
+    responsive: {
+      0: {
+        center: true,
+        margin: 5,
+        items: 2,
+        nav: false
+      },
+      600: {
+        items: 3
+      },
+      1000: {
+        items: 4,
+        loop: false
+      }
+    }
+  });
+});
+
 Template.carDetails.created = () => {
   Session.set('showContactOwnerForm', false);
 };
@@ -71,6 +96,10 @@ Template.carDetails.events({
     Session.set('showContactOwnerForm', true);
   }
 });
+
+///////////
+// Carousel
+
 
 
 ///////////////////

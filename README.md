@@ -137,6 +137,14 @@ Headless browser tests (end to end)
 See zombie.js or phantomJS.
 
 
+See the application how Google sees it
+======================================
+
+Add at the end of the URLs:
+
+`?_escaped_fragment_=`
+
+
 How to debug
 ============
 

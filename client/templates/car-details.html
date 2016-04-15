@@ -2,15 +2,7 @@
   <main role="main" class="container">
     {{#with car}}
     <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
-      <ul id="car-details-images" class="text-center">
-        {{#each images}}
-        <li>
-          <a href="{{url store="images"}}" title="Ver foto #{{@index}} de {{make}} {{title}}" target="_blank">
-            <img src="{{url store="thumbs-retina"}}" alt="{{make}} {{title}} ({{@index}})" class="img-thumbnail" />
-          </a>
-        </li>
-        {{/each}}
-      </ul>
+      {{>picsCarousel car=car}}
       <div class="row">
         <div class="col-md-8">
           <header>
@@ -106,6 +98,21 @@
     {{/with}}
   </main>
 </template>
+
+<template name="picsCarousel">
+  {{#with car}}
+  <div id="car-details-images" class="text-center owl-carousel owl-theme">
+    {{#each images}}
+    <div class="item">
+      <a href="{{url store="images"}}" title="Ver foto #{{@index}} de {{../make}} {{../title}}" target="_blank">
+        <img src="{{url store="thumbs-retina"}}" alt="{{make}} {{title}} ({{@index}})" class="img-thumbnail" />
+      </a>
+    </div>
+    {{/each}}
+  </div>
+  {{/with}}
+</template>
+
 
 <template name="contactOwnerForm">
   <fieldset>

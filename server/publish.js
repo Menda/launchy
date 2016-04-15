@@ -39,7 +39,8 @@ Meteor.publish('cars', function() {
     'maintenance': 1,
     'warranty': 1,
     'published': 1,
-    'active': 1
+    'active': 1,
+    'createdAt': 1
   }
   if (! userId) {
     return Cars.find({published: true}, {fields: fields, sort: {createdAt: -1}});

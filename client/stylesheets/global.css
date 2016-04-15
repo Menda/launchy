@@ -141,16 +141,8 @@ span.card-car-ad-name {
  * Car details
  */
 #car-details-images {
-  padding: 20px 0 20px 0;
+  padding: 10px 0 20px 0;
 }
-#car-details-images a {
-  text-decoration: none;
-}
-  #car-details-images li {
-    display: inline;
-    line-height: 190px;
-    padding: 15px;
-  }
 .car-details-title {
   margin-top: 0px;
 }
@@ -167,9 +159,6 @@ table.car-details tr {
 }
 table.car-details td {
   padding: 10px 0 10px 0;
-}
-.img-thumbnail {
-  width: 250px;
 }
 
 /**
