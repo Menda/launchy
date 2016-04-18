@@ -118,7 +118,7 @@ a.card-car-ad:hover {
 .card-car-ad-img {
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   height: 135px;
   max-width: 100%;
   /* TODO round border photo*/

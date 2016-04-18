@@ -34,6 +34,8 @@ Template.carDetails.onRendered(function() {
 
 Template.picsCarousel.onRendered(function() {
   $('.owl-carousel').owlCarousel({
+    // TODO use lazyLoad: true
+    // http://www.owlcarousel.owlgraphic.com/docs/api-options.html
     responsiveClass: true,
     margin: 10,
     nav: true,
