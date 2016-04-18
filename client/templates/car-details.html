@@ -3,7 +3,7 @@
     {{#with car}}
     <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
       {{>picsCarousel car=car}}
-      <div class="row">
+      <div id="car-details-spec" class="row">
         <div class="col-md-8">
           <header>
             <h1 itemprop="name" class="h2 car-details-title">
@@ -104,7 +104,7 @@
   <div id="car-details-images" class="text-center owl-carousel owl-theme">
     {{#each images}}
     <div class="item">
-      <a href="{{url store="images"}}" title="Ver foto #{{@index}} de {{../make}} {{../title}}" target="_blank">
+      <a href="{{url store="images"}}" title="Ver foto #{{@index}} de {{../make}} {{../title}}" target="_blank" class="fluidbox-img">
         <img src="{{url store="thumbs-retina"}}" alt="{{make}} {{title}} ({{@index}})" class="img-thumbnail" />
       </a>
     </div>

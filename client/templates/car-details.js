@@ -57,6 +57,37 @@ Template.picsCarousel.onRendered(function() {
       }
     }
   });
+
+  // Encode all URIs, so there are no illegal chars for images
+  $('.fluidbox-img').each(function() {
+    const imgs = $(this).find('img');
+    $.each(imgs, function(key, img) {
+      img.src = img.src.replace(' ', '%20');
+    });
+    this.href = this.href.replace(' ', '%20');
+  });
+
+  // Prepare all Fluidbox events
+  $(function () {
+    $('.fluidbox-img').fluidbox();
+  });
+  $('.fluidbox-img')
+    .on('openstart.fluidbox', function() {
+      $('.navbar-static-top').addClass('navbar-static-top-piczoom');
+      $('.owl-stage-outer').addClass('owl-stage-outer-piczoom');
+      $('#car-details-spec').addClass('car-details-spec-piczoom');
+      $('.owl-prev').addClass('owl-prev-piczoom');
+      $('.owl-next').addClass('owl-next-piczoom');
+      $('footer.footer').addClass('footer-piczoom');
+    })
+    .on('closeend.fluidbox', function() {
+      $('.navbar-static-top').removeClass('navbar-static-top-piczoom');
+      $('.owl-stage-outer').removeClass('owl-stage-outer-piczoom');
+      $('#car-details-spec').removeClass('car-details-spec-piczoom');
+      $('.owl-prev').removeClass('owl-prev-piczoom');
+      $('.owl-next').removeClass('owl-next-piczoom');
+      $('footer.footer').removeClass('footer-piczoom');
+  }).fluidbox();
 });
 
 Template.carDetails.created = () => {
@@ -98,11 +129,6 @@ Template.carDetails.events({
     Session.set('showContactOwnerForm', true);
   }
 });
-
-///////////
-// Carousel
-
-
 
 ///////////////////
 // contactOwnerForm

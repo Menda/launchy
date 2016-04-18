@@ -160,6 +160,24 @@ table.car-details tr {
 table.car-details td {
   padding: 10px 0 10px 0;
 }
+/* Carousel hacks */
+.owl-stage-outer-piczoom {
+  overflow: initial !important;
+}
+.owl-prev-piczoom, .owl-next-piczoom {
+  opacity: 0 !important;
+}
+.navbar-static-top-piczoom {
+  opacity: 0 !important;
+  z-index: -1 !important;
+}
+.car-details-spec-piczoom {
+  opacity: 0 !important;
+}
+.footer-piczoom {
+  opacity: 0 !important;
+  z-index: -1 !important;
+}
 
 /**
  * Create ad
