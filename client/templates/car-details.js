@@ -69,7 +69,10 @@ Template.picsCarousel.onRendered(function() {
 
   // Prepare all Fluidbox events
   $(function () {
-    $('.fluidbox-img').fluidbox();
+    $('.fluidbox-img').fluidbox({
+      immediateOpen: true,
+      loader: true
+    });
   });
   $('.fluidbox-img')
     .on('openstart.fluidbox', function() {
