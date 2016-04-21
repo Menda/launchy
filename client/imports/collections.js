@@ -25,5 +25,4 @@ export const Images = new FS.Collection('images', {
 
 Meteor.subscribe('districts');
 Meteor.subscribe('makes');
-Meteor.subscribe('cars');
 Meteor.subscribe('images');
