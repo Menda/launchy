@@ -32,6 +32,7 @@ Base:
 * markdown
 * mdg:seo
 * selaias:cookie-consent
+* meteorhacks:fast-render
 
 DebugOnly:
 * msavin:mongol
