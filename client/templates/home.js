@@ -3,7 +3,7 @@ import {FlowRouter} from 'meteor/kadira:flow-router';
 import {Template} from 'meteor/templating';
 
 import {Images} from '/client/imports/collections.js';
-import {Cars} from '/collections/collections.js';
+import {Cars, Blogposts} from '/collections/collections.js';
 
 
 Template.home.helpers({
@@ -13,6 +13,9 @@ Template.home.helpers({
       car.image = Images.findOne({assigned: car['_id']});
     });
     return cars;
+  },
+  blogposts() {
+    return Blogposts.find({}).fetch();
   }
 });
 

@@ -2,7 +2,7 @@
 // are allowed from the client code to be executed. This does not apply to
 // Meteor.methods actions, as those are executed server-side.
 'use strict';
-import {Districts, Makes, Cars} from '/collections/collections.js';
+import {Districts, Makes, Cars, Blogposts} from '/collections/collections.js';
 import {Images} from '/server/collections.js';
 
 
@@ -19,6 +19,12 @@ Makes.deny({
 });
 
 Cars.deny({
+  insert: () => true,
+  update: () => true,
+  remove: () => true,
+});
+
+Blogposts.deny({
   insert: () => true,
   update: () => true,
   remove: () => true,

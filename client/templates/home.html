@@ -7,14 +7,78 @@
   </div>
   <main role="main" class="container">
     <section>
-        <header>
-          <i class="fa fa-dashboard title-icon-fa hidden-xs"></i>
-          <h1 class="title-with-icon">Últimos coches anunciados</h1>
-        </header>
-        <div id="all-cars">
-          {{#each cars}}
-            {{> car}}
-          {{/each}}
+      <header>
+        <h1>Últimos coches anunciados</h1>
+      </header>
+      <div id="all-cars" class="row">
+        {{#each cars}}
+          {{> car}}
+        {{/each}}
+      </div>
+      <div class="row"><a href="{{urlCars}}" class="btn btn-danger">Ver todos los coches anunciados</a></div>
+    </section>
+    <section>
+      <header>
+        <h1>Blog</h1>
+      </header>
+      <div id="all-blogposts" class="row">
+          <div class="row">
+            <a href="{{blogposts.[0].url}}">
+              <div class="row blogpost col-md-6" style="background-image: url({{blogposts.[0].cover}});">
+                <div class="blogpost-content">
+                  <h3 class="h2">{{blogposts.[0].title}}</h3>
+                  <span>{{formatDate blogposts.[0].createdAt}}</span>
+                </div>
+              </div>
+            </a>
+            <a href="{{blogposts.[1].url}}">
+              <div class="row blogpost col-md-4" style="background-image: url({{blogposts.[1].cover}});">
+                <div class="blogpost-content">
+                  <h3 class="h2">{{blogposts.[1].title}}</h3>
+                  <span>{{formatDate blogposts.[1].createdAt}}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="row">
+            <a href="{{blogposts.[2].url}}">
+              <div class="row blogpost col-md-4" style="background-image: url({{blogposts.[2].cover}});">
+                <div class="blogpost-content">
+                  <h3 class="h2">{{blogposts.[2].title}}</h3>
+                  <span>{{formatDate blogposts.[2].createdAt}}</span>
+                </div>
+              </div>
+            </a>
+            <a href="{{blogposts.[3].url}}">
+              <div class="row blogpost col-md-6" style="background-image: url({{blogposts.[3].cover}});">
+                <div class="blogpost-content">
+                  <h3 class="h2">{{blogposts.[3].title}}</h3>
+                  <span>{{formatDate blogposts.[3].createdAt}}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="row">
+            <a href="{{blogposts.[4].url}}">
+              <div class="row blogpost col-md-6" style="background-image: url({{blogposts.[4].cover}});">
+                <div class="blogpost-content">
+                  <h3 class="h2">{{blogposts.[4].title}}</h3>
+                  <span>{{formatDate blogposts.[4].createdAt}}</span>
+                </div>
+              </div>
+            </a>
+            <a href="{{blogposts.[5].url}}">
+              <div class="row blogpost col-md-4" style="background-image: url({{blogposts.[5].cover}});">
+                <div class="blogpost-content">
+                  <h3 class="h2">{{blogposts.[5].title}}</h3>
+                  <span>{{formatDate blogposts.[5].createdAt}}</span>
+                </div>
+              </div>
+            </a>
+          </div>
+      </div>
+      <div class="row">
+        <a href="https://medium.com/launch-control" class="btn btn-danger">Ver todos los blogposts</a>
         </div>
     </section>
   </main>

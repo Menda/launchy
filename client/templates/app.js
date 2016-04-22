@@ -2,6 +2,7 @@
 import {accountsUIBootstrap3} from 'meteor/ian:accounts-ui-bootstrap-3';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {Meteor} from 'meteor/meteor';
+import {moment} from 'meteor/mrt:moment';
 import {Template} from 'meteor/templating';
 
 
@@ -40,9 +41,22 @@ Template._loginButtonsAdditionalLoggedInDropdownActions.helpers({
   }
 });
 
-
 Template.createAd.helpers({
   urlTC() {
     return FlowRouter.path('termsAndConditions');
   }
+});
+
+Template.home.helpers({
+  urlCars() {
+    return FlowRouter.path('cars');
+  }
+});
+
+/**
+ * Global helpers
+ */
+
+Template.registerHelper('formatDate', (date) => {
+  return moment(date).fromNow();
 });

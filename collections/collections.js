@@ -9,6 +9,7 @@ import {Schemas} from '/collections/schemas.js';
 export const Makes = new Mongo.Collection('makes');
 export const Districts = new Mongo.Collection('districts');
 export const Cars = new Mongo.Collection('cars');
+export const Blogposts = new Mongo.Collection('blogposts');
 
 Makes.attachSchema(Schemas.Make);
 Districts.attachSchema(Schemas.District);

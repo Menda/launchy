@@ -1,7 +1,7 @@
 'use strict';
 import {_} from 'meteor/underscore';
 
-import {Districts, Makes, Cars} from '/collections/collections.js';
+import {Districts, Makes, Cars, Blogposts} from '/collections/collections.js';
 import {Images} from '/server/collections.js';
 
 
@@ -115,6 +115,20 @@ Meteor.startup(() => {
           const imageObj = Images.insert(img);
           imageObj.update({$set: {'assigned': id}});
         });
+      });
+    }
+
+    // Test blogposts population
+    if (Blogposts.find().count() == 0) {
+      console.log('Populating test Blogposts');
+      const samples = ['blogpost_01', 'blogpost_02', 'blogpost_03', 'blogpost_04', 'blogpost_05'];
+      const root = 'blogposts/samples/';
+
+      _.each(samples, (filename) => {
+        const blogpost = JSON.parse(
+          Assets.getText(root + filename + '.json'));
+        blogpost['createdAt'] = new Date();
+        const id = Blogposts.insert(blogpost);
       });
     }
   }

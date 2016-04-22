@@ -33,15 +33,11 @@ Base:
 * mdg:seo
 * selaias:cookie-consent
 * meteorhacks:fast-render
+* mrt:moment
 
 DebugOnly:
 * msavin:mongol
 * avital:mocha
-
-TODO a instalar:
-* gwendall:simple-schema-i18n (ver cómo configurar tap)
-* https://atmospherejs.com/sacha/spin
-* https://atmospherejs.com/mrt/moment
 
 Testing:
 * Chimp (https://chimp.readme.io)

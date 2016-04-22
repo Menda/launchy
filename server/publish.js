@@ -2,7 +2,7 @@
 import {Meteor} from 'meteor/meteor';
 import {_} from 'meteor/underscore';
 
-import {Makes, Districts, Cars} from '/collections/collections.js';
+import {Makes, Districts, Cars, Blogposts} from '/collections/collections.js';
 import {Images} from '/server/collections.js';
 
 
@@ -49,6 +49,27 @@ const carDetailsFields = _.extend(carFields,
 Meteor.publish('lastAddedCars', (limit) => {
   return Cars.find({published: true, active: true},
                    {fields: carFields, sort: {createdAt: -1}, limit: limit});
+});
+
+const blogpostFields = {
+  'title': 1,
+  'url': 1,
+  'cover': 1,
+  'createdAt': 1
+};
+
+/**
+ * Only return to the view cars which are published and approved
+ */
+Meteor.publish('lastBlogposts', (limit) => {
+  let limitBlogposts;
+  if (! limit) {
+    limitBlogposts = 6;
+  } else {
+    limitBlogposts = limit;
+  }
+  return Blogposts.find({published: true},
+                   {fields: blogpostFields, sort: {createdAt: -1}, limit: limitBlogposts});
 });
 
 /**
