@@ -10,8 +10,8 @@ import {setHead} from '/lib/utils.js';
 
 
 Template.carDetails.onRendered(function() {
-  Meteor.subscribe("cars", () => {
-    const carId = FlowRouter.getParam('_id');
+  let carId = FlowRouter.getParam('_id');
+  Meteor.subscribe("carDetails", carId, () => {
     const car = Cars.findOne({'_id': carId},
                            {fields: {'make': 1, 'title': 1, 'district.district': 1}});
     const title = `${car['make']} ${car['title']} en venta en ${car['district']['district']}`;
