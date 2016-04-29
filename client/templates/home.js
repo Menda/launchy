@@ -8,7 +8,7 @@ import {Cars, Blogposts} from '/collections/collections.js';
 
 Template.home.helpers({
   cars() {
-    const cars = Cars.find({}).fetch();
+    const cars = Cars.find({published: true, active: true}, {sort: {createdAt: -1}}).fetch();
     cars.forEach((car) => {
       car.image = Images.findOne({assigned: car['_id']});
     });
