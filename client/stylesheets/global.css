@@ -58,19 +58,21 @@ main {
   background-size: cover;
   border-bottom: 1px #e7e7e7;
   color: #fff;
-  height: 500px;
+  height: 400px;
   margin-top: -20px;
-  padding-top: 100px;
   text-shadow: 1px 1px 1px #222;
 }
 @media (max-width: 768px) {
   #home-cover {
     background-image: url(img/cover-mobile.jpg);
+    height: 250px;
+    padding-top: 40px;
   }
 }
 @media (min-width: 769px) {
   #home-cover {
     background-image: url(img/cover.jpg);
+    padding-top: 100px;
   }
 }
 .blogpost {
