@@ -137,5 +137,19 @@ Meteor.methods({
         Cars.update({_id: carId}, {$set: {published: true}});
       }
     }
+  },
+
+  /**
+   * Rejects the Ad if the one who makes it is Admin or Employee.
+   */
+  rejectAdminAd: function(carId) {
+    const userId = this.userId;
+    if (userId) {
+      const isAdmin = Roles.userIsInRole(userId, 'admin');
+      const isEmployee = Roles.userIsInRole(userId, 'employee');
+      if (isAdmin || isEmployee) {
+        Cars.update({_id: carId}, {$set: {active: false}});
+      }
+    }
   }
 });
