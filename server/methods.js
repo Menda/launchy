@@ -123,5 +123,19 @@ Meteor.methods({
   closeAd: (carId) => {
     Cars.update({_id: carId, userId: Meteor.userId(), active: true}, {$set: {active: false}});
     return true;
+  },
+
+  /**
+   * Approves the Ad if the one who makes it is Admin or Employee.
+   */
+  approveAdminAd: function(carId) {
+    const userId = this.userId;
+    if (userId) {
+      const isAdmin = Roles.userIsInRole(userId, 'admin');
+      const isEmployee = Roles.userIsInRole(userId, 'employee');
+      if (isAdmin || isEmployee) {
+        Cars.update({_id: carId}, {$set: {published: true}});
+      }
+    }
   }
 });
