@@ -177,8 +177,12 @@
           Almacenando...
         {{/unless}}
       {{else}}
-        Subiendo: {{this.uploadProgress}}%
-        <p>{{> FS.UploadProgressBar bootstrap=true}}</p>
+        {{#if this.uploadProgress}}
+          Subiendo: {{this.uploadProgress}}%
+          <p>{{> FS.UploadProgressBar bootstrap=true}}</p>
+        {{else}}
+          <p>Espere un momento...</p>
+        {{/if}}
       {{/if}}
       {{#FS.DeleteButton class="btn btn-danger btn-xs"}}Borrar{{/FS.DeleteButton}}
     </div>

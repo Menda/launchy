@@ -155,11 +155,33 @@ AutoForm.hooks({
   }
 });
 
+
+function cfsInsertFiles(collection, options) {
+  options = options || {};
+  var afterCallback = options.after;
+  var metadataCallback = options.metadata;
+
+  function insertFilesHandler(event) {
+    FS.Utility.eachFile(event, function (file) {
+      var f = new FS.File(file);
+      var maxChunk = 2097152;
+      FS.config.uploadChunkSize =
+        (f.original.size < 10 * maxChunk) ? f.original.size / 10 : maxChunk;
+      if (metadataCallback) {
+        FS.Utility.extend(f, metadataCallback(f));
+      }
+      collection.insert(f, afterCallback);
+    });
+  }
+
+  return insertFilesHandler;
+}
+
 /**
  * Image handling methods
  */
 function getHandler(dropped) {
-  return FS.EventHandlers.insertFiles(Images, {
+  return cfsInsertFiles(Images, {
     metadata(fileObj) {
       return {
         session: Session.get('random'),  // util variable
