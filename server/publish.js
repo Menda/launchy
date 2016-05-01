@@ -98,3 +98,7 @@ Meteor.publish('carDetails', function(carId) {
 Meteor.publish('images', () => {
   return Images.find();
 });
+
+Meteor.publish('imagesDetail', (carId) => {
+  return Images.find({assigned: carId});
+});
