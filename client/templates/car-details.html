@@ -31,6 +31,8 @@
           {{#if owners}}
             <p><span class="property-title">Número de propietarios:</span> <span itemprop="numberOfPreviousOwners">{{owners}}</span></p>
           {{/if}}
+          <p><span class="property-title">Descripción:</span></p>
+          <p>{{#markdown}}{{description}}{{/markdown}}</p>
           {{#if maintenance}}
             <p><span class="property-title">Mantenimiento:</span></p>
             <p><span>{{#markdown}}{{maintenance}}{{/markdown}}</span></p>
@@ -39,8 +41,6 @@
             <p><span class="property-title">Garantía:</span></p>
             <p><span>{{#markdown}}{{warranty}}{{/markdown}}</span></p>
           {{/if}}
-          <hr />
-          <p>{{#markdown}}{{description}}{{/markdown}}</p>
         </div>
         <div class="col-md-4">
           <div id="car-details-data">
