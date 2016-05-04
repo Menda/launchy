@@ -11,20 +11,15 @@ Enlace desde rmunoz.net con follow
 
 Improvements:
 https://github.com/arunoda/meteor-find-faster
-https://www.typeform.com/
 https://www.discovermeteor.com/blog/improving-the-performance-of-your-meteor-app/
 gwendall:simple-schema-i18n
-https://jmperezperez.com/medium-image-progressive-loading-placeholder/
 
 Reads:
-https://themeteorchef.com/snippets/using-the-check-package/
 http://meteorpatterns.com/Sewdn/project-builds
-https://meteorhacks.com/flow-router-and-subscription-management/
-https://kadira.io/academy/meteor-routing-guide/content/subscriptions-and-data-management
 https://bulletproofmeteor.com
-
-Crear PR para bootstrap-ui:
-http://stackoverflow.com/questions/18838964/add-bootstrap-glyphicon-to-input-box
 
 CALIDAD FOTOS RETINA
 http://comunidad.atresmedia.com/login login para bootstrap
+
+Crear un whitelabeling.
+Una página para compartir en redes sociales, pero con mucha mejor presentación.
