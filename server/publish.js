@@ -37,14 +37,17 @@ const carFields = {
   'createdAt': 1
 };
 
-const carDetailsFields = _.extend(carFields,
-  {
-    'published': 1,
-    'active': 1
-  });
+const carDetailsFields = _.extend(carFields, {
+  'published': 1,
+  'active': 1
+});
+
+const editAdCarFields = _.extend(carDetailsFields, {
+  'contact': 1
+});
 
 /**
- * Only return to the view cars which are published and approved
+ * Only publishes cars which are published and approved
  */
 Meteor.publish('lastAddedCars', (limit) => {
   return Cars.find({published: true, active: true},
@@ -73,30 +76,63 @@ Meteor.publish('lastBlogposts', (limit) => {
 });
 
 /**
- * Show car details.
+ * Publishes car details.
  * - Approved (published=true) can be seen by everyone, even though they are not active.
  * - Still not approved (published=false) can only be seen by the owner, admins or employees.
  */
 Meteor.publish('carDetails', function(carId) {
   const userId = this.userId;
+  const fields = carDetailsFields;
   if (! userId) {
-    return Cars.find({'_id': carId, published: true}, {fields: carDetailsFields});
-  } else {
+    return Cars.find({'_id': carId, published: true}, {fields: fields});
+  }
+  const isAdmin = Roles.userIsInRole(userId, 'admin');
+  const isEmployee = Roles.userIsInRole(userId, 'employee');
+  if (isAdmin || isEmployee) {
+    return Cars.find({'_id': carId}, {fields: fields});
+  } else {
+    return Cars.find({
+      _id: carId,
+      $or: [
+        {userId: userId},
+        {published: true}
+      ]
+    }, {fields: fields});
+  }
+});
+
+Meteor.publish('carDetailsEdit', function(carId) {
+  const userId = this.userId;
+  const fields = editAdCarFields;
+  if (userId) {
     const isAdmin = Roles.userIsInRole(userId, 'admin');
     const isEmployee = Roles.userIsInRole(userId, 'employee');
     if (isAdmin || isEmployee) {
-      return Cars.find({'_id': carId}, {fields: carDetailsFields});
-    } else {
+      return Cars.find({'_id': carId}, {fields: fields});
+    } else {
       return Cars.find({
         _id: carId,
-        userId: userId,
-      }, {fields: carDetailsFields});
+        userId: userId
+      }, {fields: fields});
     }
   }
 });
 
 Meteor.publish('images', () => {
   return Images.find();
+});
+
+Meteor.publish('assignedImages', () => {
+  return Images.find({assigned: {
+      $not : { $type : 10 },
+      $exists : true
+    }
+  });
+});
+
+Meteor.publish('justUploadedImages', () => {
+  const dateNow = new Date();
+  return Images.find({assigned: false, uploadedAt: {$gte: dateNow}});
 });
 
 Meteor.publish('imagesDetail', (carId) => {

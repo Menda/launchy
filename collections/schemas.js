@@ -73,6 +73,8 @@ Schemas.Car = new SimpleSchema({
         return make['name'];
       } else if (this.isUpsert) {
         return make['name'];
+      } else if (this.isUpdate) {
+        return make['name'];
       } else {
         this.unset();  // Prevent user from supplying their own value
       }
@@ -184,8 +186,6 @@ Schemas.Car = new SimpleSchema({
     autoValue() {
       if (this.isInsert) {
         return new Date();
-      } else if (this.isUpsert) {
-        return {$setOnInsert: new Date()};
       } else {
         this.unset();  // Prevent user from supplying their own value
       }

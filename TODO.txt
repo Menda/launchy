@@ -1,10 +1,4 @@
-* How to run commands on server hosting - Creo que no se puede, habría que hacer algo en Admin
-http://guide.meteor.com/deployment.html
-
-Final:
-No dejar que alguien pueda borrar imágenes que estén asignadas o no sean suyas: "Securing Based on User Information"
 http://stackoverflow.com/questions/22815538/meteor-prevent-multiple-inserts-from-console
-https://themeteorchef.com/recipes/building-a-user-admin/
 https://dweldon.silvrback.com/common-mistakes
 https://silktide.com/tools/cookie-consent/
 Enlace desde rmunoz.net con follow

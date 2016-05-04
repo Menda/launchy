@@ -1,0 +1,138 @@
+<template name="editAd">
+  <main role="main" class="container">
+    <section id="edit-ad">
+      {{#if currentCar}}
+        <header>
+          <span class="glyphicon glyphicon-plus-sign title-icon" aria-hidden="true"></span>
+          <h1 class="title-with-icon">Editar anuncio</h1>
+        </header>
+
+        {{#autoForm schema=createAdForm id="editAdForm" type="method-update" meteormethod="updateAd" doc=currentCar}}
+
+        <fieldset>
+          <legend>
+            <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
+            Fotos del vehículo
+          </legend>
+          <p>La <strong>primera foto</strong> que subas será la foto principal del anuncio</p>
+          <div class="well imageDropArea">
+            <input type="file" id="form-images" multiple class="images">
+          </div>
+          <div class="imageArea clearfix">
+            {{#each uploadedImages}}
+            {{> uploadedImage}}
+            {{/each}}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            Datos del vehículo
+          </legend>
+          {{> afQuickField id="form-makeId" name="makeId" label="Marca" firstOption="(Seleccionar marca)" options=makeIdOptions}}
+          {{> afQuickField id="form-title" name="title" label="Modelo" placeholder="Por ejemplo: Serie 3 335i, S3 Sportback, CLS 350 d Shooting Brake" }}
+          {{> afFormGroup type="select" id="form-districtId" name="districtId" label="Provincia" firstOption="(Seleccionar provincia)" options=districtOptions}}
+          <div class="form-group{{#if afFieldIsInvalid name='price'}} has-error{{/if}}">
+            <label for="form-price" class="control-label">Precio</label>
+            <div class="input-group">
+              {{> afFieldInput id="form-price" name="price" placeholder="Precio al que deseas vender el vehículo"}}
+              <span class="input-group-addon">€</span>
+            </div>
+            {{#if afFieldIsInvalid name='price'}}
+            <span class="help-block">{{afFieldMessage name='price'}}</span>
+            {{/if}}
+          </div>
+          {{> afQuickField id="form-fuel" name="fuel" label="Combustible" firstOption="(Seleccionar tipo de combustible)" options=fuelOptions}}
+          {{> afQuickField id="form-transmission" name="transmission" label="Tipo de cambio" firstOption="(Seleccionar tipo de cambio)" options=transmissionOptions}}
+          {{> afQuickField id="form-year" name="year" label="Año de matriculación" minCount=1900 placeholder="Año de primera matriculación del coche cuando se compró nuevo"}}
+          <div class="form-group{{#if afFieldIsInvalid name='kilometers'}} has-error{{/if}}">
+            <label for="form-kilometers" class="control-label">Kilómetros</label>
+            <div class="input-group">
+              {{> afFieldInput id="form-kilometers" name="kilometers" placeholder="Número actual de kilómetros del coche"}}
+              <span class="input-group-addon">km</span>
+            </div>
+            {{#if afFieldIsInvalid name='kilometers'}}
+            <span class="help-block">{{afFieldMessage name='kilometers'}}</span>
+            {{/if}}
+            <small class="text-muted">En Launch Control somos duros con las llamadas "afeitadas" de kilómetros. Piénsatelo dos veces antes de vender un coche manipulado, ¡es delito!</small>
+          </div>
+          <div class="form-group{{#if afFieldIsInvalid name='description'}} has-error{{/if}}">
+            <label for="form-description" class="control-label">Descripción general</label>
+            {{> afFieldInput id="form-description" name="description" rows=3}}
+            {{#if afFieldIsInvalid name='description'}}
+            <span class="help-block">{{afFieldMessage name='description'}}</span>
+            {{/if}}
+            <small class="text-muted">Aquí puedes detallar el uso que ha tenido el coche, los extras o modificaciones que tiene.</small>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>
+            <i class="fa fa-certificate"></i>
+            Datos opcionales
+          </legend>
+          <p>Los siguientes datos no son obligatorios pero <strong>te recomendamos rellenarlos</strong>, pues ayudarán a vender mucho mejor tu coche. Si algún dato no lo sabes, no pasa nada, puedes dejarlo en blanco.</p>
+          {{> afQuickField id="form-color" name="color" label="Color" placeholder="Color de la carrocería. Por ejemplo: Azul - Nitrous Blue"}}
+          {{> afQuickField id="form-doors" name="doors" label="Puertas" placeholder="Número de puertas" }}
+          {{> afQuickField id="form-body" name="body" label="Tipo de carrocería" firstOption="(Seleccionar tipo de carrocería)" options=bodyOptions}}
+          <div class="form-group{{#if afFieldIsInvalid name='horsepower'}} has-error{{/if}}">
+            <label for="form-horsepower" class="control-label">Potencia</label>
+            <div class="input-group">
+              {{> afFieldInput id="form-horsepower" name="horsepower" placeholder="Potencia en caballos"}}
+              <span class="input-group-addon">cv</span>
+            </div>
+            {{#if afFieldIsInvalid name='horsepower'}}
+            <span class="help-block">{{afFieldMessage name='horsepower'}}</span>
+            {{/if}}
+          </div>
+          {{> afQuickField id="form-owners" name="owners" label="Dueños" placeholder="Número de propietarios del coche incluido el dueño actual" }}
+          <div class="form-group{{#if afFieldIsInvalid name='maintenance'}} has-error{{/if}}">
+            <label for="form-maintenance" class="control-label">Mantenimiento</label>
+            {{> afFieldInput id="form-maintenance" name="maintenance" rows=6}}
+            {{#if afFieldIsInvalid name='maintenance'}}
+            <span class="help-block">{{afFieldMessage name='maintenance'}}</span>
+            {{/if}}
+            <small class="text-muted">¿Tratas bien tu coche? ¿Ha pasado la ITV? ¿Dónde ha estado aparcado normalmente? Explica al nuevo comprador qué tipos de cuidados haces a tu coche, si tienes el libro de mantenimiento al día o cuándo ha tenido su última revisión mecánica.</small>
+          </div>
+          <div class="form-group{{#if afFieldIsInvalid name='warranty'}} has-error{{/if}}">
+            <label for="form-warranty" class="control-label">Garantía</label>
+            {{> afFieldInput id="form-warranty" name="warranty" rows=3}}
+            {{#if afFieldIsInvalid name='warranty'}}
+            <span class="help-block">{{afFieldMessage name='warranty'}}</span>
+            {{/if}}
+            <small class="text-muted">¿Eres un profesional o tu coche está todavía en garantía? Entonces te interesará detallar esta serie de garantías de compra a los compradores potenciales.</small>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>
+            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            Datos de contacto
+          </legend>
+          {{> afQuickField id="form-email" name="email" label="Email" placeholder="Por ejemplo: pepe@viyuela.es" }}
+          {{> afQuickField id="form-phone" name="phone" label="Teléfono" }}
+          {{> afQuickField id="form-fullname" name="fullname" label="Nombre y apellidos" }}
+        </fieldset>
+
+        <div class="form-group{{#if afFieldIsInvalid name='tc'}} has-error{{/if}}">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="true" id="form-tc" name="tc" data-schema-key="tc">
+              Acepto los <a target="_blank" href="{{urlTC}}">términos y condiciones</a>.
+            </label>
+          </div>
+          {{#if afFieldIsInvalid name='tc'}}
+          <span class="help-block">{{afFieldMessage name='tc'}}</span>
+          {{/if}}
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="edit-ad-btn">Editar anuncio</button>
+
+        {{/autoForm}}
+      {{else}}
+        <p>404</p>
+      {{/if}}
+    </section>
+  </main>
+</template>

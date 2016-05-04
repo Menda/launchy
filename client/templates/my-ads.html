@@ -49,8 +49,11 @@
     </div>
     <div class="col-lg-4 text-right">
       {{#if active}}
-      <a href="#" class="close-ad" data-close-id="{{_id}}" data-close-name="{{make}} {{title}}" title="Cerrar anuncio">
-        <span style="color: black;" class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      <a href="{{urlEditAd}}" class="action-icon" title="Editar anuncio">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+      </a>
+      <a href="#" class="close-ad action-icon" data-close-id="{{_id}}" data-close-name="{{make}} {{title}}" title="Cerrar anuncio">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
       </a>
       {{/if}}
     </div>

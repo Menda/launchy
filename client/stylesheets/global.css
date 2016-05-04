@@ -303,6 +303,14 @@ legend .glyphicon, legend .fa {
   border-bottom: 1px solid #e3e3e3;
   padding: 10px 0 10px 0;
 }
+.action-icon {
+  color: #000;
+  padding: 0 5px 0 5px;
+}
+.action-icon:hover {
+  color: #000;
+  text-decoration: none;
+}
 
 /**
  * Meet us

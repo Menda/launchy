@@ -11,9 +11,11 @@ import {setHead} from '/lib/utils.js';
 
 Template.carDetails.onRendered(() => {
   let carId = FlowRouter.getParam('_id');
-  Meteor.subscribe('carDetails', carId, () => {
+  Meteor.subscribe('carDetails', carId, () => {  // TODO: any other way to make it?
     const car = Cars.findOne({'_id': carId},
                            {fields: {'make': 1, 'title': 1, 'district.district': 1}});
+    // TODO Sometimes I'm getting car = undefined, and the rest of the code is failing,
+    // because this method is not being again executed
     const title = `${car['make']} ${car['title']} en venta en ${car['district']['district']}`;
     let metaDescription;
     if (car['make'] == 'Volkswagen') {

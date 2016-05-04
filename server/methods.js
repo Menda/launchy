@@ -61,6 +61,35 @@ Meteor.methods({
     return id;
   },
 
+  updateAd: (doc, carId) => {
+    console.log('Meteor.methods.updateAd: Entering method');
+
+    Schemas.Car.clean(doc, {
+      extendAutoValueContext: {
+        isInsert: false,
+        isUpdate: true,
+        isUpsert: false,
+        isFromTrustedCode: false
+      }
+    });
+
+    const newDoc  = _.clone(doc.$set);
+    var user = Meteor.user();
+    // Check if the user is authorized to update the Ad
+    if (! Roles.userIsInRole(user, ['admin', 'employee'])) {
+      const car = Cars.findOne({'_id': carId, 'userId': user._id});
+      if (! car) {
+        throw new Meteor.Error('403', 'You are not authorized');
+      }
+    }
+    // We fake this values to pass the check
+    newDoc.active = false;
+    newDoc.createdAt = new Date();
+    check(newDoc, Schemas.Car);
+
+    Cars.update(carId, doc);
+  },
+
   /**
    * Assigns an advertisement to a certain user. For security reasons, already assigned ads cannot
    * be assigned again.
@@ -129,6 +158,7 @@ Meteor.methods({
    * Approves the Ad if the one who makes it is Admin or Employee.
    */
   approveAdminAd: function(carId) {
+    console.log('Meteor.methods.approveAdminAd: Entering method');
     const userId = this.userId;
     if (userId) {
       const isAdmin = Roles.userIsInRole(userId, 'admin');
@@ -143,6 +173,7 @@ Meteor.methods({
    * Rejects the Ad if the one who makes it is Admin or Employee.
    */
   rejectAdminAd: function(carId) {
+    console.log('Meteor.methods.rejectAdminAd: Entering method');
     const userId = this.userId;
     if (userId) {
       const isAdmin = Roles.userIsInRole(userId, 'admin');

@@ -36,6 +36,15 @@ Template.adDetails.helpers({
     const routeName = 'carDetails';
     const path = FlowRouter.path(routeName, params);
     return path;
+  },
+  urlEditAd() {
+    const car = this;
+    const params = {
+      _id: car._id
+    };
+    const routeName = 'editAd';
+    const path = FlowRouter.path(routeName, params);
+    return path;
   }
 });
 
@@ -62,6 +71,5 @@ Template.closeConfirmation.events({
         });
       }
     });
-
   }
 });
