@@ -1,13 +1,14 @@
 'use strict';
+import {Accounts} from 'meteor/accounts-base';
 import {AutoForm} from 'meteor/aldeed:autoform';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+import {Session} from 'meteor/session';
 import {Template} from 'meteor/templating';
 import {_} from 'meteor/underscore';
-//Accounts import TODO
-//Forms import TODO
-//Session import TODO
 //Fs import TODO
 
+import {makeIdOptions, districtOptions, fuelOptions, transmissionOptions,
+        wheelDriveOptions, bodyOptions} from '/client/lib/form-options';
 import {Images} from '/client/imports/collections.js';
 import {Makes, Districts} from '/collections/collections.js';
 import {FUELTYPES, TRANSMISSIONTYPES,
@@ -44,54 +45,12 @@ Template.createAd.helpers({
   createAdForm() {
     return Forms.createAdForm;
   },
-  makeIdOptions() {
-    return Makes.find().map((m) => {
-      return {'label': m.name, 'value': m._id, 'data-allowed': m.allowed};
-    });
-    return options;
-  },
-  districtOptions() {
-    const options = [];
-    const districts = Districts.find().fetch();
-    const groupedDistricts = _.groupBy(districts, (district) => {
-      return district['region'];
-    });
-    const sortedRegions = _.keys(groupedDistricts).sort();
-    sortedRegions.forEach((region) => {
-      const suboptions = [];
-      groupedDistricts[region].forEach((district) => {
-        suboptions.push({
-          label: district['district'],
-          value: district['_id']
-        });
-      });
-      options.push({
-        optgroup: region,
-        options: suboptions
-      });
-    });
-    return options;
-  },
-  fuelOptions() {
-    return Object.keys(FUELTYPES).map((value, index) => {
-      return {'label': FUELTYPES[value]['es'], 'value': value};
-    });
-  },
-  transmissionOptions() {
-    return Object.keys(TRANSMISSIONTYPES).map((value, index) => {
-      return {'label': TRANSMISSIONTYPES[value]['es'], 'value': value};
-    });
-  },
-  wheelDriveOptions() {
-    return Object.keys(WHEELDRIVETYPES).map((value, index) => {
-      return {'label': WHEELDRIVETYPES[value]['es'], 'value': value};
-    });
-  },
-  bodyOptions() {
-    return Object.keys(BODYTYPES).map((value, index) => {
-      return {'label': BODYTYPES[value]['es'], 'value': value};
-    });
-  },
+  makeIdOptions,
+  districtOptions,
+  fuelOptions,
+  transmissionOptions,
+  wheelDriveOptions,
+  bodyOptions,
   uploadedImages() {
     return Images.find({session: Session.get('random')});
   }
@@ -155,8 +114,10 @@ AutoForm.hooks({
   }
 });
 
-
-function cfsInsertFiles(collection, options) {
+/**
+ * Replace for original FS.EventHandlers.insertFiles function.
+ */
+export function cfsInsertFiles(collection, options) {
   options = options || {};
   var afterCallback = options.after;
   var metadataCallback = options.metadata;
