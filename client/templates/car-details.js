@@ -9,9 +9,9 @@ import {Forms} from '/collections/forms.js';
 import {setHead} from '/lib/utils.js';
 
 
-Template.carDetails.onRendered(function() {
+Template.carDetails.onRendered(() => {
   let carId = FlowRouter.getParam('_id');
-  Meteor.subscribe("carDetails", carId, () => {
+  Meteor.subscribe('carDetails', carId, () => {
     const car = Cars.findOne({'_id': carId},
                            {fields: {'make': 1, 'title': 1, 'district.district': 1}});
     const title = `${car['make']} ${car['title']} en venta en ${car['district']['district']}`;
@@ -102,6 +102,9 @@ Template.carDetails.destroyed = () => {
 };
 
 Template.carDetails.helpers({
+  isSuccessfulEditAd() {
+    return FlowRouter.getQueryParam('edited');
+  },
   showContactOwnerForm() {
     return Session.get('showContactOwnerForm');
   },

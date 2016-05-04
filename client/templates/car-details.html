@@ -1,5 +1,12 @@
 <template name="carDetails">
   <main role="main" class="container">
+    {{#if isSuccessfulEditAd}}
+      <div class="bs-callout bs-callout-success bs-callout-success-fill">
+        <p>
+          Anuncio editado correctamente.
+        </p>
+      </div>
+    {{/if}}
     {{#with car}}
     <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
       {{>picsCarousel car=car}}

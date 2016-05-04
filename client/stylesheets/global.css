@@ -253,6 +253,9 @@ legend .glyphicon, legend .fa {
 .bs-callout-success h4 {
   color: #5cb85c;
 }
+.bs-callout-success-fill {
+  background-color: #d5ffc3;
+}
 .bs-callout-danger {
   border-left-color: #d9534f;
 }
