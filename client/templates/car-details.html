@@ -77,14 +77,18 @@
                 <td>Kilómetros</td>
                 <td class="text-right"><b>{{kilometers}}</b></td>
               </tr>
+              {{#if body}}
               <tr>
                 <td>Tipo de carrocería</td>
                 <td class="text-right"><b>{{body}}</b></td>
               </tr>
+              {{/if}}
+              {{#if doors}}
               <tr>
                 <td>Número de puertas</td>
                 <td class="text-right"><b><span itemprop="numberOfDoors">{{doors}}</span></b></td>
               </tr>
+              {{/if}}
             </table>
 
             {{#if active}}
