@@ -85,7 +85,7 @@ Meteor.methods({
     // We fake this values to pass the check
     newDoc.active = false;
     newDoc.createdAt = new Date();
-    check(newDoc, Schemas.Car);
+    Check.check(newDoc, Schemas.Car);
 
     Cars.update(carId, doc);
   },
@@ -111,7 +111,7 @@ Meteor.methods({
 
   sendOwnerEmail: (doc) => {
     console.log('Meteor.methods.sendOwnerEmail: Entering method');
-    check(doc, Forms.contactOwnerFormSchema);
+    Check.check(doc, Forms.contactOwnerFormSchema);
 
     const car = Cars.findOne(doc.carId);
     const admins = Roles.getUsersInRole('admin').fetch();

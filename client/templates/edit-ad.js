@@ -16,7 +16,8 @@ Template.editAd.helpers({
     return Forms.createAdForm;
   },
   currentCar() {
-    const car = Cars.findOne();
+    const carId = FlowRouter.getParam('_id');
+    const car = Cars.findOne(carId);
     // TODO make it in other way than checking if the value is not empty?
     // There should be something like subscriptionReady == true
     if (car) {

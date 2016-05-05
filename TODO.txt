@@ -1,6 +1,4 @@
 http://stackoverflow.com/questions/22815538/meteor-prevent-multiple-inserts-from-console
-https://dweldon.silvrback.com/common-mistakes
-https://silktide.com/tools/cookie-consent/
 Enlace desde rmunoz.net con follow
 
 Improvements:
