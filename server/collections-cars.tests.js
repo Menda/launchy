@@ -4,6 +4,7 @@ import {Meteor} from 'meteor/meteor';
 import {assert} from 'meteor/practicalmeteor:chai';
 
 import {Districts, Makes, Cars} from '/collections/collections.js';
+import {cleanData} from '/server/test-fixtures.js';
 
 
 describe('Car', () => {
@@ -30,9 +31,7 @@ describe('Car', () => {
   };
 
   beforeEach(() => {
-    Makes.remove({});
-    Districts.remove({});
-    Cars.remove({});
+    cleanData();
 
     const makeObj = {'name': 'BMW', '_value': 'xxx'};
     const insertSync = Meteor.wrapAsync(Makes.insert, Makes);

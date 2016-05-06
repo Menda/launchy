@@ -34,6 +34,7 @@ Base:
 * selaias:cookie-consent
 * meteorhacks:fast-render
 * mrt:moment
+* dispatch:run-as-user
 
 DebugOnly:
 * msavin:mongol
@@ -54,20 +55,9 @@ How to run
 
 On development:
 
-    $ npm run-script start_dev
+    $ meteor --settings settings-dev.json
 
-On staging:
-
-    $ npm run-script start_staging
-
-On production:
-
-    $ npm run-script start_production
-
-First run on development and staging environments the application itself will
-install some fixtures: users, ads.
-
-First run on all environments it will install all districts.
+First run on will install some fixtures, depending on the env: users, ads.
 
 
 How to run a shell

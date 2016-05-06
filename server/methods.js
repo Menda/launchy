@@ -19,7 +19,6 @@ export const Check = {
   }
 };
 
-
 Meteor.methods({
   createAd: (doc) => {
     console.log('Meteor.methods.createAd: Entering method');
@@ -158,15 +157,17 @@ Meteor.methods({
    * Approves the Ad if the one who makes it is Admin or Employee.
    */
   approveAdminAd: function(carId) {
-    console.log('Meteor.methods.approveAdminAd: Entering method');
+    console.log(`Meteor.methods.approveAdminAd: Entering method. ` +
+                `carId: ${carId}`);
     const userId = this.userId;
     if (userId) {
-      const isAdmin = Roles.userIsInRole(userId, 'admin');
-      const isEmployee = Roles.userIsInRole(userId, 'employee');
-      if (isAdmin || isEmployee) {
+      const isWorker = Roles.userIsInRole(userId, ['admin', 'employee']);
+      if (isWorker) {
         Cars.update({_id: carId}, {$set: {published: true}});
+        return;
       }
     }
+    throw new Meteor.Error('403', 'You are not authorized');
   },
 
   /**
@@ -176,11 +177,12 @@ Meteor.methods({
     console.log('Meteor.methods.rejectAdminAd: Entering method');
     const userId = this.userId;
     if (userId) {
-      const isAdmin = Roles.userIsInRole(userId, 'admin');
-      const isEmployee = Roles.userIsInRole(userId, 'employee');
-      if (isAdmin || isEmployee) {
+      const isWorker = Roles.userIsInRole(userId, ['admin', 'employee']);
+      if (isWorker) {
         Cars.update({_id: carId}, {$set: {active: false}});
+        return;
       }
     }
+    throw new Meteor.Error('403', 'You are not authorized');
   }
 });
