@@ -10,11 +10,6 @@
           <i class="fa fa-refresh fa-spin"></i>
         {{else}}
           {{#if ads}}
-            <div class="bs-callout bs-callout-warning">
-              <p>
-                Ya que nos encontramos en versión Beta, todavía no es posible editar anuncios. Si quieres corregir alguna errata o cambiar cualquier valor, envíanos un email a <strong>contact@launchcontrol.es</strong> indicándonos la URL de tu anuncio y qué deseas cambiar.
-              </p>
-            </div>
             {{#each ads}}
               {{> adDetails}}
             {{/each}}
