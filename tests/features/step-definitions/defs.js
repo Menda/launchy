@@ -3,7 +3,9 @@ var myStepDefinitionsWrapper = function() {
   // Acceptance cookies feature
 
   this.Then(/^I accept the cookies$/, function() {
-    browser.click('#acceptCookies');
+    if (browser.isVisible('#acceptCookies')) {
+      browser.click('#acceptCookies');
+    }
   });
 
   ////////////////////
@@ -30,11 +32,27 @@ var myStepDefinitionsWrapper = function() {
     // Create ad
     browser.click('#link-create-ad');
     expect(browser.getTitle()).toMatch('Crear anuncio de tu coche');
+
+    browser.timeoutsImplicitWait(1000);
+
+    // Meet us
+    browser.click('#link-meet-us');
+    expect(browser.getTitle()).toMatch('Conócenos');
+
+    browser.timeoutsImplicitWait(1000);
+
+    // T&C
+    browser.click('#link-tc');
+    expect(browser.getTitle()).toMatch('Términos y Condiciones');
   });
 
-
-  // TODO Tries to go to private links, like /mis-anuncios
-  // TODO Check links to meetUs, T&C
+  this.Then(/^Private links work as expected$/, function() {
+    browser.waitForExist('.dropdown-toggle');
+    browser.click('.dropdown-toggle');
+    browser.waitForExist('#link-my-ads');
+    browser.click('#link-my-ads');
+    expect(browser.getTitle()).toMatch('Mis anuncios');
+  });
 
   ////////////////////
   // Create ad feature
