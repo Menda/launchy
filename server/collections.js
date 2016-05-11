@@ -15,7 +15,7 @@ export const Images = new FS.Collection('images', {
   filter: {
     maxSize: 20 * 1024 * 1024, //in bytes
     allow: {
-      contentTypes: ['image/*']
+      contentTypes: ['image/jpeg', 'image/png']
     }
   }
 });

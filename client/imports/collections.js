@@ -15,10 +15,12 @@ export const Images = new FS.Collection('images', {
   filter: {
     maxSize: 20 * 1024 * 1024, //in bytes
     allow: {
-      contentTypes: ['image/*']
+      contentTypes: ['image/jpeg', 'image/png']
     },
     onInvalid: (message) => {
-      alert(message);
+      console.log(message);
+      alert('Lo sentimos, pero ese tipo de imagen no está permitido subir. ' +
+            'Pruebe de nuevo con formatos "jpg" o "png".');
     }
   }
 });
