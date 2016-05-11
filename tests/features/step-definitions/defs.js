@@ -30,8 +30,8 @@ var myStepDefinitionsWrapper = function() {
     expect(browser.getTitle()).toMatch('Mercado de automóviles de lujo');
 
     // Create ad
-    browser.click('#link-create-ad');
-    expect(browser.getTitle()).toMatch('Crear anuncio de tu coche');
+    browser.click('#link-pre-create-ad');
+    expect(browser.getTitle()).toMatch('Anunciarte con nosotros');
 
     browser.timeoutsImplicitWait(1000);
 
@@ -118,7 +118,7 @@ var myStepDefinitionsWrapper = function() {
     return browser.waitForExist('h1=' + expectedTitle);
   });
 
-  this.Then(/^I the car inserted in the database$/, function() {
+  this.Then(/^I see the car inserted in the database$/, function() {
     /*
      * TODO fix this checking 'My ads'
     var img = server.execute(function() {

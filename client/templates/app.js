@@ -18,14 +18,14 @@ Template.appHeader.helpers({
   urlCars() {
     return FlowRouter.path('cars');
   },
-  urlCreateAd() {
-    return FlowRouter.path('createAd');
+  urlPreCreateAd() {
+    return FlowRouter.path('preCreateAd');
   }
 });
 
 Template.appFooter.helpers({
-  urlCreateAd() {
-    return FlowRouter.path('createAd');
+  urlPreCreateAd() {
+    return FlowRouter.path('preCreateAd');
   },
   urlMeetUs() {
     return FlowRouter.path('meetUs');
