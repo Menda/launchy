@@ -9,8 +9,8 @@
     {{/if}}
     {{#with car}}
     <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
-      {{>picsCarousel car=car}}
-      <div id="car-details-spec" class="row">
+      {{>picsPhotoSwipe car=car}}
+      <div id="car-details-spec" class="clearfix">
         <div class="col-md-8">
           <header>
             <h1 itemprop="name" class="h2 car-details-title">
@@ -111,20 +111,51 @@
   </main>
 </template>
 
-<template name="picsCarousel">
+<template name="picsPhotoSwipe">
+  {{> pswp}}
   {{#with car}}
-  <div id="car-details-images" class="text-center owl-carousel owl-theme">
-    {{#each images}}
-    <div class="item">
-      <a href="{{url store="images"}}" title="Ver foto #{{@index}} de {{../make}} {{../title}}" target="_blank" class="fluidbox-img">
-        <img src="{{url store="thumbs-retina"}}" alt="{{make}} {{title}} ({{@index}})" class="img-thumbnail" />
-      </a>
+  <div id="car-details-images" class="row" itemtype="http://schema.org/ImageGallery">
+    <div class="col-md-6">
+      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <img class="photoswipe photo-main" src="{{images.[0].url store="images"}}" data-src="{{images.[0].url store="images"}}" data-width="{{images.[0].metadata.width}}" data-height="{{images.[0].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
+      </figure>
     </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
+            <img class="photoswipe" src="{{images.[1].url store="thumbs-retina"}}" data-src="{{images.[1].url store="images"}}" data-width="{{images.[1].metadata.width}}" data-height="{{images.[1].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
+          </figure>
+        </div>
+        <div class="col-md-6">
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
+            <img class="photoswipe" src="{{images.[2].url store="thumbs-retina"}}" data-src="{{images.[2].url store="images"}}" data-width="{{images.[2].metadata.width}}" data-height="{{images.[2].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
+          </figure>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
+            <img class="photoswipe" src="{{images.[3].url store="thumbs-retina"}}" data-src="{{images.[3].url store="images"}}" data-width="{{images.[3].metadata.width}}" data-height="{{images.[3].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
+          </figure>
+        </div>
+        <div class="col-md-6">
+          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
+            <img class="photoswipe" src="{{images.[4].url store="thumbs-retina"}}" data-src="{{images.[4].url store="images"}}" data-width="{{images.[4].metadata.width}}" data-height="{{images.[4].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
+          </figure>
+        </div>
+      </div>
+    </div>
+    {{#each getHiddenImages images 4}}
+      {{#if url}}
+      <figure class="hidden" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <img class="photoswipe" src="{{url store="thumbs-retina"}}" data-src="{{url store="images"}}" data-width="{{metadata.width}}" data-height="{{metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
+      </figure>
+      {{/if}}
     {{/each}}
   </div>
   {{/with}}
 </template>
-
 
 <template name="contactOwnerForm">
   <fieldset>

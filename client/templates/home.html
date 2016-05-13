@@ -10,12 +10,23 @@
       <header>
         <h1>Últimos coches anunciados</h1>
       </header>
-      <div id="all-cars" class="row">
+      <div id="all-cars" class="clearfix">
         {{#each cars}}
           {{> car}}
         {{/each}}
       </div>
-      <div class="row"><a href="{{urlCars}}" class="btn btn-danger">Ver todos los coches anunciados</a></div>
+      <div class="clearfix"><a href="{{urlCars}}" class="btn btn-danger">Ver todos los coches anunciados</a></div>
+    </section>
+    <section>
+      <header>
+        <h1>Únicos en su especie</h1>
+      </header>
+      <div id="all-unique-cars" class="clearfix">
+        {{#each uniqueCars}}
+          {{> car}}
+        {{/each}}
+      </div>
+      <div class="clearfix"><a href="{{urlCars}}" class="btn btn-danger">Ver únicos en su especie</a></div>
     </section>
     <section>
       <header>
@@ -77,7 +88,7 @@
             </a>
           </div>
       </div>
-      <div class="row">
+      <div class="clearfix">
         <a href="https://medium.com/launch-control" class="btn btn-danger">Ver todos los blogposts</a>
         </div>
     </section>

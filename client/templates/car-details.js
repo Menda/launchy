@@ -1,7 +1,9 @@
 'use strict';
+import {$} from 'meteor/jquery';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {Template} from 'meteor/templating';
 import {Tracker} from 'meteor/tracker';
+// TODO import {PhotoSwipeUI_Default} from...
 
 import {Images} from '/client/imports/collections.js';
 import {Cars} from '/collections/collections.js';
@@ -34,65 +36,48 @@ Template.carDetails.onRendered(() => {
   });
 });
 
-Template.picsCarousel.onRendered(function() {
-  $('.owl-carousel').owlCarousel({
-    // TODO use lazyLoad: true
-    // http://www.owlcarousel.owlgraphic.com/docs/api-options.html
-    responsiveClass: true,
-    margin: 10,
-    nav: true,
-    dots: false,
-    navText: ["Anterior","Siguiente"],
-    responsive: {
-      0: {
-        center: true,
-        margin: 5,
-        items: 2,
-        nav: false
-      },
-      600: {
-        items: 3
-      },
-      1000: {
-        items: 4,
-        loop: false
+
+Template.picsPhotoSwipe.events({
+  'click img.photoswipe': function(e) {
+    const pswpElement = $('.pswp')[0];
+    const photoItems = $('img.photoswipe');
+    const items = [];
+    let targetIndex;
+    photoItems.each((i, item) => {
+      if (item.src == e.target.src) {
+        targetIndex = i;
       }
-    }
-  });
-
-  // Encode all URIs, so there are no illegal chars for images
-  $('.fluidbox-img').each(function() {
-    const imgs = $(this).find('img');
-    $.each(imgs, function(key, img) {
-      img.src = img.src.replace(' ', '%20');
+      items.push({
+        src: item.dataset.src, // high-res
+        msrc: item.src, // thumb
+        w: item.dataset.width, // PhotoSwipe requires you to know the dimensions
+        h: item.dataset.height, // More information: http://photoswipe.com/documentation/faq.html
+        el: item
+      });
     });
-    this.href = this.href.replace(' ', '%20');
-  });
-
-  // Prepare all Fluidbox events
-  $(function () {
-    $('.fluidbox-img').fluidbox({
-      immediateOpen: true,
-      loader: true
+    const gallery = new PhotoSwipe(
+      pswpElement, PhotoSwipeUI_Default, items,
+      {
+        index: targetIndex,
+        getThumbBoundsFn: (index) => {
+          const thumbnail = photoItems[index];
+          const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+          const rect = thumbnail.getBoundingClientRect();
+          return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+        },
+        bgOpacity: 0.85,
+        barsSize: {top:0,bottom:0},
+        captionEl: false,
+        fullscreenEl: false,
+        galleryPIDs: false,
+        history: false,
+        mainClass: 'pswp--minimal--dark',
+        shareEl: false,
+        tapToClose: true,
+        tapToToggleControls: false
     });
-  });
-  $('.fluidbox-img')
-    .on('openstart.fluidbox', function() {
-      $('.navbar-static-top').addClass('navbar-static-top-piczoom');
-      $('.owl-stage-outer').addClass('owl-stage-outer-piczoom');
-      $('#car-details-spec').addClass('car-details-spec-piczoom');
-      $('.owl-prev').addClass('owl-prev-piczoom');
-      $('.owl-next').addClass('owl-next-piczoom');
-      $('footer.footer').addClass('footer-piczoom');
-    })
-    .on('closeend.fluidbox', function() {
-      $('.navbar-static-top').removeClass('navbar-static-top-piczoom');
-      $('.owl-stage-outer').removeClass('owl-stage-outer-piczoom');
-      $('#car-details-spec').removeClass('car-details-spec-piczoom');
-      $('.owl-prev').removeClass('owl-prev-piczoom');
-      $('.owl-next').removeClass('owl-next-piczoom');
-      $('footer.footer').removeClass('footer-piczoom');
-  }).fluidbox();
+    gallery.init();
+  }
 });
 
 Template.carDetails.created = () => {
@@ -137,6 +122,14 @@ Template.carDetails.events({
     Session.set('showContactOwnerForm', true);
   }
 });
+
+/////////////////
+// picsPhotoSwipe
+
+Template.registerHelper('getHiddenImages', (images, index) => {
+  return images.slice(index);
+});
+
 
 ///////////////////
 // contactOwnerForm

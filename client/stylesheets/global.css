@@ -189,23 +189,18 @@ table.car-details tr {
 table.car-details td {
   padding: 10px 0 10px 0;
 }
-/* Carousel hacks */
-.owl-stage-outer-piczoom {
-  overflow: initial !important;
+img.photo-main {
+  padding-top: 30px;
+  max-width: 100%;
 }
-.owl-prev-piczoom, .owl-next-piczoom {
-  opacity: 0 !important;
+.photo-detail {
+  text-align: center;
 }
-.navbar-static-top-piczoom {
-  opacity: 0 !important;
-  z-index: -1 !important;
-}
-.car-details-spec-piczoom {
-  opacity: 0 !important;
-}
-.footer-piczoom {
-  opacity: 0 !important;
-  z-index: -1 !important;
+.photo-detail img {
+  max-height: 180px;
+  max-width: 90%;
+  padding: 10px 0 10px 0;
+  text-align: center;
 }
 
 /**

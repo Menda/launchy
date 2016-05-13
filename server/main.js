@@ -16,7 +16,7 @@ function checkEnvVars() {
 function setFSSettings() {
   console.log('Setting image upload and handling config');
   if (Meteor.settings.public.environment === 'development'|'staging') {
-    FS.debug = false;
+    FS.debug = true;
   }
 
   // default GET request headers

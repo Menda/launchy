@@ -2,6 +2,7 @@
 import {Accounts} from 'meteor/accounts-base';
 import {AutoForm} from 'meteor/aldeed:autoform';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+import {$} from 'meteor/jquery';
 import {Session} from 'meteor/session';
 import {Template} from 'meteor/templating';
 import {_} from 'meteor/underscore';
@@ -123,7 +124,7 @@ export function cfsInsertFiles(collection, options) {
   var metadataCallback = options.metadata;
 
   function insertFilesHandler(event) {
-    FS.Utility.eachFile(event, function (file) {
+    FS.Utility.eachFile(event, function(file) {
       var f = new FS.File(file);
       var maxChunk = 2097152;
       FS.config.uploadChunkSize =
@@ -145,6 +146,7 @@ function getHandler(dropped) {
   return cfsInsertFiles(Images, {
     metadata(fileObj) {
       return {
+        // TODO: return width and height
         session: Session.get('random'),  // util variable
         assigned: false  // image assigned to a created Ad
       };

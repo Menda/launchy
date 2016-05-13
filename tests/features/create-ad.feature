@@ -66,4 +66,4 @@ Feature: Create Ad functionality
     And Check the T&C
     And Submit the form
     Then I see the success page
-    And I the car inserted in the database
+    And I see the car inserted in the database

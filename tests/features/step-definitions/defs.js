@@ -25,12 +25,16 @@ var myStepDefinitionsWrapper = function() {
     expect(browser.getTitle()).toMatch(
       'Compra y venta de coches de gama alta, clásicos y de disfrute');
 
+    browser.timeoutsImplicitWait(1000);
+
     // All cars
     browser.click('#link-cars');
     expect(browser.getTitle()).toMatch('Mercado de automóviles de lujo');
 
+    browser.timeoutsImplicitWait(2000);
+
     // Create ad
-    browser.click('#link-pre-create-ad');
+    browser.click('a#link-pre-create-ad');
     expect(browser.getTitle()).toMatch('Anunciarte con nosotros');
 
     browser.timeoutsImplicitWait(1000);
@@ -183,6 +187,8 @@ var myStepDefinitionsWrapper = function() {
   });
 
   this.When(/^I fill the contact form$/, function () {
+    browser.timeoutsImplicitWait(1000);
+
     browser.setValue('#form-name', 'Wechewere Alaperri');
     browser.setValue('#form-email', 'wecher@misdies.com');
     browser.setValue('#form-message', 'Ola k ase\n\nPor aquí todo bien.');
