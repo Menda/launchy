@@ -1,3 +1,6 @@
+
+Diseño galeria para mobile
+
 http://stackoverflow.com/questions/22815538/meteor-prevent-multiple-inserts-from-console
 Enlace desde rmunoz.net con follow
 

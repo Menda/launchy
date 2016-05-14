@@ -8,6 +8,7 @@ import {_} from 'meteor/underscore';
 import {Cars} from '/collections/collections.js';
 import {Forms} from '/collections/forms.js';
 import {Schemas} from '/collections/schemas.js';
+import {getResizeDimensions} from '/lib/utils.js';
 import {Images} from '/server/collections.js';
 import {EmailBuilder} from '/server/email_builder.js';
 
@@ -180,6 +181,38 @@ Meteor.methods({
       const isWorker = Roles.userIsInRole(userId, ['admin', 'employee']);
       if (isWorker) {
         Cars.update({_id: carId}, {$set: {active: false}});
+        return;
+      }
+    }
+    throw new Meteor.Error('403', 'You are not authorized');
+  },
+
+  /**
+   * Updates all images which don't have metadata associated.
+   */
+  updateImages: function() {
+    console.log('Meteor.methods.updateImages: Entering method');
+    const userId = this.userId;
+    if (userId) {
+      const isWorker = Roles.userIsInRole(userId, ['admin', 'employee']);
+      if (isWorker) {
+        const images = Images.find({});
+        images.forEach((img) => {
+          const url = Meteor.absoluteUrl() + img.url();
+          console.log(`URL: ${url}`);
+          gm(url).size({bufferStream: true}, FS.Utility.safeCallback(
+            (err, size) => {
+              if (! size) {
+                console.log(err);
+                return false;
+              }
+              const calcSize = getResizeDimensions(size.width, size.height, 1280, 960);
+              console.log(`Size found for ${url}: [${calcSize}]`);
+              Images.update({_id: img._id}, {$set: {
+                'metadata.width': calcSize[0], 'metadata.height': calcSize[1]}});
+            }
+          ));
+        });
         return;
       }
     }
