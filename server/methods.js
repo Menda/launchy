@@ -198,7 +198,9 @@ Meteor.methods({
       if (isWorker) {
         const images = Images.find({});
         images.forEach((img) => {
-          const url = Meteor.absoluteUrl() + img.url();
+          var url = Meteor.absoluteUrl() + img.url();
+          url = url.replace(/([^:]\/)\/+/g, "$1");
+          url = url.replace("https", "http");
           console.log(`URL: ${url}`);
           gm(url).size({bufferStream: true}, FS.Utility.safeCallback(
             (err, size) => {
