@@ -124,6 +124,8 @@ export function cfsInsertFiles(collection, options) {
   var metadataCallback = options.metadata;
 
   function insertFilesHandler(event) {
+    // TODO Limit to one file only, so we can avoid that it breaks
+    // the server if someone changes the upload field to 'multiple'.
     FS.Utility.eachFile(event, function(file) {
       var f = new FS.File(file);
       var maxChunk = 2097152;

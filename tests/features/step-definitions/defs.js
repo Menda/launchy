@@ -12,6 +12,7 @@ var myStepDefinitionsWrapper = function() {
   // Check app feature
 
   this.Given(/^I have visited the homepage$/, function() {
+    console.log('Hi dev!');
     browser.url(process.env.ROOT_URL);
   });
 

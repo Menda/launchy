@@ -10,8 +10,7 @@ export const Stores = {};
 
 
 function transformWrite(fileObj, readStream, writeStream, maxWidth, maxHeight) {
-  // TODO doing many file uploads of not big images is making the server crash
-  // with GridFS.
+  // TODO doing many file uploads of not big images is making the server crash.
 
   // Some clever guy would say why I'm making this instead of
   // `gm().resize(maxWidth, maxHeight, '>')`. The reason is that the cfs_gridfs package is broken

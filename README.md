@@ -5,37 +5,6 @@ Install mongodb:
 
     $ brew install mongodb
 
-Base:
-* Password (meteor add accounts-password)
-* BlazeLayout (https://github.com/kadirahq/blaze-layout)
-* Backdoor (xolvio:backdoor)
-* collection2 (https://atmospherejs.com/aldeed/collection2)
-* FlowRouter (https://github.com/kadirahq/flow-router)
-* kadira:dochead
-* aldeed:autoform
-* Check ($ meteor add check)
-* Email ($ meteor add email)
-* twbs:bootstrap
-* brew install graphicsmagick
-* cfs:standard-packages
-* cfs:s3
-* cfs:gridfs
-* cfs:ui
-* numeral:numeral
-* cfs:graphicsmagick
-* Random ($ meteor add random)
-* accounts-base ($ meteor add accounts-base)
-* roles ($ meteor add alanning:roles)
-* ian:accounts-ui-bootstrap-3
-* peppelg:bootstrap-3-modal
-* fortawesome:fontawesome
-* markdown
-* mdg:seo
-* selaias:cookie-consent
-* meteorhacks:fast-render
-* mrt:moment
-* dispatch:run-as-user
-
 DebugOnly:
 * msavin:mongol
 * avital:mocha
