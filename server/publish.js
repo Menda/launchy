@@ -42,6 +42,17 @@ const carDetailsFields = _.extend(carFields, {
   'active': 1
 });
 
+const carSoldFields = {
+  '_id': 1,
+  'make': 1,
+  'title': 1,
+  'year': 1,
+  'kilometers': 1,
+  'published': 1,
+  'active': 1,
+  'updatedAt': 1
+};
+
 const editAdCarFields = _.extend(carDetailsFields, {
   'contact': 1
 });
@@ -52,6 +63,14 @@ const editAdCarFields = _.extend(carDetailsFields, {
 Meteor.publish('lastAddedCars', (limit) => {
   return Cars.find({published: true, active: true},
                    {fields: carFields, sort: {createdAt: -1}, limit: limit});
+});
+
+/**
+ * Only publishes cars which are already sold
+ */
+Meteor.publish('lastClosedCars', (limit) => {
+  return Cars.find({published: true, active: false},
+                   {fields: carSoldFields, sort: {updatedAt: -1}, limit: limit});
 });
 
 const blogpostFields = {

@@ -9,35 +9,49 @@
   </div>
 
   <main role="main" id="pre-create-ad-advantages" class="container">
-    <div class="clearfix">
-      <span class="h3">Conozca las <strong>ventajas</strong> de anunciar su coche en Launch Control:</span>
-      <ul id="create-ad-advantages">
-        <li>
-          <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
-          Totalmente gratuito
-        </li>
-        <li>
-          <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
-          Anuncios enfocados directamente al público objetivo de su coche
-        </li>
-        <li>
-          <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
-          Presentación de su coche en una página espectacular para compartir externamente
-        </li>
-        <li>
-          <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
-          Servicio postventa ajustado a sus necesidades: tasación de coche y gestión de la compraventa
-        </li>
-        <li>
-          <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
-          Promoción extra gratuita en redes sociales
-        </li>
-      </ul>
-    </div>
-    <div class="clearfix">
-      <div class="text-center">
-        <a id="link-create-ad" class="btn btn-danger" href="{{urlCreateAd}}">Me gusta. ¡Crear mi anuncio ya!</a>
+    <section>
+      <div class="clearfix">
+        <span class="h3">Conozca las <strong>ventajas</strong> de anunciar su coche en Launch Control:</span>
+        <ul id="create-ad-advantages">
+          <li>
+            <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
+            Totalmente gratuito
+          </li>
+          <li>
+            <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
+            Anuncios enfocados directamente al público objetivo de tu coche
+          </li>
+          <li>
+            <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
+            Presentación de su coche en una página espectacular para compartir externamente
+          </li>
+          <li>
+            <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
+            Servicio postventa ajustado a sus necesidades: tasación de coche y gestión de la compraventa
+          </li>
+          <li>
+            <span class="glyphicon glyphicon-ok li-icon-fa" aria-hidden="true"></span>
+            Promoción extra gratuita en redes sociales de tu anuncio
+          </li>
+        </ul>
       </div>
-    </div>
+      <div class="clearfix">
+        <div class="text-center">
+          <a id="link-create-ad" class="btn btn-danger" href="{{urlCreateAd}}">Me gusta. ¡Crear mi anuncio ya!</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="last-sold-cars">
+      <header>
+        <h1 class="h3">Últimos coches vendidos por nuestros usuarios</h1>
+      </header>
+      <div class="clearfix">
+        {{#each soldCars}}
+          {{> car}}
+        {{/each}}
+      </div>
+    </section>
+
   </main>
 </template>
