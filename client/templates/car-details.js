@@ -38,18 +38,18 @@ Template.carDetails.onRendered(() => {
 
 
 Template.picsPhotoSwipe.events({
-  'click img.photoswipe': function(e) {
+  'click .photoswipe': function(e) {
     const pswpElement = $('.pswp')[0];
-    const photoItems = $('img.photoswipe');
+    const photoItems = $('.photoswipe');
     const items = [];
     let targetIndex;
     photoItems.each((i, item) => {
-      if (item.src == e.target.src) {
+      if (item.dataset.srcthumb && item.dataset.srcthumb == e.target.dataset.srcthumb) {
         targetIndex = i;
       }
       items.push({
         src: item.dataset.src, // high-res
-        msrc: item.src, // thumb
+        msrc: item.src||item.dataset.srcthumb, // thumb
         w: item.dataset.width, // PhotoSwipe requires you to know the dimensions
         h: item.dataset.height, // More information: http://photoswipe.com/documentation/faq.html
         el: item

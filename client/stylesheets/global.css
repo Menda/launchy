@@ -5,10 +5,8 @@ html {
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 16px;
-  margin-bottom: 100px;
 }
 a {
   color: #e74826;
@@ -19,18 +17,35 @@ a:hover {
 #logo-site {
   width: 200px;
 }
-main {
-  margin-bottom: 280px;
-}
 .footer {
   background-color: #353535;
   bottom: 0;
   color: #898989;
-  /* Set the fixed height of the footer here */
-  height: 220px;
   padding-top: 20px;
   position: absolute;
   width: 100%;
+}
+@media (max-width: 768px) {
+  body {
+    margin-bottom: 160px;
+  }
+  main {
+    margin-bottom: 340px;
+  }
+  .footer {
+    height: 280px;
+  }
+}
+@media (min-width: 769px) {
+  body {
+    margin-bottom: 100px;
+  }
+  main {
+    margin-bottom: 280px;
+  }
+  .footer {
+    height: 220px;
+  }
 }
 .footer a {
   color: #898989;
@@ -169,9 +184,17 @@ span.card-car-ad-name {
 /**
  * Car details
  */
-#car-details-images {
-  padding: 10px 0 20px 0;
+@media (max-width: 768px) {
+  #car-details-images {
+    padding: 0;
+  }
 }
+@media (min-width: 769px) {
+  #car-details-images {
+    padding: 10px 0 10px 0;
+  }
+}
+
 .car-details-title {
   margin-top: 0px;
 }
@@ -189,18 +212,27 @@ table.car-details tr {
 table.car-details td {
   padding: 10px 0 10px 0;
 }
-img.photo-main {
-  padding-top: 30px;
+.photo-main img {
+  text-align: center;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .photo-main img {
+    padding-bottom: 10px;
+  }
+}
+@media (min-width: 769px) {
+  .photo-main img {
+    padding-bottom: 20px;
+  }
+}
+.photo-detail div {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+  margin: 0 0 20px 0;
   max-width: 100%;
-}
-.photo-detail {
-  text-align: center;
-}
-.photo-detail img {
-  max-height: 180px;
-  max-width: 90%;
-  padding: 10px 0 10px 0;
-  text-align: center;
 }
 
 /**
@@ -227,6 +259,9 @@ img.photo-main {
   #pre-create-ad-cover {
     background-image: url(img/meet-us/cover.jpg);
   }
+}
+#create-ad-advantages {
+  padding: 10px 0 0 0;
 }
 #create-ad-advantages li {
   list-style: none;
