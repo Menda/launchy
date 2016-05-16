@@ -15,7 +15,7 @@ Template.home.helpers({
     return cars;
   },
   blogposts() {
-    return Blogposts.find({}).fetch();
+    return Blogposts.find({}, {sort: {createdAt: -1}}).fetch();
   }
 });
 
