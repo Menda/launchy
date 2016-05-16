@@ -84,7 +84,7 @@ automatically when something changed:
 
 If you need a 'one-shot' test (for example CI), then execute:
 
-  $ node_modules/chimp/bin/chimp.js --cucumber --path=tests/features
+  $ npm run-script cucumber
 
 
 Headless browser tests (end to end)

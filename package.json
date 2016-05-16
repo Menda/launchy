@@ -7,6 +7,7 @@
   "scripts": {
     "mocha": "chimp --ddp=http://localhost:3000 --mocha --path=tests",
     "mochawatch": "chimp --ddp=http://localhost:3000 --mocha --path=tests --watch",
+    "cucumber": "chimp --cucumber --ddp=http://localhost:3000 --path=tests/features",
     "cucumberwatch": "chimp --cucumber --ddp=http://localhost:3000 --watch --path=tests/features",
     "start_dev": "meteor --settings settings-dev.json",
     "start_dev_debug": "meteor debug --settings settings-dev.json --debug-port 5050",
@@ -14,7 +15,7 @@
     "_start_production": "modulus env set METEOR_SETTINGS \"$(cat settings-production.json)\" -p 'App - Production' && modulus deploy -f -p 'App - Production'"
   },
   "devDependencies": {
-    "chimp": "^0.30.0",
+    "chimp": "^0.34.1",
     "node-inspector": "0.12.x",
     "expect": "^1.14.0"
   },

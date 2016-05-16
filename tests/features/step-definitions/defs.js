@@ -12,7 +12,6 @@ var myStepDefinitionsWrapper = function() {
   // Check app feature
 
   this.Given(/^I have visited the homepage$/, function() {
-    console.log('Hi dev!');
     browser.url(process.env.ROOT_URL);
   });
 
@@ -26,25 +25,21 @@ var myStepDefinitionsWrapper = function() {
     expect(browser.getTitle()).toMatch(
       'Compra y venta de coches de gama alta, clásicos y de disfrute');
 
-    browser.timeoutsImplicitWait(1000);
-
     // All cars
     browser.click('#link-cars');
     expect(browser.getTitle()).toMatch('Mercado de automóviles de lujo');
-
-    browser.timeoutsImplicitWait(2000);
 
     // Create ad
     browser.click('a#link-pre-create-ad');
     expect(browser.getTitle()).toMatch('Anunciarte con nosotros');
 
-    browser.timeoutsImplicitWait(1000);
+    browser.pause(1000);
 
     // Meet us
     browser.click('#link-meet-us');
     expect(browser.getTitle()).toMatch('Conócenos');
 
-    browser.timeoutsImplicitWait(1000);
+    browser.pause(1000);
 
     // T&C
     browser.click('#link-tc');
@@ -52,9 +47,11 @@ var myStepDefinitionsWrapper = function() {
   });
 
   this.Then(/^Private links work as expected$/, function() {
-    browser.waitForExist('.dropdown-toggle');
+    browser.pause(3000);
+    browser.waitForExist('.dropdown-toggle', 5000);
     browser.click('.dropdown-toggle');
-    browser.waitForExist('#link-my-ads');
+    browser.pause(2000);
+    browser.waitForExist('#link-my-ads', 5000);
     browser.click('#link-my-ads');
     expect(browser.getTitle()).toMatch('Mis anuncios');
   });
@@ -66,7 +63,7 @@ var myStepDefinitionsWrapper = function() {
     browser.url(process.env.ROOT_URL + '/crear-anuncio');
   });
 
-  this.When(/^I fill a basic ad$/, function() {
+  this.When(/^I fill a basic ad$/, {timeout: 65 * 1000}, function() {
     browser.setValue('#form-title', 'Leon Cupra 290');
     browser.setValue('#form-price', '22000');
     browser.setValue('#form-year', '2015');
@@ -83,7 +80,7 @@ var myStepDefinitionsWrapper = function() {
       return this.getText('#form-makeId > option', function(err, res) {
         return (typeof res == 'object' && res.length > 10);
       });
-    });
+    }, 6000);
     browser.selectByVisibleText('#form-makeId', 'Seat');
 
     // Wait until all districts are populated from DB
@@ -91,7 +88,7 @@ var myStepDefinitionsWrapper = function() {
       return this.getText('#form-districtId option', function(err, res) {
         return (typeof res == 'object' && res.length > 10);
       });
-    });
+    }, 6000);
     browser.selectByVisibleText('#form-districtId', 'Cantabria');
   });
 
@@ -120,7 +117,7 @@ var myStepDefinitionsWrapper = function() {
 
   this.Then(/^I see the success page$/, function() {
     var expectedTitle = '¡Gracias por anunciar tu coche con nosotros!';
-    return browser.waitForExist('h1=' + expectedTitle);
+    return browser.waitForExist('h1=' + expectedTitle, 5000);
   });
 
   this.Then(/^I see the car inserted in the database$/, function() {
@@ -183,13 +180,26 @@ var myStepDefinitionsWrapper = function() {
   });
 
   this.Given(/^I click the contact seller button$/, function () {
-    browser.waitForExist('#contact-owner');
-    browser.click('#contact-owner');
+    browser.waitForExist('a#contact-owner');
+    var success = false;
+    var errorMsg;
+    // I don't know why randomly clicks well on it
+    for (var i = 0; i < 10; i++) {
+      try {
+        browser.click('a#contact-owner');
+        success = true;
+        return;
+      } catch (error) {
+        errorMsg = error;
+      }
+    }
+    if (! success) {
+      throw new Error(errorMsg);
+    }
   });
 
   this.When(/^I fill the contact form$/, function () {
-    browser.timeoutsImplicitWait(1000);
-
+    browser.waitForExist('#form-name', 5000);
     browser.setValue('#form-name', 'Wechewere Alaperri');
     browser.setValue('#form-email', 'wecher@misdies.com');
     browser.setValue('#form-message', 'Ola k ase\n\nPor aquí todo bien.');
