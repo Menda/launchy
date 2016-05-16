@@ -49,7 +49,7 @@
         </legend>
         <p>La <strong>primera foto</strong> que subas será la foto principal del anuncio</p>
         <div class="well imageDropArea">
-          <input type="file" id="form-images" class="images">
+          <input type="file" id="form-images" multiple class="images" />
         </div>
         <div class="imageArea clearfix">
           {{#each uploadedImages}}
@@ -151,7 +151,7 @@
       <div class="form-group{{#if afFieldIsInvalid name='tc'}} has-error{{/if}}">
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="true" id="form-tc" name="tc" data-schema-key="tc">
+            <input type="checkbox" value="true" id="form-tc" name="tc" data-schema-key="tc" />
             Acepto los <a target="_blank" href="{{urlTC}}">términos y condiciones</a>.
           </label>
         </div>
