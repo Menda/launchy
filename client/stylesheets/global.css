@@ -194,7 +194,6 @@ span.card-car-ad-name {
     padding: 10px 0 10px 0;
   }
 }
-
 .car-details-title {
   margin-top: 0px;
 }
@@ -212,8 +211,19 @@ table.car-details tr {
 table.car-details td {
   padding: 10px 0 10px 0;
 }
+#link-see-galery {
+  color: #fefefe;
+  display: block;
+  height: 30px;
+  font-size: 20px;
+  padding: 5px 0 0 10px;
+  position: relative;
+  z-index: 2;
+}
 .photo-main img {
+  position: relative;
   text-align: center;
+  top: -30px;
   width: 100%;
 }
 @media (max-width: 768px) {

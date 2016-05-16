@@ -40,10 +40,13 @@ Template.carDetails.onRendered(() => {
 Template.picsPhotoSwipe.events({
   'click .photoswipe': function(e) {
     const pswpElement = $('.pswp')[0];
-    const photoItems = $('.photoswipe');
+    const photoItems = $('a.photoswipe').add('div.photoswipe').add('img.photoswipe');
     const items = [];
     let targetIndex;
     photoItems.each((i, item) => {
+      if (i == 0) {
+        return;
+      }
       if (item.dataset.srcthumb && item.dataset.srcthumb == e.target.dataset.srcthumb) {
         targetIndex = i;
       }
@@ -60,7 +63,7 @@ Template.picsPhotoSwipe.events({
       {
         index: targetIndex,
         getThumbBoundsFn: (index) => {
-          const thumbnail = photoItems[index];
+          const thumbnail = photoItems[index + 1];
           const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
           const rect = thumbnail.getBoundingClientRect();
           return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};

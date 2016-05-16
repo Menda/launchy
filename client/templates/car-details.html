@@ -20,7 +20,7 @@
                 {{/unless}}
               {{else}}
                 {{#if published}}
-                  <span class="btn-danger btn">Este anuncio ha terminado</span>
+                  <span class="btn-danger btn">Este coche ha sido vendido</span>
                 {{else}}
                   <span class="btn-danger btn">Anuncio no aprobado</span>
                 {{/if}}
@@ -116,6 +116,9 @@
   {{#with car}}
   <div id="car-details-images" class="row" itemtype="http://schema.org/ImageGallery">
     <div class="col-lg-6 col-md-8">
+      <a id="link-see-galery" class="photoswipe">
+        <span class="glyphicon glyphicon-plus-sign visible-xs" aria-hidden="true"></span>
+      </a>
       <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-main">
         <img class="photoswipe" src="{{images.[0].url store="images"}}" data-src="{{images.[0].url store="images"}}" data-width="{{images.[0].metadata.width}}" data-height="{{images.[0].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
       </figure>
@@ -123,28 +126,28 @@
     <div class="col-lg-6 col-md-4">
       <div class="row">
         {{#if images.[1]}}
-        <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
+        <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6 hidden-xs">
           <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
             <div class="photoswipe" style="background-image: url({{images.[1].url store="thumbs-retina"}})" data-srcthumb="{{images.[1].url store="thumbs-retina"}}" data-src="{{images.[1].url store="images"}}" data-width="{{images.[1].metadata.width}}" data-height="{{images.[1].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
           </figure>
         </div>
         {{/if}}
         {{#if images.[2]}}
-        <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6">
+        <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6 hidden-xs">
           <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
             <div class="photoswipe" style="background-image: url({{images.[2].url store="thumbs-retina"}})" data-srcthumb="{{images.[2].url store="thumbs-retina"}}" data-src="{{images.[2].url store="images"}}" data-width="{{images.[2].metadata.width}}" data-height="{{images.[2].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
           </figure>
         </div>
         {{/if}}
         {{#if images.[3]}}
-        <div class="col-lg-6 col-md-12 col-sm-6 hidden-md hidden-xs">
+        <div class="col-lg-6 col-md-12 col-sm-6 visible-lg">
           <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
             <div class="photoswipe" style="background-image: url({{images.[3].url store="thumbs-retina"}})" data-srcthumb="{{images.[3].url store="thumbs-retina"}}" data-src="{{images.[3].url store="images"}}" data-width="{{images.[3].metadata.width}}" data-height="{{images.[3].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
           </figure>
         </div>
         {{/if}}
         {{#if images.[4]}}
-        <div class="col-lg-6 col-md-12 col-sm-6 hidden-md hidden-xs">
+        <div class="col-lg-6 col-md-12 col-sm-6 visible-lg">
           <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
             <div class="photoswipe" style="background-image: url({{images.[4].url store="thumbs-retina"}})" data-srcthumb="{{images.[4].url store="thumbs-retina"}}" data-src="{{images.[4].url store="images"}}" data-width="{{images.[4].metadata.width}}" data-height="{{images.[4].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
           </figure>
