@@ -198,22 +198,30 @@ Meteor.methods({
       if (isWorker) {
         const images = Images.find({});
         images.forEach((img) => {
-          var url = Meteor.absoluteUrl() + img.url();
-          url = url.replace(/([^:]\/)\/+/g, "$1");
-          url = url.replace("https", "http");
-          console.log(`URL: ${url}`);
-          gm(url).size({bufferStream: true}, FS.Utility.safeCallback(
-            (err, size) => {
-              if (! size) {
-                console.log(err);
-                return false;
+          if (! img.url()) {
+            return;
+          }
+          if (img.metadata && img.metadata.width && img.metadata.height) {
+            console.log(`Image ${img.url()} with metadata`);
+          } else {
+            console.log(`Image ${img.url()} without metadata`);
+            var url = Meteor.absoluteUrl() + img.url();
+            url = url.replace(/([^:]\/)\/+/g, "$1");
+            url = url.replace("https", "http");
+            console.log(`Checking URL: ${url}`);
+            gm(url).size({bufferStream: true}, FS.Utility.safeCallback(
+              (err, size) => {
+                if (! size) {
+                  console.log(err);
+                  return false;
+                }
+                const calcSize = getResizeDimensions(size.width, size.height, 1280, 960);
+                console.log(`Size found for ${url}: [${calcSize}]`);
+                Images.update({_id: img._id}, {$set: {
+                  'metadata.width': calcSize[0], 'metadata.height': calcSize[1]}});
               }
-              const calcSize = getResizeDimensions(size.width, size.height, 1280, 960);
-              console.log(`Size found for ${url}: [${calcSize}]`);
-              Images.update({_id: img._id}, {$set: {
-                'metadata.width': calcSize[0], 'metadata.height': calcSize[1]}});
-            }
-          ));
+            ));
+          }
         });
         return;
       }
