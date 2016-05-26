@@ -25,7 +25,7 @@
             Regístrate o inicia sesión para asignar este anuncio a tu cuenta para que así puedas modificarlo en cualquier momento.
           </p>
           <p>
-            Utiliza para ello el menú de arriba que pone "Sign in".
+            Utiliza para ello el menú de arriba que pone "Iniciar sesión / registrarse".
           </p>
         </div>
         {{/if}}
@@ -171,14 +171,18 @@
   <div class="media well pull-left">
     <a href="{{this.url}}" target="_blank" class="pull-left"><img src="{{this.url store='thumbs'}}" alt="" class="img-rounded img-car"></a>
     <div class="media-body">
-      {{#unless this.isUploaded}}
+      {{#if this.isUploaded}}
+        {{#unless this.hasStored 'images'}}
+          Almacenando...
+        {{/unless}}
+      {{else}}
         {{#if this.uploadProgress}}
           Subiendo: {{this.uploadProgress}}%
           <p>{{> FS.UploadProgressBar bootstrap=true}}</p>
         {{else}}
           <p>Espere un momento...</p>
         {{/if}}
-      {{/unless}}
+      {{/if}}
       {{#FS.DeleteButton class="btn btn-danger btn-xs"}}Borrar{{/FS.DeleteButton}}
     </div>
   </div>

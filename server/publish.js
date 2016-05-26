@@ -138,7 +138,7 @@ Meteor.publish('carDetailsEdit', function(carId) {
 });
 
 Meteor.publish('images', () => {
-  return Images.find();
+  return Images.find({});
 });
 
 Meteor.publish('assignedImages', () => {

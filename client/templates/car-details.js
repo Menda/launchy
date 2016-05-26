@@ -48,7 +48,7 @@ Template.picsPhotoSwipe.events({
         return;
       }
       if (item.dataset.srcthumb && item.dataset.srcthumb == e.target.dataset.srcthumb) {
-        targetIndex = i;
+        targetIndex = i - 1;
       }
       items.push({
         src: item.dataset.src, // high-res
@@ -66,10 +66,10 @@ Template.picsPhotoSwipe.events({
           const thumbnail = photoItems[index + 1];
           const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
           const rect = thumbnail.getBoundingClientRect();
-          return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+          return {x: rect.left, y: rect.top + pageYScroll, w: rect.width};
         },
         bgOpacity: 0.85,
-        barsSize: {top:0,bottom:0},
+        barsSize: {top: 0, bottom: 0},
         captionEl: false,
         fullscreenEl: false,
         galleryPIDs: false,

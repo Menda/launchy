@@ -1,3 +1,6 @@
+Porque detrás de cada coche, hay una historia por contar.
+Tu coche puesto en escena.
+
 http://stackoverflow.com/questions/22815538/meteor-prevent-multiple-inserts-from-console
 Enlace desde rmunoz.net con follow
 
@@ -14,4 +17,4 @@ CALIDAD FOTOS RETINA
 http://comunidad.atresmedia.com/login login para bootstrap
 
 Crear un whitelabeling.
-Una página para compartir en redes sociales, pero con mucha mejor presentación.
+Una página para compartir en foros y redes sociales, pero con mucha mejor presentación.

@@ -2,7 +2,7 @@
   <main role="main" class="container">
     <section>
       <header>
-        <h1>Coches en venta de segunda mano</h1>
+        <h1 class="h1">Coches en venta de segunda mano</h1>
       </header>
       <div id="all-cars">
         {{#each cars}}
@@ -16,8 +16,7 @@
 <template name="car">
   <a class="card-car-ad" href="{{urlCarDetails}}" title="Ver más información del modelo">
     <article itemscope itemtype="https://schema.org/Car" class="car-details-short">
-      <div style="background-image: url({{image.url store="thumbs-retina"}})" class="card-car-ad-img hidden-xs"></div>
-      <div style="background-image: url({{image.url store="thumbs"}})" class="card-car-ad-img visible-xs"></div>
+      <div style="background-image: url({{image.url store="thumbs-retina"}})" class="card-car-ad-img"></div>
       <header>
         <span itemprop="name" class="card-car-ad-name">{{make}} {{title}}</span>
       </header>

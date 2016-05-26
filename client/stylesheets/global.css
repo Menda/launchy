@@ -14,6 +14,18 @@ a {
 a:hover {
   color: #bc361b;
 }
+@media (max-width: 768px) {
+  .h1 {
+    font-size: 24px;
+  }
+  .h2 {
+    font-size: 18px;
+  }
+  .h3 {
+    font-size: 18px;
+  }
+}
+
 #logo-site {
   width: 200px;
 }
@@ -90,6 +102,11 @@ a:hover {
     padding-top: 100px;
   }
 }
+@media (max-width: 768px) {
+  #all-cars {
+    margin-bottom: 10px;
+  }
+}
 .blogpost {
   background-origin: border-box;
   background-position: 50% 50%;
@@ -97,6 +114,11 @@ a:hover {
   color: #fff;
   height: 335px;
   margin: 5px 10px 10px 10px;
+}
+@media (max-width: 768px) {
+  .blogpost {
+    height: 170px;
+  }
 }
 .blogpost-content {
   bottom: 0;
@@ -256,18 +278,19 @@ table.car-details td {
   color: #fff;
   height: 300px;
   margin-top: -20px;
-  margin-bottom: 50px;
   padding-top: 100px;
   text-shadow: 1px 1px 1px #222;
 }
 @media (max-width: 768px) {
   #pre-create-ad-cover {
     background-image: url(img/meet-us/cover-mobile.jpg);
+    margin-bottom: 20px;
   }
 }
 @media (min-width: 769px) {
   #pre-create-ad-cover {
     background-image: url(img/meet-us/cover.jpg);
+    margin-bottom: 50px;
   }
 }
 #create-ad-advantages {
