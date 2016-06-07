@@ -4,7 +4,12 @@
     "country": "ES",
     "language": "es",
     "language-local": "es-ES",
-    "site_name": "Launch Control"
+    "site_name": "Launch Control",
+    "uploadcare": {
+      "public_key": "8ee53af3fbfd0f9f7742",
+      "locale": "es",
+      "tabs": "file url gdrive dropbox"
+    }
   },
   "private": {
     "AWS": {
@@ -28,6 +33,12 @@
         "password": "carlosDev",
         "roles": ["employee"]
       }
+    },
+    "uploadcare": {
+      "secret_key": "72b8824c7f2d4c6b33cc",
+      "storage": "launchy-dev-uploadcare",
+      "size_img": "1280x960",
+      "size_thumb": "400x300"
     }
   },
   "galaxy.meteor.com": {

@@ -10,7 +10,7 @@ Template.cars.helpers({
   cars() {
     const cars = Cars.find({published: true, active: true}, {sort: {createdAt: -1}}).fetch();
     cars.forEach((car) => {
-      car.image = Images.findOne({assigned: car['_id']});
+      car.imageOld = Images.findOne({assigned: car['_id']});
     });
     return cars;
   }

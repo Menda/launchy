@@ -37,6 +37,36 @@ Schemas.District = new SimpleSchema({
   }
 });
 
+Schemas.ImageSize = new SimpleSchema({
+  height: {
+    type: Number
+  },
+  width: {
+    type: Number
+  }
+});
+
+Schemas.Image = new SimpleSchema({
+  uuid: {
+    type: String
+  },
+  url: {
+    type: String
+  },
+  size: {
+    type: Schemas.ImageSize
+  }
+});
+
+Schemas.ImagePair = new SimpleSchema({
+  image: {
+    type: Schemas.Image
+  },
+  thumb: {
+    type: Schemas.Image
+  }
+});
+
 Schemas.Contact = new SimpleSchema({
   email: {
     type: String,
@@ -118,6 +148,10 @@ Schemas.Car = new SimpleSchema({
   description: {
     type: String,
     max: 20000
+  },
+  images: {
+    type: [Schemas.ImagePair],
+    optional: true
   },
   contact: {
     type: Schemas.Contact

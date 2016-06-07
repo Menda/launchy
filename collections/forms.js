@@ -7,6 +7,10 @@ export const Forms = {};
 
 // Inherits from Schemas.Car
 Forms.createAdForm = new SimpleSchema([Schemas.Car, {
+  uploadcareGroupUrl: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Url
+  },
   districtId: {
     type: String
   },
@@ -46,9 +50,6 @@ Forms.createAdForm = new SimpleSchema([Schemas.Car, {
         return 'tc-required';
       }
     }
-  },
-  session: {  // used for assigning pictures to the ad
-    type: String
   }
 }]);
 

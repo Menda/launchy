@@ -1,4 +1,3 @@
-'use strict';
 import expect from 'expect';
 import {Meteor} from 'meteor/meteor';
 import {assert} from 'meteor/practicalmeteor:chai';

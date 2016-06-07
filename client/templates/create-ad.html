@@ -48,14 +48,7 @@
           Fotos del vehículo
         </legend>
         <p>La <strong>primera foto</strong> que subas será la foto principal del anuncio</p>
-        <div class="well imageDropArea">
-          <input type="file" id="form-images" multiple class="images" />
-        </div>
-        <div class="imageArea clearfix">
-          {{#each uploadedImages}}
-          {{> uploadedImage}}
-          {{/each}}
-        </div>
+        <input type="hidden" role="uploadcare-uploader" data-images-only="true" data-multiple="true" />
       </fieldset>
 
       <fieldset>

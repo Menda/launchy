@@ -31,12 +31,10 @@ cfs:gridfs
 cfs:ui
 numeral:numeral
 cfs:graphicsmagick
-random
 accounts-base
 email
 standard-minifier-css
 standard-minifier-js
-avital:mocha
 alanning:roles
 ian:accounts-ui-bootstrap-3
 peppelg:bootstrap-3-modal
@@ -50,3 +48,6 @@ mrt:moment
 okgrow:analytics
 dispatch:run-as-user
 loftsteinn:photoswipe
+http
+practicalmeteor:mocha
+natestrauser:uploadcare-plus

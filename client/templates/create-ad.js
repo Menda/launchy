@@ -3,10 +3,10 @@ import {Accounts} from 'meteor/accounts-base';
 import {AutoForm} from 'meteor/aldeed:autoform';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
 import {$} from 'meteor/jquery';
+import {UploadCarePlus} from 'meteor/natestrauser:uploadcare-plus';
 import {Session} from 'meteor/session';
 import {Template} from 'meteor/templating';
 import {_} from 'meteor/underscore';
-//Fs import TODO
 
 import {makeIdOptions, districtOptions, fuelOptions, transmissionOptions,
         wheelDriveOptions, bodyOptions} from '/client/lib/form-options';
@@ -25,13 +25,14 @@ if (Meteor.settings.public.environment === 'development'|'staging') {
 // Clean success page variable
 Template.createAd.created = () => {
   Session.set('successfulAd', false);
-  Session.set('random', Random.id());
   Session.set('carId', null);
   Session.set('finishedAd', false);
+
+  UploadCarePlus.load();
 };
+
 Template.createAd.destroyed = () => {
   Session.set('successfulAd', false);
-  Session.set('destroyed random', null);
   Session.set('carId', null);
   Session.set('finishedAd', false);
 };
@@ -46,15 +47,15 @@ Template.createAd.helpers({
   createAdForm() {
     return Forms.createAdForm;
   },
+  uploadcareApiKey() {
+    return Meteor.settings.public.uploadcare_api_key;
+  },
   makeIdOptions,
   districtOptions,
   fuelOptions,
   transmissionOptions,
   wheelDriveOptions,
-  bodyOptions,
-  uploadedImages() {
-    return Images.find({session: Session.get('random')});
-  }
+  bodyOptions
 });
 
 Template.createAd.events({
@@ -99,8 +100,8 @@ AutoForm.hooks({
       // We need to convert string value to boolean in order to validate
       doc['tc'] = $('#form-tc').is(':checked');
 
-      // Current session, so pictures are assigned to current Ad
-      doc['session'] = Session.get('random');
+      // Uploadcare Group ID
+      doc['uploadcareGroupUrl'] = $('input[role="uploadcare-uploader"]')[0].value;
       if (Meteor.userId()) {
         doc['userId'] = Meteor.userId();
         Session.set('finishedAd', true);
@@ -115,68 +116,8 @@ AutoForm.hooks({
   }
 });
 
-/**
- * Replace for original FS.EventHandlers.insertFiles function.
- */
-export function cfsInsertFiles(collection, options) {
-  options = options || {};
-  var afterCallback = options.after;
-  var metadataCallback = options.metadata;
-
-  function insertFilesHandler(event) {
-    // TODO Limit to one file only, so we can avoid that it breaks
-    // the server if someone changes the upload field to 'multiple'.
-    FS.Utility.eachFile(event, function(file) {
-      var f = new FS.File(file);
-      var maxChunk = 2097152;
-      FS.config.uploadChunkSize =
-        (f.original.size < 10 * maxChunk) ? f.original.size / 10 : maxChunk;
-      if (metadataCallback) {
-        FS.Utility.extend(f, metadataCallback(f));
-      }
-      collection.insert(f, afterCallback);
-    });
-  }
-
-  return insertFilesHandler;
-}
-
-/**
- * Image handling methods
- */
-function getHandler(dropped) {
-  return cfsInsertFiles(Images, {
-    metadata(fileObj) {
-      return {
-        // TODO: return width and height
-        session: Session.get('random'),  // util variable
-        assigned: false  // image assigned to a created Ad
-      };
-    },
-    after(error, fileObj) {
-      if (! error) {
-        console.log('Image inserted', fileObj.name());
-      }
-      // We need to clean the input file, because after adding the files,
-      // the value of it is not cleaned.
-      let inputFile = $('#form-images');
-      inputFile.replaceWith(inputFile = inputFile.clone(true));
-    }
-  });
-}
-
-// Can't call getHandler until startup so that Images object is available
-// This is loaded anywhere (at any URL) in the app only once it's started.
-Meteor.startup(() => {
-  Template.createAd.events({
-    'dropped .imageArea': getHandler(true),
-    'dropped .imageDropArea': getHandler(true),
-    'change input.images': getHandler(false)
-  });
-});
-
 // If the user created the ad, but did not log in, then we react over
-// login and we check if the random session variable is set
+// login and we assigned to him the ad.
 Accounts.onLogin(() => {
   const userId = Meteor.userId();
   const carId = Session.get('carId');

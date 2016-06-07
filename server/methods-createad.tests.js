@@ -4,6 +4,7 @@ import {Meteor} from 'meteor/meteor';
 import {assert} from 'meteor/practicalmeteor:chai';
 import {stubs, spies} from 'meteor/practicalmeteor:sinon';
 import {_} from 'meteor/underscore';
+import sinon from 'sinon';
 
 import {Cars} from '/collections/collections.js';
 import {Schemas} from '/collections/schemas.js';
@@ -11,6 +12,8 @@ import {Images} from '/server/collections.js';
 import {EmailBuilder} from '/server/email_builder.js';
 import {} from '/server/methods.js';
 import {Check} from '/server/methods.js';
+import {Uploadcare} from '/server/uploadcare.js';
+const uploadcare = require('/server/uploadcare.js')
 
 
 describe('Meteor.methods.createAd', () => {
@@ -19,7 +22,26 @@ describe('Meteor.methods.createAd', () => {
     stubs.create('checkCheck', Check, 'check');
     stubs.create('carsInsert', Cars, 'insert');
     stubs.carsInsert.returns('01234');
-    stubs.create('imagesUpdate', Images, 'update');
+
+    const uploadImagesToS3 = sinon.stub(Uploadcare.prototype, 'uploadImagesToS3');
+    uploadImagesToS3.returns([{
+      image: {
+        uuid: '<UUID>',
+        url: 'http://image.com/img.jpg',
+        size: {
+          height: 960,
+          width: 1280
+        }
+      },
+      thumb: {
+        uuid: '<UUID>',
+        url: 'http://image.com/thumb.jpg',
+        size: {
+          height: 300,
+          width: 400
+        }
+      }
+    }]);
     stubs.create('rolesGetUsersInRole', Roles, 'getUsersInRole');
     const obj = {
       fetch() {
@@ -34,7 +56,7 @@ describe('Meteor.methods.createAd', () => {
     stubs.create('meteorDefer', Meteor, 'defer');
 
     const doc = {
-      'session': '<SESSION>',
+      'uploadcareGroupUrl': 'https://ucarecdn.com/ffd6e227-5be6-4330-96cb-f44f5b7df342/',
       'make': 'Cadillac',
       'title': 'Escalade ESV'
     };

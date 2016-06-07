@@ -1,11 +1,17 @@
 'use strict';
+const fs = require('fs');
+
 import {Accounts} from 'meteor/accounts-base';
 import {Roles} from 'meteor/alanning:roles';
+import {gm} from 'meteor/cfs:graphicsmagick';
+// https://github.com/meteor/meteor/issues/6552
+// import { Assets } from 'meteor/meteor';
 import {_} from 'meteor/underscore';
 
-// TODO Assets, FS
 import {Districts, Makes, Cars, Blogposts} from '/collections/collections.js';
+import {getResizeDimensions} from '/lib/utils.js';
 import {Images} from '/server/collections.js';
+import {Uploadcare} from '/server/uploadcare.js';
 
 
 Meteor.startup(() => {
@@ -99,9 +105,10 @@ Meteor.startup(() => {
     // Test cars population
     if (Cars.find().count() == 0) {
       console.log('Populating test Cars');
+      const uploadcare = new Uploadcare();
+
       const samples = ['golf_vii_r', 'lotus_elise', 'mercedes_sl'];
       const root = 'cars/samples/';
-
       _.each(samples, (filename) => {
         const car = JSON.parse(
           Assets.getText(root + filename + '.json'));
@@ -110,13 +117,52 @@ Meteor.startup(() => {
         car['makeId'] = make['_id'];
         const id = Cars.insert(car);
 
+        const images = [];
         _.each(['01', '02', '03'], (picindex) => {
-          const img = new FS.File();
-          img.name(filename + '-' + picindex + '.jpg');
-          const data = Assets.getBinary(`cars/samples/images/${filename}-${picindex}.jpg`);
-          img.attachData(data, {type: 'image/jpeg'});
-          const imageObj = Images.insert(img);
-          imageObj.update({$set: {'assigned': id}});
+          const imagePath = `cars/samples/images/${filename}-${picindex}.jpg`;
+          const imageAbsPath = Assets.absoluteFilePath(imagePath);
+
+          const readStream = fs.createReadStream(imageAbsPath);
+          gm(readStream).size({bufferStream: true}, FS.Utility.safeCallback((err, size) => {
+            const res = uploadcare.uploadFileSync(imageAbsPath, 2000);
+            const uuid = JSON.parse(res.body).file;
+
+            // Save image
+            const [measuredImgSize, measuredImgWidth, measuredImgHeight] =
+              Uploadcare.getImageSize(
+                uuid, size.width, size.height,
+                Meteor.settings.private.uploadcare.size_img);
+            const imageResult = uploadcare.saveImage(uuid, measuredImgSize);
+
+            // Save thumbnail
+            const [measuredThumbSize, measuredThumbWidth, measuredThumbHeight] =
+              Uploadcare.getImageSize(
+                uuid, size.width, size.height,
+                Meteor.settings.private.uploadcare.size_thumb);
+            const thumbResult = uploadcare.saveImage(uuid, measuredThumbSize);
+
+            const imgPairMetadata = {
+              image: {
+                uuid: uuid,
+                url: imageResult.headers.location,
+                size: {
+                  height: measuredImgHeight,
+                  width: measuredImgWidth
+                }
+              },
+              thumb: {
+                uuid: uuid,
+                url: thumbResult.headers.location,
+                size: {
+                  width: measuredThumbWidth,
+                  height: measuredThumbHeight
+                }
+              }
+            };
+
+            Cars.update({_id: id}, {$push: {images: imgPairMetadata}});
+            uploadcare.removeFile(uuid);
+          }));
         });
       });
     }

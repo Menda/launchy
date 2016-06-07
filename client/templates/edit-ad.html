@@ -14,15 +14,9 @@
             <span class="glyphicon glyphicon-camera" aria-hidden="true"></span>
             Fotos del vehículo
           </legend>
-          <p>La <strong>primera foto</strong> que subas será la foto principal del anuncio</p>
-          <div class="well imageDropArea">
-            <input type="file" id="form-images" multiple="" class="images" />
-          </div>
-          <div class="imageArea clearfix">
-            {{#each uploadedImages}}
-            {{> uploadedImage}}
-            {{/each}}
-          </div>
+          <p>Las fotos no son modificables. Si deseas cambiar las fotos, <strong>deberás cerrar el anuncio</strong> y crear uno nuevo.</p>
+
+          {{>picsPhotoSwipe car=currentCar}}
         </fieldset>
 
         <fieldset>

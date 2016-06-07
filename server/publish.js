@@ -26,6 +26,7 @@ const carFields = {
   'year': 1,
   'kilometers': 1,
   'description': 1,
+  'images': 1,
   'color': 1,
   'doors': 1,
   'body': 1,

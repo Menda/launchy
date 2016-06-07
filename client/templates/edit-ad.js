@@ -1,10 +1,8 @@
 'use strict';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 
-import {Images} from '/client/imports/collections.js';
 import {makeIdOptions, districtOptions, fuelOptions, transmissionOptions,
         wheelDriveOptions, bodyOptions} from '/client/lib/form-options';
-import {cfsInsertFiles} from  '/client/templates/create-ad.js';
 import {Cars, Makes, Districts} from '/collections/collections.js';
 import {FUELTYPES, TRANSMISSIONTYPES,
         WHEELDRIVETYPES, BODYTYPES} from '/collections/constants.js';
@@ -46,10 +44,7 @@ Template.editAd.helpers({
   fuelOptions,
   transmissionOptions,
   wheelDriveOptions,
-  bodyOptions,
-  uploadedImages() {
-    return Images.find({});
-  }
+  bodyOptions
 });
 
 AutoForm.hooks({
@@ -94,36 +89,4 @@ AutoForm.hooks({
       FlowRouter.redirect(carDetailsPath);
     }
   }
-});
-
-/**
- * Image handling methods
- */
-function getHandler(dropped) {
-  return cfsInsertFiles(Images, {
-    metadata(fileObj) {
-      return {
-        assigned: FlowRouter.getParam('_id') // assign to this carId
-      };
-    },
-    after(error, fileObj) {
-      if (! error) {
-        console.log('Image inserted', fileObj.name());
-      }
-      // We need to clean the input file, because after adding the files,
-      // the value of it is not cleaned.
-      let inputFile = $('#form-images');
-      inputFile.replaceWith(inputFile = inputFile.clone(true));
-    }
-  });
-}
-
-// Can't call getHandler until startup so that Images object is available
-// This is loaded anywhere (at any URL) in the app only once it's started.
-Meteor.startup(() => {
-  Template.editAd.events({
-    'dropped .imageArea': getHandler(true),
-    'dropped .imageDropArea': getHandler(true),
-    'change input.images': getHandler(false)
-  });
 });

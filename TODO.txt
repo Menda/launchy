@@ -1,3 +1,8 @@
+Eliminar paquete CFS
+Usar esto para mockear llamadas HTTP: https://www.npmjs.com/package/nock
+https://github.com/vizeat/multer-storage-uploadcare/blob/b2138af4cc855db162b45d19598f66c72ad051f0/test/test.js
+
+
 Porque detrás de cada coche, hay una historia por contar.
 Tu coche puesto en escena.
 

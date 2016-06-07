@@ -46,7 +46,7 @@ Mocha tests (unit tests)
 
 Or to keep the test running waiting for changes:
 
-    $ meteor test --driver-package avital:mocha --settings=settings-dev.json
+    $ meteor test --driver-package practicalmeteor:mocha --settings=settings-dev.json
 
 Then visit http://localhost:3000
 

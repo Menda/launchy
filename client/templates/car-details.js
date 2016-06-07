@@ -105,7 +105,7 @@ Template.carDetails.helpers({
     if (! car) {
       return;
     }
-    car.images = Images.find({assigned: car['_id']}).fetch();
+    car.imagesOld = Images.find({assigned: car['_id']}).fetch();
     return car;
   },
   urlCarDetails() {
@@ -130,7 +130,9 @@ Template.carDetails.events({
 // picsPhotoSwipe
 
 Template.registerHelper('getHiddenImages', (images, index) => {
-  return images.slice(index);
+  if (images) {
+    return images.slice(index);
+  }
 });
 
 

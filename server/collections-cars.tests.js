@@ -1,7 +1,6 @@
 'use strict';
-import expect from 'expect';
 import {Meteor} from 'meteor/meteor';
-import {assert} from 'meteor/practicalmeteor:chai';
+import {assert, expect} from 'meteor/practicalmeteor:chai';
 
 import {Districts, Makes, Cars} from '/collections/collections.js';
 import {cleanData} from '/server/test-fixtures.js';
@@ -9,10 +8,10 @@ import {cleanData} from '/server/test-fixtures.js';
 
 describe('Car', () => {
   // Prepare data
-  var makeId; // will be filled in before each iteration
+  let makeId; // will be filled in before each iteration
   const districtObj = {country: 'España', region: 'País Vasco', district: 'Vizcaya'};
   const contactObj = {email: 'fake@email.com', phone: '666777888', fullname: 'Pepe Marcha'}
-  var carObj = {
+  const carObj = {
     makeId: '',
     title: 'BMW 7 Series F01 730d SE N57 3.0d',
     price: 34000,
@@ -44,6 +43,33 @@ describe('Car', () => {
     const insertSync = Meteor.wrapAsync(Cars.insert, Cars);
     const result = insertSync(carObj);
     assert.typeOf(result, 'string');
+  });
+
+  it('should be inserted successfuly with images', () => {
+    carObj['makeId'] = makeId;
+    const modCarObj = JSON.parse(JSON.stringify(carObj));
+    modCarObj.images = [{
+      image: {
+        uuid: '<UUID>',
+        url: 'http://image.com/img.jpg',
+        size: {
+          height: 960,
+          width: 1280
+        }
+      },
+      thumb: {
+        uuid: '<UUID>',
+        url: 'http://image.com/thumb.jpg',
+        size: {
+          height: 300,
+          width: 400
+        }
+      }
+    }];
+    const insertSync = Meteor.wrapAsync(Cars.insert, Cars);
+    const carID = insertSync(modCarObj);
+    const result = Cars.findOne(carID).images;
+    expect(result).to.eql(modCarObj.images);
   });
 
   it('should be inserted successfuly with populated make', () => {
