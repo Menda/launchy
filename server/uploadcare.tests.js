@@ -5,7 +5,7 @@ import {assert} from 'meteor/practicalmeteor:chai';
 import {Uploadcare} from '/server/uploadcare.js';
 
 
-describe('Uploadcare', (url) => {
+describe('Uploadcare', () => {
   it('getRequestOptions', () => {
     const publicKey = Meteor.settings.public.uploadcare.public_key;
     const secretKey = Meteor.settings.private.uploadcare.secret_key;
@@ -16,12 +16,6 @@ describe('Uploadcare', (url) => {
     assert.equal(res['headers']['Authorization'], `Uploadcare.Simple ${publicKey}:${secretKey}`);
   });
 
-  it('uploadFileFromUrl should return result', () => {
-    const uploadcare = new Uploadcare();
-    const res = uploadcare.uploadFileFromUrl(
-      'https://d2281rzx97x4to.cloudfront.net/e8ebfe20-8c11-4a94-9b40-52ecad7d8d1a/billmurray.jpg');
-    assert.isObject(res);
-  });
 
   it('getGroupId should return the Id', () => {
     const res = Uploadcare.getGroupId(

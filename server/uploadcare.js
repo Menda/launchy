@@ -138,14 +138,14 @@ export class Uploadcare {
       // Save image
       const [measuredImgSize, measuredImgWidth, measuredImgHeight] =
         Uploadcare.getImageSize(
-          file.uuid, file.image_info.width, file.image_info.height,
+          file.image_info.width, file.image_info.height,
           Meteor.settings.private.uploadcare.size_img);
       const imageResult = this.saveImage(file.uuid, measuredImgSize);
 
       // Save thumbnail
       const [measuredThumbSize, measuredThumbWidth, measuredThumbHeight] =
         Uploadcare.getImageSize(
-          file.uuid, file.image_info.width, file.image_info.height,
+          file.image_info.width, file.image_info.height,
           Meteor.settings.private.uploadcare.size_thumb);
       const thumbResult = this.saveImage(file.uuid, measuredThumbSize);
 
@@ -174,7 +174,7 @@ export class Uploadcare {
     return images;
   }
 
-  static getImageSize(uuid, width, height, maxSize) {
+  static getImageSize(width, height, maxSize) {
     const maxWidth = maxSize.split("x")[0],
           maxHeight = maxSize.split("x")[1];
     const [measuredWidth, measuredHeight] = getResizeDimensions(

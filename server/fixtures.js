@@ -129,14 +129,14 @@ Meteor.startup(() => {
             // Save image
             const [measuredImgSize, measuredImgWidth, measuredImgHeight] =
               Uploadcare.getImageSize(
-                uuid, size.width, size.height,
+                size.width, size.height,
                 Meteor.settings.private.uploadcare.size_img);
             const imageResult = uploadcare.saveImage(uuid, measuredImgSize);
 
             // Save thumbnail
             const [measuredThumbSize, measuredThumbWidth, measuredThumbHeight] =
               Uploadcare.getImageSize(
-                uuid, size.width, size.height,
+                size.width, size.height,
                 Meteor.settings.private.uploadcare.size_thumb);
             const thumbResult = uploadcare.saveImage(uuid, measuredThumbSize);
 
