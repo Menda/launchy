@@ -8,7 +8,6 @@ import sinon from 'sinon';
 
 import {Cars} from '/collections/collections.js';
 import {Schemas} from '/collections/schemas.js';
-import {Images} from '/server/collections.js';
 import {EmailBuilder} from '/server/email_builder.js';
 import {} from '/server/methods.js';
 import {Check} from '/server/methods.js';

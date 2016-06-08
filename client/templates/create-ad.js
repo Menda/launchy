@@ -10,7 +10,6 @@ import {_} from 'meteor/underscore';
 
 import {makeIdOptions, districtOptions, fuelOptions, transmissionOptions,
         wheelDriveOptions, bodyOptions} from '/client/lib/form-options';
-import {Images} from '/client/imports/collections.js';
 import {Makes, Districts} from '/collections/collections.js';
 import {FUELTYPES, TRANSMISSIONTYPES,
         WHEELDRIVETYPES, BODYTYPES} from '/collections/constants.js';

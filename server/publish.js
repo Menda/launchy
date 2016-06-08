@@ -3,7 +3,6 @@ import {Meteor} from 'meteor/meteor';
 import {_} from 'meteor/underscore';
 
 import {Makes, Districts, Cars, Blogposts} from '/collections/collections.js';
-import {Images} from '/server/collections.js';
 
 
 Meteor.publish('districts', () => {
@@ -136,25 +135,4 @@ Meteor.publish('carDetailsEdit', function(carId) {
       }, {fields: fields});
     }
   }
-});
-
-Meteor.publish('images', () => {
-  return Images.find({});
-});
-
-Meteor.publish('assignedImages', () => {
-  return Images.find({assigned: {
-      $not : { $type : 10 },
-      $exists : true
-    }
-  });
-});
-
-Meteor.publish('justUploadedImages', () => {
-  const dateNow = new Date();
-  return Images.find({assigned: false, uploadedAt: {$gte: dateNow}});
-});
-
-Meteor.publish('imagesDetail', (carId) => {
-  return Images.find({assigned: carId});
 });

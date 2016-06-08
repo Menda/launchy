@@ -2,7 +2,6 @@
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {Template} from 'meteor/templating';
 
-import {Images} from '/client/imports/collections.js';
 import {Cars, Blogposts} from '/collections/collections.js';
 
 
@@ -10,9 +9,6 @@ Template.home.helpers({
   cars() {
     const cars = Cars.find({published: true, active: true},
                            {sort: {createdAt: -1}, limit: 8}).fetch();
-    cars.forEach((car) => {
-      car.imageOld = Images.findOne({assigned: car['_id']});
-    });
     return cars;
   },
   blogposts() {

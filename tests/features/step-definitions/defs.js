@@ -120,19 +120,6 @@ var myStepDefinitionsWrapper = function() {
     return browser.waitForExist('h1=' + expectedTitle, 5000);
   });
 
-  this.Then(/^I see the car inserted in the database$/, function() {
-    /*
-     * TODO fix this checking 'My ads'
-    var img = server.execute(function() {
-      //import {Cars} from '/collections/collections.js';
-      //require('./collections/collections.js')
-      var car = Cars.findOne({published: false}, {sort: {createdAt: -1, limit: 1}});
-      var img = Images.findOne({assigned: car._id});
-      return img;
-    });
-    expect(img['original']['name']).toMatch('pic.jpg');*/
-  });
-
   this.Then(/^I see an error in the form$/, function() {
     return browser.waitForExist('.has-error');
   });

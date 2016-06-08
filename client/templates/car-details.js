@@ -5,7 +5,6 @@ import {Template} from 'meteor/templating';
 import {Tracker} from 'meteor/tracker';
 // TODO import {PhotoSwipeUI_Default} from...
 
-import {Images} from '/client/imports/collections.js';
 import {Cars} from '/collections/collections.js';
 import {Forms} from '/collections/forms.js';
 import {setHead} from '/lib/utils.js';
@@ -105,7 +104,6 @@ Template.carDetails.helpers({
     if (! car) {
       return;
     }
-    car.imagesOld = Images.find({assigned: car['_id']}).fetch();
     return car;
   },
   urlCarDetails() {

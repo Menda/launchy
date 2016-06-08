@@ -4,7 +4,6 @@ import {Roles} from 'meteor/alanning:roles';
 import {Meteor} from 'meteor/meteor';
 
 import {Districts, Makes, Cars, Blogposts} from '/collections/collections.js';
-import {Images} from '/server/collections.js';
 
 
 export function cleanData() {
@@ -12,7 +11,6 @@ export function cleanData() {
   Districts.remove({});
   Cars.remove({});
   Blogposts.remove({});
-  Images.remove({});
 }
 
 export function insertCar() {

@@ -1,5 +1,4 @@
 'use strict';
-import {FS} from 'meteor/cfs:base-package';
 import {Meteor} from 'meteor/meteor';
 
 
@@ -8,21 +7,6 @@ function checkEnvVars() {
   if (! Meteor.settings.public.environment) {
     throw new Error('--settings are missing');
   }
-}
-
-/**
- * Image upload and handling settings.
- */
-function setFSSettings() {
-  console.log('Setting image upload and handling config');
-  if (Meteor.settings.public.environment === 'development'|'staging') {
-    FS.debug = true;
-  }
-
-  // default GET request headers
-  FS.HTTP.setHeadersForGet([
-    ['Cache-Control', 'public, max-age=31536000']
-  ]);
 }
 
 function setEmailSettings() {
@@ -40,7 +24,6 @@ function setEmailSettings() {
 
 Meteor.startup(() => {
   checkEnvVars();
-  setFSSettings();
   setEmailSettings();
   console.log(`You are running environment: ${Meteor.settings.public.environment}`);
 });

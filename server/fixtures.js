@@ -9,8 +9,7 @@ import {gm} from 'meteor/cfs:graphicsmagick';
 import {_} from 'meteor/underscore';
 
 import {Districts, Makes, Cars, Blogposts} from '/collections/collections.js';
-import {getResizeDimensions} from '/lib/utils.js';
-import {Images} from '/server/collections.js';
+import {getResizeDimensions, safeCallback} from '/lib/utils.js';
 import {Uploadcare} from '/server/uploadcare.js';
 
 
@@ -123,7 +122,7 @@ Meteor.startup(() => {
           const imageAbsPath = Assets.absoluteFilePath(imagePath);
 
           const readStream = fs.createReadStream(imageAbsPath);
-          gm(readStream).size({bufferStream: true}, FS.Utility.safeCallback((err, size) => {
+          gm(readStream).size({bufferStream: true}, safeCallback((err, size) => {
             const res = uploadcare.uploadFileSync(imageAbsPath, 2000);
             const uuid = JSON.parse(res.body).file;
 

@@ -8,8 +8,7 @@ import {_} from 'meteor/underscore';
 import {Cars} from '/collections/collections.js';
 import {Forms} from '/collections/forms.js';
 import {Schemas} from '/collections/schemas.js';
-import {getResizeDimensions} from '/lib/utils.js';
-import {Images} from '/server/collections.js';
+import {getResizeDimensions, safeCallback} from '/lib/utils.js';
 import {EmailBuilder} from '/server/email_builder.js';
 import {Uploadcare} from '/server/uploadcare.js';
 
@@ -207,108 +206,6 @@ Meteor.methods({
       throw new Meteor.Error('403', 'You are not authorized');
     } else {
       Cars.update({_id: carId}, {$set: {active: false}});
-    }
-  },
-
-  /**
-   * Updates all images which don't have metadata associated.
-   * TODO deprecate
-   */
-  updateImages: function() {
-    console.log('Meteor.methods.updateImages: Entering method');
-    if (! isWorker(this.userId)) {
-      throw new Meteor.Error('403', 'You are not authorized');
-    } else {
-      const images = Images.find({});
-      images.forEach((img) => {
-        if (! img.url()) {
-          return;
-        }
-        if (img.metadata && img.metadata.width && img.metadata.height) {
-          console.log(`Image ${img.url()} with metadata`);
-        } else {
-          console.log(`Image ${img.url()} without metadata`);
-          const url = getAbsoluteUrl(img.url());
-          console.log(`Checking URL: ${url}`);
-          gm(url).size({bufferStream: true}, FS.Utility.safeCallback(
-            (err, size) => {
-              if (! size) {
-                console.log(err);
-                return false;
-              }
-              const calcSize = getResizeDimensions(size.width, size.height, 1280, 960);
-              console.log(`Size found for ${url}: [${calcSize}]`);
-              Images.update({_id: img._id}, {$set: {
-                'metadata.width': calcSize[0], 'metadata.height': calcSize[1]}});
-            }
-          ));
-        }
-      });
-    }
-  },
-
-  /**
-   * Migrates all images to the Uploadcare solution. It doesn't work on localhost.
-   */
-  migrateImages: function() {
-    console.log('Meteor.methods.migrateImages: Entering method');
-    if (! isWorker(this.userId)) {
-      throw new Meteor.Error('403', 'You are not authorized');
-    } else {
-      const cars = Cars.find({}).fetch();
-      cars.forEach((car) => {
-        if (car.images) {
-          console.log(`${car.make} ${car.title} (${car._id}) has already ported images`);
-          return;
-        }
-        const imagesOld = Images.find({assigned: car._id}).fetch();
-        const uploadcare = new Uploadcare();
-        const images = [];
-        imagesOld.forEach((img) => {
-          if (! img.url()) {
-            return;
-          }
-
-          if (! img.metadata) {
-            return;
-          }
-
-          const url = getAbsoluteUrl(img.url());
-          console.log(`Migrating image: ${url}`);
-          const response = uploadcare.uploadFileFromUrl(url);
-
-          const size = `${img.metadata.width}x${img.metadata.height}`;
-          const uuid = response.uuid;
-          const imageResult = uploadcare.saveImage(uuid, size);
-
-          const [measuredThumbSize, measuredThumbWidth, measuredThumbHeight] =
-            Uploadcare.getImageSize(
-              uuid, img.metadata.width, img.metadata.height,
-              Meteor.settings.private.uploadcare.size_thumb);
-          const thumbResult = uploadcare.saveImage(uuid, measuredThumbSize);
-
-          images.push({
-            image: {
-              uuid: uuid,
-              url: imageResult.headers.location.replace('http:', ''),
-              size: {
-                height: img.metadata.height,
-                width: img.metadata.width
-              }
-            },
-            thumb: {
-              uuid: uuid,
-              url: thumbResult.headers.location.replace('http:', ''),
-              size: {
-                width: measuredThumbWidth,
-                height: measuredThumbHeight
-              }
-            }
-          });
-
-        });
-        Cars.update({_id: car._id}, {$set: {images: images}});
-      });
     }
   }
 });

@@ -120,7 +120,7 @@
         <span class="glyphicon glyphicon-plus-sign visible-xs" aria-hidden="true"></span>
       </a>
       <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-main">
-        <img class="photoswipe" src="{{#if images}}{{images.[0].image.url}}{{else}}{{imagesOld.[0].url store="images"}}{{/if}}" data-src="{{#if images}}{{images.[0].image.url}}{{else}}{{imagesOld.[0].url store="images"}}{{/if}}" data-width="{{#if images}}{{images.[0].image.size.width}}{{else}}{{imagesOld.[0].metadata.width}}{{/if}}" data-height="{{#if images}}{{images.[0].image.size.height}}{{else}}{{imagesOld.[0].metadata.height}}{{/if}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
+        <img class="photoswipe" src="{{images.[0].image.url}}" data-src="{{images.[0].image.url}}" data-width="{{images.[0].image.size.width}}" data-height="{{images.[0].image.size.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
       </figure>
     </div>
     <div class="col-lg-6 col-md-4">
@@ -131,23 +131,11 @@
             <div class="photoswipe" style="background-image: url({{images.[1].thumb.url}})" data-srcthumb="{{images.[1].thumb.url}}" data-src="{{images.[1].image.url}}" data-width="{{images.[1].image.size.width}}" data-height="{{images.[1].image.size.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
           </figure>
         </div>
-        {{else}}
-        <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6 hidden-xs">
-          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
-            <div class="photoswipe" style="background-image: url({{imagesOld.[1].url store="thumbs-retina"}})" data-srcthumb="{{imagesOld.[1].url store="thumbs-retina"}}" data-src="{{imagesOld.[1].url store="images"}}" data-width="{{imagesOld.[1].metadata.width}}" data-height="{{imagesOld.[1].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
-          </figure>
-        </div>
         {{/if}}
         {{#if images.[2]}}
         <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6 hidden-xs">
           <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
             <div class="photoswipe" style="background-image: url({{images.[2].thumb.url}})" data-srcthumb="{{images.[2].thumb.url}}" data-src="{{images.[2].image.url}}" data-width="{{images.[2].image.size.width}}" data-height="{{images.[2].image.size.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
-          </figure>
-        </div>
-        {{else}}
-        <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6 hidden-xs">
-          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
-            <div class="photoswipe" style="background-image: url({{imagesOld.[2].url store="thumbs-retina"}})" data-srcthumb="{{imagesOld.[2].url store="thumbs-retina"}}" data-src="{{imagesOld.[2].url store="images"}}" data-width="{{imagesOld.[2].metadata.width}}" data-height="{{imagesOld.[2].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
           </figure>
         </div>
         {{/if}}
@@ -157,12 +145,6 @@
             <div class="photoswipe" style="background-image: url({{images.[3].thumb.url}})" data-srcthumb="{{images.[3].thumb.url}}" data-src="{{images.[3].image.url}}" data-width="{{images.[3].image.size.width}}" data-height="{{images.[3].image.size.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
           </figure>
         </div>
-        {{else}}
-        <div class="col-lg-6 col-md-12 col-sm-6 visible-lg">
-          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
-            <div class="photoswipe" style="background-image: url({{imagesOld.[3].url store="thumbs-retina"}})" data-srcthumb="{{imagesOld.[3].url store="thumbs-retina"}}" data-src="{{imagesOld.[3].url store="images"}}" data-width="{{imagesOld.[3].metadata.width}}" data-height="{{imagesOld.[3].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
-          </figure>
-        </div>
         {{/if}}
         {{#if images.[4]}}
         <div class="col-lg-6 col-md-12 col-sm-6 visible-lg">
@@ -170,32 +152,16 @@
             <div class="photoswipe" style="background-image: url({{images.[4].thumb.url}})" data-srcthumb="{{images.[4].thumb.url}}" data-src="{{images.[4].image.url}}" data-width="{{images.[4].image.size.width}}" data-height="{{images.[4].image.size.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
           </figure>
         </div>
-        {{else}}
-        <div class="col-lg-6 col-md-12 col-sm-6 visible-lg">
-          <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" class="photo-detail">
-            <div class="photoswipe" style="background-image: url({{imagesOld.[4].url store="thumbs-retina"}})" data-srcthumb="{{imagesOld.[4].url store="thumbs-retina"}}" data-src="{{imagesOld.[4].url store="images"}}" data-width="{{imagesOld.[4].metadata.width}}" data-height="{{imagesOld.[4].metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}"></div>
-          </figure>
-        </div>
         {{/if}}
       </div>
     </div>
-    {{#if images}}
-      {{#each getHiddenImages images 4}}
-        {{#if image.url}}
-        <figure class="hidden" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-          <img class="photoswipe" src="{{image.url}}" data-src="{{image.url}}" data-width="{{image.size.width}}" data-height="{{image.size.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
-        </figure>
-        {{/if}}
-      {{/each}}
-    {{else}}
-      {{#each getHiddenImages imagesOld 4}}
-        {{#if url}}
-        <figure class="hidden" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-          <img class="photoswipe" src="{{url store="thumbs-retina"}}" data-src="{{url store="images"}}" data-width="{{metadata.width}}" data-height="{{metadata.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
-        </figure>
-        {{/if}}
-      {{/each}}
-    {{/if}}
+    {{#each getHiddenImages images 4}}
+      {{#if image.url}}
+      <figure class="hidden" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+        <img class="photoswipe" src="{{image.url}}" data-src="{{image.url}}" data-width="{{image.size.width}}" data-height="{{image.size.height}}" itemprop="thumbnail" alt="Foto de {{make}} {{title}}" />
+      </figure>
+      {{/if}}
+    {{/each}}
   </div>
   {{/with}}
 </template>
