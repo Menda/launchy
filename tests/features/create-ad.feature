@@ -12,6 +12,7 @@ Feature: Create Ad functionality
   Scenario: No phone or email is filled
     Given I have visited the createAd
     When I fill a basic ad
+    And Add a picture to it
     And "email" is not filled
     And "phone" is not filled
     And Check the T&C
@@ -21,6 +22,7 @@ Feature: Create Ad functionality
   Scenario: No fullname is filled
     Given I have visited the createAd
     When I fill a basic ad
+    And Add a picture to it
     And "fullname" is not filled
     And Check the T&C
     And Submit the form
@@ -29,6 +31,7 @@ Feature: Create Ad functionality
   Scenario: T&C are not accepted
     Given I have visited the createAd
     When I fill a basic ad
+    And Add a picture to it
     And Submit the form
     Then I see an error in the form
 
@@ -36,6 +39,7 @@ Feature: Create Ad functionality
     Given I have visited the createAd
     And I am not logged in
     When I fill a basic ad
+    And Add a picture to it
     And Check the T&C
     And Submit the form
     Then I see the 'almost there' page
@@ -45,6 +49,7 @@ Feature: Create Ad functionality
     And I have an account
     And I am logged in
     When I fill a basic ad
+    And Add a picture to it
     And Check the T&C
     And Submit the form
     Then I see the success page
@@ -52,6 +57,7 @@ Feature: Create Ad functionality
   Scenario: Ad is created with a post-logged in user
     Given I have visited the createAd
     When I fill a basic ad
+    And Add a picture to it
     And Check the T&C
     And Submit the form
     And I log in
@@ -66,4 +72,3 @@ Feature: Create Ad functionality
     And Check the T&C
     And Submit the form
     Then I see the success page
-    And I see the car inserted in the database

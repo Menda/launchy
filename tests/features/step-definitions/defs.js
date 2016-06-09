@@ -31,7 +31,7 @@ var myStepDefinitionsWrapper = function() {
 
     // Create ad
     browser.click('a#link-pre-create-ad');
-    expect(browser.getTitle()).toMatch('Anunciarte con nosotros');
+    expect(browser.getTitle()).toMatch('Anunciar tu coche de gama alta gratuitamente');
 
     browser.pause(1000);
 
@@ -93,9 +93,18 @@ var myStepDefinitionsWrapper = function() {
   });
 
   this.When(/^Add a picture to it$/, function () {
-    browser.chooseFile(
-      '#form-images', 'tests/features/img/pic.jpg');
-    browser.waitForExist('div.media');
+    browser.click('.uploadcare-widget-button-open');
+    browser.pause(2000);
+    browser.click('.uploadcare-dialog-tab-url');
+    browser.pause(1000);
+    var url = 'https://d2281rzx97x4to.cloudfront.net/' + 
+              'e8ebfe20-8c11-4a94-9b40-52ecad7d8d1a/billmurray.jpg';
+    browser.setValue('.uploadcare-dialog-input', url);
+    browser.click('.uploadcare-dialog-url-submit');
+    browser.click('.uploadcare-dialog-tab-preview');
+    browser.pause(4000);
+    browser.click('.uploadcare-dialog-preview-done');
+    browser.pause(4000);
   });
 
   this.When(/^"([^"]*)" is not filled$/, function(selector) {
