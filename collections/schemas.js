@@ -1,5 +1,6 @@
 'use strict';
 import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+
 import {Makes} from '/collections/collections.js';
 import {FUELTYPES, TRANSMISSIONTYPES,
         BODYTYPES, WHEELDRIVETYPES} from '/collections/constants.js';
@@ -78,9 +79,14 @@ Schemas.Contact = new SimpleSchema({
     max: 20,
     optional: true
   },
-  fullname: {
+  fullname: {  // can be also company name
     type: String,
     max: 40
+  },
+  externalUrl: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Url,
+    optional: true
   }
 });
 

@@ -102,11 +102,11 @@ Meteor.startup(() => {
 
   if (Meteor.settings.public.environment === 'development'|'staging') {
     // Test cars population
-    if (Cars.find().count() == 0) {
+    if (Cars.find().count() === 0) {
       console.log('Populating test Cars');
       const uploadcare = new Uploadcare();
 
-      const samples = ['golf_vii_r', 'lotus_elise', 'mercedes_sl'];
+      const samples = ['golf_vii_r', 'lotus_elise', 'mercedes_sl', 'ferrari_308'];
       const root = 'cars/samples/';
       _.each(samples, (filename) => {
         const car = JSON.parse(
@@ -117,9 +117,14 @@ Meteor.startup(() => {
         const id = Cars.insert(car);
 
         const images = [];
-        _.each(['01', '02', '03'], (picindex) => {
+        _.each(['01', '02', '03', '04', '05', '06', '07'], (picindex) => {
           const imagePath = `cars/samples/images/${filename}-${picindex}.jpg`;
-          const imageAbsPath = Assets.absoluteFilePath(imagePath);
+          let imageAbsPath;
+          try {
+            imageAbsPath = Assets.absoluteFilePath(imagePath);
+          } catch (error) {
+            return;
+          }
 
           const readStream = fs.createReadStream(imageAbsPath);
           gm(readStream).size({bufferStream: true}, safeCallback((err, size) => {

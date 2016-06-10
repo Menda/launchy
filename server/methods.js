@@ -207,5 +207,17 @@ Meteor.methods({
     } else {
       Cars.update({_id: carId}, {$set: {active: false}});
     }
+  },
+
+  /**
+   * Assigns (or deletes if `null`) a external URL to an Ad.
+   */
+  assignExternalUrl: function(carId, externalUrl) {
+    console.log('Meteor.methods.assignExternalUrl: Entering method');
+    if (! isWorker(this.userId)) {
+      throw new Meteor.Error('403', 'You are not authorized');
+    } else {
+      Cars.update({_id: carId}, {$set: {'contact.externalUrl': externalUrl}});
+    }
   }
 });

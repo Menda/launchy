@@ -93,13 +93,19 @@
 
             {{#if active}}
               {{#if published}}
-                {{#unless showContactOwnerForm}}
-                <p>
-                  <a id="contact-owner" class="btn btn-danger scroll">Contactar con vendedor</a>
-                </p>
-                {{/unless}}
-                {{#if showContactOwnerForm}}
-                  {{>contactOwnerForm carId=_id}}
+                {{#if contact.externalUrl}}
+                  <p>
+                    <a href="{{contact.externalUrl}}" target="_blank" class="btn btn-danger scroll">Ver anuncio de original</a>
+                  </p>
+                {{else}}
+                  {{#unless showContactOwnerForm}}
+                  <p>
+                    <a id="contact-owner" class="btn btn-danger scroll">Contactar con vendedor</a>
+                  </p>
+                  {{/unless}}
+                  {{#if showContactOwnerForm}}
+                    {{>contactOwnerForm carId=_id}}
+                  {{/if}}
                 {{/if}}
               {{/if}}
             {{/if}}

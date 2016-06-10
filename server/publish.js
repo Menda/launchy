@@ -13,19 +13,26 @@ Meteor.publish('makes', () => {
   return Makes.find();
 });
 
-// Car fields allowed to be sent on the client, don't send private data!
 const carFields = {
   '_id': 1,
   'make': 1,
   'title': 1,
+  'year': 1,
+  'kilometers': 1,
+  'images': 1,
+  'contact.externalUrl': 1,
+  'createdAt': 1,
+  'published': 1,
+  'active': 1
+};
+
+let carDetailsFields = _.clone(carFields);
+carDetailsFields = _.extend(carDetailsFields, {
   'district': 1,
   'price': 1,
   'fuel': 1,
   'transmission': 1,
-  'year': 1,
-  'kilometers': 1,
   'description': 1,
-  'images': 1,
   'color': 1,
   'doors': 1,
   'body': 1,
@@ -33,13 +40,7 @@ const carFields = {
   'wheelDrive': 1,
   'owners': 1,
   'maintenance': 1,
-  'warranty': 1,
-  'createdAt': 1
-};
-
-const carDetailsFields = _.extend(carFields, {
-  'published': 1,
-  'active': 1
+  'warranty': 1
 });
 
 const carSoldFields = {
@@ -53,15 +54,26 @@ const carSoldFields = {
   'updatedAt': 1
 };
 
-const editAdCarFields = _.extend(carDetailsFields, {
-  'contact': 1
+let editAdCarFields = _.clone(carDetailsFields);
+editAdCarFields = _.extend(editAdCarFields, {
+  'contact.email': 1,
+  'contact.phone': 1,
+  'contact.fullname': 1
 });
 
 /**
- * Only publishes cars which are published and approved
+ * Only publishes cars which are published and approved (non external)
  */
 Meteor.publish('lastAddedCars', (limit) => {
-  return Cars.find({published: true, active: true},
+  return Cars.find({published: true, active: true, 'contact.externalUrl': null},
+                   {fields: carFields, sort: {createdAt: -1}, limit: limit});
+});
+
+/**
+ * Only publishes cars which are published and approved (external)
+ */
+Meteor.publish('lastAddedExternalCars', (limit) => {
+  return Cars.find({published: true, active: true, 'contact.externalUrl': {$ne: null}},
                    {fields: carFields, sort: {createdAt: -1}, limit: limit});
 });
 
@@ -69,7 +81,7 @@ Meteor.publish('lastAddedCars', (limit) => {
  * Only publishes cars which are already sold
  */
 Meteor.publish('lastClosedCars', (limit) => {
-  return Cars.find({published: true, active: false},
+  return Cars.find({published: true, active: false, 'contact.externalUrl': null},
                    {fields: carSoldFields, sort: {updatedAt: -1}, limit: limit});
 });
 
@@ -121,6 +133,7 @@ Meteor.publish('carDetails', function(carId) {
 });
 
 Meteor.publish('carDetailsEdit', function(carId) {
+console.log('hola');
   const userId = this.userId;
   const fields = editAdCarFields;
   if (userId) {

@@ -1,0 +1,29 @@
+{
+  "manufacturer": {
+    "name": "Ferrari"
+  },
+  "title": "308 GTS Quattrovalvole",
+  "price": 90000,
+  "color": "Rojo - Rosso",
+  "fuel": "petrol",
+  "transmission": "manual",
+  "body": "targa",
+  "doors": 2,
+  "horsepower": 340,
+  "wheelDrive": "rwd",
+  "year": 1985,
+  "kilometers": 54027,
+  "description": "Traído de Italia, con documentación italiana.",
+  "contact": {
+    "email": "miscoho@n.es",
+    "phone": "+34665555555",
+    "fullname": "Auctionata",
+    "externalUrl": "https://auctionata.com/de/o/230851/ferrari-308-gts-quattrovalvole-baujahr-1985"
+  },
+  "district": {
+    "country": "Alemania",
+    "region": "Berlín",
+    "district": "Berlín"
+  },
+  "published": true
+}

@@ -7,12 +7,20 @@ import {Cars, Blogposts} from '/collections/collections.js';
 
 Template.home.helpers({
   cars() {
-    const cars = Cars.find({published: true, active: true},
+    const cars = Cars.find({published: true, active: true, 'contact.externalUrl': null},
+                           {sort: {createdAt: -1}, limit: 8}).fetch();
+    return cars;
+  },
+  externalCars() {
+    const cars = Cars.find({published: true, active: true, 'contact.externalUrl': {$ne: null}},
                            {sort: {createdAt: -1}, limit: 8}).fetch();
     return cars;
   },
   blogposts() {
     return Blogposts.find({}, {sort: {createdAt: -1}}).fetch();
+  },
+  urlExternalCars() {
+    return FlowRouter.path('externalCars');
   }
 });
 
