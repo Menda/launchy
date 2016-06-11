@@ -60,3 +60,7 @@ Template.home.helpers({
 Template.registerHelper('formatDate', (date) => {
   return moment(date).fromNow();
 });
+
+Template.registerHelper('equals', (a, b) => {
+  return a === b;
+});
