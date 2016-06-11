@@ -49,6 +49,7 @@ const carSoldFields = {
   'title': 1,
   'year': 1,
   'kilometers': 1,
+  'images': 1,
   'published': 1,
   'active': 1,
   'updatedAt': 1
