@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "load-script": "^1.0.0",
-    "request": "2.72.0"
+    "request": "2.72.0",
+    "humanize": "0.0.9"
   }
 }

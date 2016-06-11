@@ -1,4 +1,6 @@
 'use strict';
+const humanize = require('humanize');
+
 import {accountsUIBootstrap3} from 'meteor/ian:accounts-ui-bootstrap-3';
 import {FlowRouter} from 'meteor/kadira:flow-router';
 import {Meteor} from 'meteor/meteor';
@@ -63,4 +65,8 @@ Template.registerHelper('formatDate', (date) => {
 
 Template.registerHelper('equals', (a, b) => {
   return a === b;
+});
+
+Template.registerHelper('humanizeNumber', (number) => {
+  return humanize.numberFormat(number, 0, ',', '.');
 });

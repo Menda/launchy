@@ -55,7 +55,7 @@
             <table class="table car-details">
               <tr>
                 <td>Precio</td>
-                <td class="text-right"><b>{{price}} €</b></td>
+                <td class="text-right"><b>{{humanizeNumber price}} €</b></td>
               </tr>
               {{#if horsepower}}
               <tr>
@@ -77,7 +77,7 @@
               </tr>
               <tr>
                 <td>Kilómetros</td>
-                <td class="text-right"><b>{{kilometers}}</b></td>
+                <td class="text-right"><b>{{humanizeNumber kilometers}}</b></td>
               </tr>
               {{#if body}}
               <tr>
