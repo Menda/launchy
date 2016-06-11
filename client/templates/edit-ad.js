@@ -22,13 +22,7 @@ Template.editAd.helpers({
       car['email'] = car['contact']['email'];
       car['phone'] = car['contact']['phone'];
       car['fullname'] = car['contact']['fullname'];
-      const district = Districts.findOne({'district': car['district']['district']});
-      // TODO sometimes the subscription is not prepared and returns 'undefined'
-      // There should be a better way to make this
-      if (! district) {
-        return;
-      }
-      car['districtId'] = district['_id'];
+
       const make = Makes.findOne({'name': car['make']});
       // TODO sometimes the subscription is not prepared and returns 'undefined'
       // There should be a better way to make this
@@ -36,6 +30,14 @@ Template.editAd.helpers({
         return;
       }
       car['makeId'] = make['_id'];
+
+      const district = Districts.findOne({'district': car['district']['district']});
+      if (district) {
+        car['districtId'] = district['_id'];
+      } else {
+        car['districtId'] = '<FOREIGN>';  // the car is not in Spain
+      }
+
       return car;
     }
   },
@@ -65,15 +67,14 @@ AutoForm.hooks({
       const phone = AutoForm.getFieldValue('phone');
       const fullname = AutoForm.getFieldValue('fullname');
       if ((email || phone) && fullname) {
-        modifier.$set.contact = {};
         if (email) {
-          modifier.$set.contact.email = email;
+          modifier.$set['contact.email'] = email;
         }
         if (phone) {
-          modifier.$set.contact.phone = phone;
+          modifier.$set['contact.phone'] = phone;
         }
         if (fullname) {
-          modifier.$set.contact.fullname = fullname;
+          modifier.$set['contact.fullname'] = fullname;
         }
       }
 

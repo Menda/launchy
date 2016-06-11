@@ -12,7 +12,7 @@ Template.home.helpers({
     return cars;
   },
   externalCars() {
-    const cars = Cars.find({published: true, active: true, 'contact.externalUrl': {$ne: null}},
+    const cars = Cars.find({published: true, 'contact.externalUrl': {$ne: null}},
                            {sort: {createdAt: -1}, limit: 8}).fetch();
     return cars;
   },

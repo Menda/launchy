@@ -26,7 +26,17 @@
           </legend>
           {{> afQuickField id="form-makeId" name="makeId" label="Marca" firstOption="(Seleccionar marca)" options=makeIdOptions}}
           {{> afQuickField id="form-title" name="title" label="Modelo" placeholder="Por ejemplo: Serie 3 335i, S3 Sportback, CLS 350 d Shooting Brake" }}
-          {{> afFormGroup type="select" id="form-districtId" name="districtId" label="Provincia" firstOption="(Seleccionar provincia)" options=districtOptions}}
+
+          {{#if equals currentCar.districtId "<FOREIGN>"}}
+          <div class="form-group" data-required="false">
+            <label for="form-district" class="control-label">Localización</label>
+            <input type="text" id="form-district" name="district" value="{{currentCar.district.region}} ({{currentCar.district.country}})" readonly class="form-control">
+            <span class="help-block"></span>
+          </div>
+          {{else}}
+            {{> afFormGroup type="select" id="form-districtId" name="districtId" label="Provincia" firstOption="(Seleccionar provincia)" options=districtOptions}}
+          {{/if}}
+
           <div class="form-group{{#if afFieldIsInvalid name='price'}} has-error{{/if}}">
             <label for="form-price" class="control-label">Precio</label>
             <div class="input-group">

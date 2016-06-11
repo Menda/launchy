@@ -6,7 +6,7 @@ import {Cars} from '/collections/collections.js';
 
 Template.externalCars.helpers({
   cars() {
-    const cars = Cars.find({published: true, active: true, 'contact.externalUrl': {$ne: null}},
+    const cars = Cars.find({published: true, 'contact.externalUrl': {$ne: null}},
                            {sort: {createdAt: -1}}).fetch();
     return cars;
   }

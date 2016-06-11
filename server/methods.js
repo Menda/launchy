@@ -114,7 +114,6 @@ Meteor.methods({
     newDoc.active = false;
     newDoc.createdAt = new Date();
     Check.check(newDoc, Schemas.Car);
-
     Cars.update(carId, doc);
   },
 

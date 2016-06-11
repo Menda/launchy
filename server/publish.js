@@ -73,7 +73,7 @@ Meteor.publish('lastAddedCars', (limit) => {
  * Only publishes cars which are published and approved (external)
  */
 Meteor.publish('lastAddedExternalCars', (limit) => {
-  return Cars.find({published: true, active: true, 'contact.externalUrl': {$ne: null}},
+  return Cars.find({published: true, 'contact.externalUrl': {$ne: null}},
                    {fields: carFields, sort: {createdAt: -1}, limit: limit});
 });
 
@@ -133,7 +133,6 @@ Meteor.publish('carDetails', function(carId) {
 });
 
 Meteor.publish('carDetailsEdit', function(carId) {
-console.log('hola');
   const userId = this.userId;
   const fields = editAdCarFields;
   if (userId) {
@@ -142,10 +141,7 @@ console.log('hola');
     if (isAdmin || isEmployee) {
       return Cars.find({'_id': carId}, {fields: fields});
     } else {
-      return Cars.find({
-        _id: carId,
-        userId: userId
-      }, {fields: fields});
+      return Cars.find({_id: carId, userId: userId}, {fields: fields});
     }
   }
 });
