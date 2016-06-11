@@ -93,21 +93,20 @@
               {{/if}}
             </table>
 
-            {{#if active}}
+            {{#if contact.externalUrl}}
+              <p>
+                <a href="{{contact.externalUrl}}" target="_blank" class="btn btn-info scroll">Ver anuncio original</a>
+              </p>
+            {{else}}
               {{#if published}}
-                {{#if contact.externalUrl}}
-                  <p>
-                    <a href="{{contact.externalUrl}}" target="_blank" class="btn btn-danger scroll">Ver anuncio de original</a>
-                  </p>
-                {{else}}
+                {{#if active}}
                   {{#unless showContactOwnerForm}}
                   <p>
                     <a id="contact-owner" class="btn btn-danger scroll">Contactar con vendedor</a>
                   </p>
-                  {{/unless}}
-                  {{#if showContactOwnerForm}}
+                  {{else}}
                     {{>contactOwnerForm carId=_id}}
-                  {{/if}}
+                  {{/unless}}
                 {{/if}}
               {{/if}}
             {{/if}}
