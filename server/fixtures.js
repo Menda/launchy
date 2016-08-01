@@ -45,29 +45,30 @@ Meteor.startup(() => {
   }
 
   // Makes population
-  if (Makes.find().count() === 0) {
-    console.log('Populating Makes');
-    const makes = [
-      'abarth', 'alfaromeo', 'alpina', 'alpine', 'aro', 'asia', 'astonmartin', 'audi', 'austin',
-      'autobianchi', 'bedford', 'bentley', 'bertone', 'bmw', 'buick', 'cadillac', 'caterham',
-      'chevrolet', 'chrysler', 'citroen', 'dacia', 'daewoo', 'daf', 'daihatsu', 'daimler', 'dodge',
-      'ebro', 'ferrari', 'fiat', 'ford', 'fsopolski', 'galloper', 'gme', 'honda',
-      'hyundai', 'infiniti', 'innocenti', 'isuzu', 'iveco', 'jaguar', 'jeep', 'kia', 'lada',
-      'lamborghini', 'lancia', 'landrover', 'ldv', 'lexus', 'leyland', 'ligier', 'lotus', 'lti',
-      'mahindra', 'maruti', 'maserati', 'maybach', 'mazda', 'mercedesbenz', 'mg', 'mini',
-      'mitsubishi', 'morgan', 'morris', 'nissan', 'opel', 'peugeot', 'pontiac',
-      'porsche', 'proton', 'reliant', 'renault', 'rollsroyce', 'rover', 'rvi', 'saab', 'santana',
-      'seat', 'skoda', 'smart', 'ssangyong', 'subaru', 'suzuki', 'talbot', 'tata',
-      'tesla', 'toyota', 'triumph', 'tvr', 'umm', 'vauxhall', 'volkswagen', 'volvo', 'wartburg',
-      'yugozastava', 'zaztavria'
-    ]
-    const root = 'makes/';
-    _.each(makes, (filename) => {
-      const make = JSON.parse(
-        Assets.getText(root + filename + '.json'));
-      Makes.insert(make);
-    });
-  }
+  const makes = [
+    'abarth', 'alfaromeo', 'alpina', 'alpine', 'aro', 'asia', 'astonmartin', 'audi', 'austin',
+    'autobianchi', 'bedford', 'bentley', 'bertone', 'bmw', 'buick', 'cadillac', 'caterham',
+    'chevrolet', 'chrysler', 'citroen', 'dacia', 'daewoo', 'daf', 'daihatsu', 'daimler', 'dodge',
+    'ebro', 'ferrari', 'fiat', 'ford', 'fsopolski', 'galloper', 'gme', 'honda', 'hummer',
+    'hyundai', 'infiniti', 'innocenti', 'isuzu', 'iveco', 'jaguar', 'jeep', 'kia', 'lada',
+    'lamborghini', 'lancia', 'landrover', 'ldv', 'lexus', 'leyland', 'ligier', 'lotus', 'lti',
+    'mahindra', 'maruti', 'maserati', 'maybach', 'mazda', 'mercedesbenz', 'mg', 'mini',
+    'mitsubishi', 'morgan', 'morris', 'nissan', 'oldsmobile', 'opel', 'peugeot', 'pontiac',
+    'porsche', 'proton', 'reliant', 'renault', 'rollsroyce', 'rover', 'rvi', 'saab', 'santana',
+    'seat', 'skoda', 'smart', 'ssangyong', 'subaru', 'suzuki', 'talbot', 'tata',
+    'tesla', 'toyota', 'triumph', 'tvr', 'umm', 'vauxhall', 'volkswagen', 'volvo', 'wartburg',
+    'yugozastava', 'zaztavria'
+  ]
+  const root = 'makes/';
+  let updated = false;
+  _.each(makes, (makeName) => {
+    const makeData = JSON.parse(
+      Assets.getText(root + makeName + '.json'));
+    if (Makes.find({name: makeData.name}).count() === 0) {
+      console.log(`Inserting make: ${makeName}`);
+      Makes.insert(makeData);
+    }
+  });
 
   if (Accounts.users.find().count() === 0) {
     console.log('Populating Admins and Employees');
