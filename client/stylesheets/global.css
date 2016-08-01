@@ -393,6 +393,33 @@ legend .glyphicon, legend .fa {
 }
 
 /**
+ * Book
+ */
+@media (max-width: 768px) {
+  #book-cover {
+    max-width: 50%;
+  }
+}
+@media (min-width: 769px) {
+  #book-cover {
+    max-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .call-action {
+    font-size: 17px;
+  }
+}
+@media (min-width: 769px) {
+  .call-action {
+    font-size: 25px;
+  }
+}
+#book-preamble, #book-gratitude {
+  margin-top: 20px;
+}
+
+/**
  * My Ads
  */
 .my-ads-car {

@@ -32,6 +32,9 @@ Template.appFooter.helpers({
   urlMeetUs() {
     return FlowRouter.path('meetUs');
   },
+  urlBook() {
+    return FlowRouter.path('book');
+  },
   urlTC() {
     return FlowRouter.path('termsAndConditions');
   }
