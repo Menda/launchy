@@ -10,7 +10,7 @@ Meteor.publish('districts', () => {
 });
 
 Meteor.publish('makes', () => {
-  return Makes.find();
+  return Makes.find({}, {sort: {name: 1}});
 });
 
 const carFields = {
