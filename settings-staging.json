@@ -6,7 +6,7 @@
     "language-local": "es-ES",
     "site_name": "Launch Control",
     "uploadcare": {
-      "public_key": "8ee53af3fbfd0f9f7742",
+      "public_key": “-“,
       "locale": "es",
       "tabs": "file url gdrive dropbox"
     }
@@ -35,7 +35,7 @@
       }
     },
     "uploadcare": {
-      "secret_key": "72b8824c7f2d4c6b33cc",
+      "secret_key": “-“,
       "storage": "launchy-dev-uploadcare",
       "size_img": "1280x960",
       "size_thumb": "400x300"
